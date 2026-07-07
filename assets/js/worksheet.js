@@ -119,7 +119,7 @@
         var inp = td.querySelector("input, textarea, select");
         return inp ? (inp.value || "").trim() : td.textContent.trim();
       });
-      if (cells.some(function (c) { return c; })) rows.push(cells);
+      rows.push(cells); // keep empty rows so a blank download stays fillable
     });
     return { type: "table", caption: caption, headers: headers, rows: rows };
   }
@@ -150,46 +150,127 @@
     return el && el.value.trim() ? el.value.trim() : "";
   }
 
-  /* ---- download (Word-openable HTML) ------------------------------------ */
-  function docHtml() {
-    var sections = serialize();
-    var by = preparedBy();
-    var esc = function (s) { return (s || "").replace(/[&<>]/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]; }); };
-    var body = "";
+  /* ---- download as a real .docx (opens in Google Docs / Word / Pages) ---- */
+  function xesc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+  function wPara(text, o) {
+    o = o || {};
+    var rpr = "";
+    if (o.bold) rpr += "<w:b/>";
+    if (o.size) rpr += '<w:sz w:val="' + o.size + '"/><w:szCs w:val="' + o.size + '"/>';
+    if (o.color) rpr += '<w:color w:val="' + o.color + '"/>';
+    var ppr = "";
+    if (o.before || o.after)
+      ppr = "<w:spacing" + (o.before ? ' w:before="' + o.before + '"' : "") +
+            (o.after ? ' w:after="' + o.after + '"' : "") + "/>";
+    var run = text === "" ? "" :
+      "<w:r><w:rPr>" + rpr + '</w:rPr><w:t xml:space="preserve">' + xesc(text) + "</w:t></w:r>";
+    return "<w:p><w:pPr>" + ppr + "</w:pPr>" + run + "</w:p>";
+  }
+  function wTable(headers, rows) {
+    var borders = "<w:tblBorders>" +
+      ["top", "left", "bottom", "right", "insideH", "insideV"].map(function (s) {
+        return "<w:" + s + ' w:val="single" w:sz="4" w:color="CCCCCC"/>';
+      }).join("") + "</w:tblBorders>";
+    function cell(t, bold) {
+      return '<w:tc><w:tcPr><w:tcW w:w="0" w:type="auto"/></w:tcPr>' +
+        "<w:p><w:pPr></w:pPr><w:r><w:rPr>" + (bold ? "<w:b/>" : "") +
+        '</w:rPr><w:t xml:space="preserve">' + xesc(t) + "</w:t></w:r></w:p></w:tc>";
+    }
+    var xml = '<w:tbl><w:tblPr><w:tblW w:w="5000" w:type="pct"/>' + borders + "</w:tblPr>";
+    if (headers && headers.length)
+      xml += "<w:tr>" + headers.map(function (h) { return cell(h, true); }).join("") + "</w:tr>";
+    (rows || []).forEach(function (r) {
+      xml += "<w:tr>" + r.map(function (c) { return cell(c, false); }).join("") + "</w:tr>";
+    });
+    return xml + "</w:tbl><w:p></w:p>";
+  }
+  function buildDocx() {
+    var sections = serialize(), by = preparedBy(), body = "";
+    body += wPara("BUSHWICK DAILY · GROCERY PRICE INDEX", { bold: true, size: 16, color: "7A5300" });
+    body += wPara("Phase " + PHASE + " · " + DELIVERABLE, { bold: true, size: 40, after: 40 });
+    body += wPara("Prepared by " + (by || "—") + "     Folder " + FOLDER, { size: 18, color: "666666", after: 200 });
     sections.forEach(function (s) {
-      if (s.heading) body += "<h2>" + esc(s.heading) + "</h2>";
+      if (s.heading) body += wPara(s.heading, { bold: true, size: 28, before: 280, after: 60 });
       s.items.forEach(function (it) {
         if (it.type === "field") {
-          body += "<p><b>" + esc(it.label) + "</b><br>" +
-                  (esc(it.value) || "<i>(blank)</i>") + "</p>";
-        } else if (it.type === "table" && it.rows.length) {
-          body += "<p><b>" + esc(it.caption) + "</b></p><table border=1 cellspacing=0 cellpadding=6 style='border-collapse:collapse'><tr>" +
-                  it.headers.map(function (h) { return "<th align=left>" + esc(h) + "</th>"; }).join("") + "</tr>";
-          it.rows.forEach(function (r) {
-            body += "<tr>" + r.map(function (c) { return "<td>" + esc(c) + "</td>"; }).join("") + "</tr>";
-          });
-          body += "</table>";
+          body += wPara(it.label, { bold: true, before: 140 });
+          body += wPara(it.value || "", {});
+        } else if (it.type === "table" && (it.rows.length || it.headers.length)) {
+          if (it.caption) body += wPara(it.caption, { bold: true, before: 140 });
+          body += wTable(it.headers, it.rows);
         }
       });
     });
-    return "<html><head><meta charset='utf-8'><title>" + esc(DELIVERABLE) + "</title></head>" +
-      "<body style='font-family:Georgia,serif;max-width:7in;margin:auto'>" +
-      "<div style='border-bottom:3px solid #f5ab07;padding-bottom:8px;margin-bottom:16px'>" +
-      "<div style='font-family:Arial;letter-spacing:3px;font-size:11px;color:#555'>BUSHWICK DAILY · GROCERY PRICE INDEX</div>" +
-      "<h1 style='margin:4px 0'>Phase " + esc(PHASE) + " · " + esc(DELIVERABLE) + "</h1>" +
-      "<div style='font-family:Arial;font-size:12px;color:#555'>Prepared by " + (esc(by) || "—") +
-      " · Folder " + esc(FOLDER) + "</div></div>" + body + "</body></html>";
+    var docXml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">' +
+      "<w:body>" + body + "<w:sectPr/></w:body></w:document>";
+    var ct = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">' +
+      '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>' +
+      '<Default Extension="xml" ContentType="application/xml"/>' +
+      '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>';
+    var rels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+      '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
+      '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>';
+    var enc = function (s) { return new TextEncoder().encode(s); };
+    return zipStore([
+      { name: "[Content_Types].xml", data: enc(ct) },
+      { name: "_rels/.rels", data: enc(rels) },
+      { name: "word/document.xml", data: enc(docXml) }
+    ]);
+  }
+  // minimal store-only ZIP writer — a valid .docx container, no dependencies
+  var _crc;
+  function crc32(u8) {
+    if (!_crc) {
+      _crc = [];
+      for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1); _crc[n] = c >>> 0; }
+    }
+    var crc = -1;
+    for (var i = 0; i < u8.length; i++) crc = (crc >>> 8) ^ _crc[(crc ^ u8[i]) & 0xFF];
+    return (crc ^ -1) >>> 0;
+  }
+  function zipStore(files) {
+    var u16 = function (n) { return [n & 255, (n >>> 8) & 255]; };
+    var u32 = function (n) { return [n & 255, (n >>> 8) & 255, (n >>> 16) & 255, (n >>> 24) & 255]; };
+    var enc = new TextEncoder(), parts = [], central = [], offset = 0;
+    files.forEach(function (f) {
+      var nm = enc.encode(f.name), crc = crc32(f.data), sz = f.data.length;
+      var lh = new Uint8Array([].concat(u32(0x04034b50), u16(20), u16(0), u16(0), u16(0), u16(0x21), u32(crc), u32(sz), u32(sz), u16(nm.length), u16(0)));
+      parts.push(lh, nm, f.data);
+      central.push(new Uint8Array([].concat(
+        u32(0x02014b50), u16(20), u16(20), u16(0), u16(0), u16(0), u16(0x21),
+        u32(crc), u32(sz), u32(sz), u16(nm.length), u16(0), u16(0), u16(0), u16(0), u32(0), u32(offset))), nm);
+      offset += lh.length + nm.length + sz;
+    });
+    var cStart = offset, cSize = 0;
+    central.forEach(function (c) { cSize += c.length; });
+    var end = new Uint8Array([].concat(u32(0x06054b50), u16(0), u16(0), u16(files.length), u16(files.length), u32(cSize), u32(cStart), u16(0)));
+    var all = parts.concat(central).concat([end]), total = 0;
+    all.forEach(function (a) { total += a.length; });
+    var out = new Uint8Array(total), p = 0;
+    all.forEach(function (a) { out.set(a, p); p += a.length; });
+    return out;
   }
   function download() {
-    var by = preparedBy() || "draft";
-    var blob = new Blob([docHtml()], { type: "application/msword" });
-    var a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = SLUG + "__" + by.replace(/[^\w-]+/g, "-") + ".doc";
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
-    toast("Downloaded a Word copy — upload it to the phase's Drive folder.");
+    var by = preparedBy() || "blank";
+    var fname = SLUG + "__" + by.replace(/[^\w-]+/g, "-") + ".docx";
+    try {
+      var bytes = buildDocx();
+      var blob = new Blob([bytes], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url; a.download = fname; a.rel = "noopener";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+      toast("Downloaded " + fname + " — opens in Google Docs, Word, or Pages.");
+    } catch (e) {
+      toast("Couldn't build the file: " + (e && e.message || e), true);
+    }
   }
 
   /* ---- submit to Drive (Apps Script) ------------------------------------ */
@@ -208,22 +289,33 @@
     submitBtn.disabled = true;
     var old = submitBtn.textContent; submitBtn.textContent = "Submitting…";
     // Simple request (text/plain) avoids a CORS preflight Apps Script can't answer.
+    console.log("[BD submit] POST →", url, payload);
     fetch(url, {
       method: "POST", redirect: "follow",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload)
-    }).then(function (r) { return r.json(); })
-      .then(function (res) {
-        if (res && res.ok) {
-          toast("Submitted to Drive ✓  " + (res.name || ""));
-          if (res.url) window.open(res.url, "_blank", "noopener");
-        } else { toast("Drive rejected it: " + ((res && res.error) || "unknown"), true); }
-      })
-      .catch(function () {
-        // Opaque/redirect failures still usually write the doc; tell the truth.
-        toast("Sent — if it doesn't appear in Drive shortly, use Download as a backup.", true);
-      })
-      .finally(function () { submitBtn.disabled = false; submitBtn.textContent = old; });
+    }).then(function (r) {
+      console.log("[BD submit] HTTP", r.status, "type=" + r.type, "ok=" + r.ok);
+      return r.text().then(function (txt) {
+        var res = null; try { res = JSON.parse(txt); } catch (e) {}
+        console.log("[BD submit] raw body (first 400):", txt.slice(0, 400));
+        return { status: r.status, body: txt, json: res };
+      });
+    }).then(function (r) {
+      if (r.json && r.json.ok) {
+        // Confirmed: the backend created the Doc and returned its URL.
+        toast("Submitted to Drive ✓  " + (r.json.name || ""));
+        if (r.json.url) window.open(r.json.url, "_blank", "noopener");
+      } else {
+        var why = (r.json && r.json.error) || ("endpoint returned HTTP " + r.status);
+        console.error("[BD submit] NOT saved:", why, "| body:", r.body.slice(0, 300));
+        toast("NOT submitted — " + why + ". Nothing was saved; use Download instead.", true);
+      }
+    }).catch(function (e) {
+      // Cross-origin block / 403 error page → we cannot confirm a write. Do NOT claim success.
+      console.error("[BD submit] blocked (no readable response — usually a 403/CORS):", e && e.message || e);
+      toast("NOT submitted — the endpoint blocked the request (deploy access). Nothing was saved; use Download.", true);
+    }).finally(function () { submitBtn.disabled = false; submitBtn.textContent = old; });
   }
 
   /* ---- wire up ---------------------------------------------------------- */
