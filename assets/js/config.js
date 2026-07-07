@@ -14,7 +14,7 @@ window.BD_CONFIG = {
   // the project index. Leave "" to show the "added when live" placeholder.
   DRIVE_FOLDER_URL: "https://drive.google.com/drive/folders/1DiYYsh3JNj3fgnX67iXIXCAGAmc2IMFt",
 
-  // Shared secret (optional): if you set TOKEN in the Apps Script, mirror it
-  // here so submissions are accepted. Not sensitive — only gates writes.
-  SUBMIT_TOKEN: ""
+  // Shared secret: mirrors SUBMIT_TOKEN in the Apps Script. Not sensitive —
+  // this file is public, so the token is only a speed-bump against bots.
+  SUBMIT_TOKEN: "8191051e9da1c44c775504691a4f79dc"
 };

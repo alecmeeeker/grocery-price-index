@@ -20,10 +20,30 @@
  *   5. Put that URL (and the folder link + token) in assets/js/config.js.
  */
 
+// Fill these three in (or leave blank and set them as Script Properties under
+// Project Settings → Script Properties). Baking them in needs no extra clicks.
+var CONFIG = {
+  ROOT_FOLDER_ID: '',   // the project Drive folder id
+  SUBMIT_TOKEN:   '',   // optional shared string; must match assets/js/config.js
+  LOG_SHEET_ID:   ''    // optional: a Sheet id to append a submissions log
+};
 var PROP = PropertiesService.getScriptProperties();
+function cfg_(k) { return CONFIG[k] || PROP.getProperty(k) || ''; }
 
 function doGet() {
   return json_({ ok: true, service: 'bd-grocery-index', ping: 'ok' });
+}
+
+/**
+ * Run this ONCE from the editor (Run ▸ authorizeOnce) to grant the script
+ * permission to write Docs into your Drive. Approving the consent screen here
+ * is the only manual step; after that the web app works for everyone.
+ */
+function authorizeOnce() {
+  DriveApp.getRootFolder().getName();
+  var d = DocumentApp.create('BD Grocery Index — authorization test (safe to delete)');
+  DriveApp.getFileById(d.getId()).setTrashed(true);
+  return 'authorized';
 }
 
 function doPost(e) {
@@ -34,7 +54,7 @@ function doPost(e) {
     var data = JSON.parse(e.postData.contents);
 
     // Optional shared-secret gate.
-    var wantToken = PROP.getProperty('SUBMIT_TOKEN') || '';
+    var wantToken = cfg_('SUBMIT_TOKEN');
     if (wantToken && String(data.token || '') !== wantToken) {
       return json_({ ok: false, error: 'bad token' });
     }
@@ -57,7 +77,7 @@ function doPost(e) {
 
 /* ---- Drive folder resolution ------------------------------------------- */
 function resolveFolder_(subName) {
-  var rootId = PROP.getProperty('ROOT_FOLDER_ID');
+  var rootId = cfg_('ROOT_FOLDER_ID');
   var root = rootId
     ? DriveApp.getFolderById(rootId)
     : getOrCreateChild_(DriveApp.getRootFolder(), 'Bushwick Grocery Price Index — Submissions');
@@ -115,7 +135,7 @@ function buildDoc_(data) {
 
 /* ---- Optional submissions log ------------------------------------------ */
 function logRow_(data, url) {
-  var id = PROP.getProperty('LOG_SHEET_ID');
+  var id = cfg_('LOG_SHEET_ID');
   if (!id) return;
   try {
     var sh = SpreadsheetApp.openById(id).getSheets()[0];
