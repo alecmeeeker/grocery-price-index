@@ -8,7 +8,7 @@
 window.BD_CONFIG = {
   // Paste the deployed Apps Script Web App URL here (…/exec). Leave "" to
   // disable "Submit to Drive" — Download + autosave keep working regardless.
-  APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxZiQlF19PtOGNneYnh0vvBez706BZBBj9mObNFYIJxL1Ol8-lkTTCeWnenFLxDmPs1/exec",
+  APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzhYc40B__cjh00wqQPPZdcJAV8Ui9FmLqje-f5iAXt255snJRj-oEus-BvEZEcQBU/exec",
 
   // Paste the shared Drive folder link here. It appears on the playbook as
   // the project index. Leave "" to show the "added when live" placeholder.
