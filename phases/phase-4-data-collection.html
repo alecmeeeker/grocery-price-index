@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phase 4 · Data Collection — Bushwick Daily Grocery Price Index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/bd.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <div class="masthead__top">
+      <p class="crumbs"><a href="../index.html">Bushwick Daily · Playbook</a><span class="sep">/</span>Phase 4</p>
+      <p class="masthead__meta">Grocery Price Index</p>
+    </div>
+    <span class="kicker">Phase 4 · Data Collection</span>
+    <h1>Data Collection</h1>
+    <p class="masthead__dek">Decide what a single price observation must capture and how you'll capture it — then collect. The dataset is the story's foundation; design it before you touch a shelf.</p>
+  </div>
+</header>
+
+<main class="doc">
+  <form class="doc__body wide" data-worksheet data-slug="phase-4-data-collection" data-phase="4" data-deliverable="Data Collection Plan &amp; Dataset" data-folder="04_Data_Collection">
+
+    <div class="wsmeta">
+      <div class="field" data-field data-label="Prepared by"><span class="field__label">Prepared by <span class="req" title="required to submit">*</span></span><input type="text" name="prepared_by" placeholder="Both interns&#x27; names" value="" data-preparedby></div>
+      <div class="field" data-field data-label="Date"><span class="field__label">Date</span><input type="date" name="date"></div>
+    </div>
+
+    <section class="ws-section" data-heading="A. Design the dataset — before you touch a shelf"><p class="eyebrow">A. Design the dataset — before you touch a shelf</p><div class="note">The dictated field list is gone on purpose: deciding what a price observation must capture is your job, and it's where the method actually gets built. Work it out as a team, then build the instrument once and use it identically.</div><div class="field" data-field data-label="What does a single price observation need to capture?"><span class="field__label">What does a single price observation need to capture?</span><p class="field__help">One row = one item at one store. List every field that row must hold for the number to be trustworthy and traceable later — think about what your analysis and your fact-check will demand of it, not just the price.</p><textarea class="tall" name="fields_plan"></textarea></div><div class="field" data-field data-label="How will you capture it in the field?"><span class="field__label">How will you capture it in the field?</span><p class="field__help">A phone form that writes to the sheet, direct rows in the sheet, something else? Justify the choice — speed in the aisle vs. clean data vs. photos attached.</p><textarea class="" name="capture_tool"></textarea></div><div class="field" data-field data-label="How do photos attach to the right row?"><span class="field__label">How do photos attach to the right row?</span><p class="field__help">Every price should trace to a product photo and a price-tag photo. State your naming or upload scheme so a photo is never orphaned.</p><textarea class="" name="photo_link"></textarea></div><div class="field" data-field data-label="One &quot;Regular&quot; price per item per store — how do you enforce it?"><span class="field__label">One "Regular" price per item per store — how do you enforce it?</span><p class="field__help">Duplicates and missing cells are the two ways this data goes bad. How will you see gaps and avoid doubles as you go?</p><textarea class="" name="dedupe"></textarea></div></section><section class="ws-section" data-heading="B. Links to your live collection"><p class="eyebrow">B. Links to your live collection</p><div class="field" data-field data-label="Link to your collection instrument (form or sheet)"><span class="field__label">Link to your collection instrument (form or sheet)</span><input type="url" name="instrument_url" placeholder="https://…" value=""></div><div class="field" data-field data-label="Link to the Price Data sheet / Master Tracker"><span class="field__label">Link to the Price Data sheet / Master Tracker</span><input type="url" name="tracker_url" placeholder="https://…" value=""></div><div class="field" data-field data-label="Link to the photos folder"><span class="field__label">Link to the photos folder</span><input type="url" name="photos_url" placeholder="https://…" value=""></div></section><section class="ws-section" data-heading="C. Collection log &amp;amp; coverage"><p class="eyebrow">C. Collection log &amp; coverage</p><div class="note">Check coverage at the end of each collecting day: which store × item cells are still empty? Empty cells are assignments for tomorrow.</div><table class="grid editable" data-table data-caption="Progress by store"><caption>Progress by store</caption><thead><tr><th>Store</th><th>Date collected</th><th>Items priced</th><th>Gaps still open</th><th>Notes / oddities</th></tr></thead><tbody><tr><td><input class="cell-input" type="text" name="collog__r0__store" value="" placeholder=""></td><td><input class="cell-input" type="date" name="collog__r0__date"></td><td><input class="cell-input" type="text" name="collog__r0__priced" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r0__gaps" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r0__notes" value="" placeholder=""></td></tr><tr><td><input class="cell-input" type="text" name="collog__r1__store" value="" placeholder=""></td><td><input class="cell-input" type="date" name="collog__r1__date"></td><td><input class="cell-input" type="text" name="collog__r1__priced" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r1__gaps" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r1__notes" value="" placeholder=""></td></tr><tr><td><input class="cell-input" type="text" name="collog__r2__store" value="" placeholder=""></td><td><input class="cell-input" type="date" name="collog__r2__date"></td><td><input class="cell-input" type="text" name="collog__r2__priced" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r2__gaps" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r2__notes" value="" placeholder=""></td></tr><tr><td><input class="cell-input" type="text" name="collog__r3__store" value="" placeholder=""></td><td><input class="cell-input" type="date" name="collog__r3__date"></td><td><input class="cell-input" type="text" name="collog__r3__priced" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r3__gaps" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r3__notes" value="" placeholder=""></td></tr><tr><td><input class="cell-input" type="text" name="collog__r4__store" value="" placeholder=""></td><td><input class="cell-input" type="date" name="collog__r4__date"></td><td><input class="cell-input" type="text" name="collog__r4__priced" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r4__gaps" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r4__notes" value="" placeholder=""></td></tr><tr><td><input class="cell-input" type="text" name="collog__r5__store" value="" placeholder=""></td><td><input class="cell-input" type="date" name="collog__r5__date"></td><td><input class="cell-input" type="text" name="collog__r5__priced" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r5__gaps" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r5__notes" value="" placeholder=""></td></tr><tr><td><input class="cell-input" type="text" name="collog__r6__store" value="" placeholder=""></td><td><input class="cell-input" type="date" name="collog__r6__date"></td><td><input class="cell-input" type="text" name="collog__r6__priced" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r6__gaps" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r6__notes" value="" placeholder=""></td></tr><tr><td><input class="cell-input" type="text" name="collog__r7__store" value="" placeholder=""></td><td><input class="cell-input" type="date" name="collog__r7__date"></td><td><input class="cell-input" type="text" name="collog__r7__priced" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r7__gaps" value="" placeholder=""></td><td><input class="cell-input" type="text" name="collog__r7__notes" value="" placeholder=""></td></tr></tbody></table><div class="field" data-field data-label="Collection notes"><span class="field__label">Collection notes</span><p class="field__help">Substitutions made, stores that pushed back, anything that will need a caveat in the article.</p><textarea class="" name="collection_notes"></textarea></div></section>
+
+    <section class="ws-section" data-heading="Coordinator review"><div class="signoff"><h3>Coordinator review</h3><p class="field__help">The Coordinator (who also edits) records the decision here. You don't start the next phase until this reads Approve.</p><div class="field" data-field data-label="Decision"><span class="field__label">Decision</span><div class="opts"><label><input type="radio" name="signoff_decision" value="Approve" data-optlabel="Approve"> Approve</label><label><input type="radio" name="signoff_decision" value="Revise — see notes" data-optlabel="Revise — see notes"> Revise — see notes</label><label><input type="radio" name="signoff_decision" value="Hold" data-optlabel="Hold"> Hold</label></div></div><div class="field" data-field data-label="Notes / what to fix"><span class="field__label">Notes / what to fix</span><textarea class="" name="signoff_notes"></textarea></div><div class="signoff__grid"><div class="field" data-field data-label="Reviewed by"><span class="field__label">Reviewed by</span><input type="text" name="signoff_by" value=""></div><div class="field" data-field data-label="Date"><span class="field__label">Date</span><input type="date" name="signoff_date"></div></div></div></section>
+
+    <div class="pager">
+      <a href="phase-3-methodology-and-field-plan.html"><small>← Previous</small>Phase 3 · Methodology & Field Plan</a>
+      <a href="phase-5-findings-memo.html" style="text-align:right"><small>Next →</small>Phase 5 · Findings Memo</a>
+    </div>
+  </form>
+</main>
+
+<div class="submitbar">
+  <div class="submitbar__inner">
+    <span class="submitbar__status" data-status>Your work autosaves in this browser.</span>
+    <button type="button" class="btn btn--ghost" data-action="clear">Clear</button>
+    <button type="button" class="btn btn--ghost" data-action="download">Download&nbsp;.doc</button>
+    <button type="button" class="btn btn--primary" data-action="submit">Submit to Drive</button>
+  </div>
+</div>
+<div class="toast" data-toast role="status" aria-live="polite"></div>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <span><b>Bushwick&nbsp;Daily</b> · Grocery Price Index</span>
+    <span><a href="../index.html">All phases →</a></span>
+  </div>
+</footer>
+
+<script src="../assets/js/config.js"></script>
+<script src="../assets/js/worksheet.js"></script>
+</body>
+</html>
