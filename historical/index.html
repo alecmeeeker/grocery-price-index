@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Historical Record — Bushwick Grocery Price Index, 2017 · 2021 · 2026</title>
+<meta name="description" content="Nine years of grocery prices in Bushwick and Ridgewood: the 2017 and 2021 Bushwick Daily surveys, the 2026 YJC student index, and what they say together.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/bd.css">
+<link rel="stylesheet" href="assets/viz.css">
+<style>
+  .hero-stat {
+    font-family: var(--f-ui); font-weight: 700; font-variant-numeric: tabular-nums;
+    font-size: clamp(3.4rem, 9vw, 6rem); line-height: 1; color: var(--bd-yellow);
+    margin: .4rem 0 .2rem;
+  }
+  .hero-stat small { font-size: .35em; font-weight: 600; color: #f4efe2; letter-spacing: .01em; }
+  .chapter-num {
+    font-family: var(--f-ui); font-weight: 700; font-size: .78rem; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--bd-gold-deep);
+  }
+  .verdict-grid { display: grid; grid-template-columns: 1fr; gap: 2px; background: var(--line-soft); border: 1px solid var(--line); }
+  @media (min-width: 720px) { .verdict-grid { grid-template-columns: 1fr 1fr; } }
+  .verdict-cell { background: var(--paper-card); padding: .85rem 1rem; font-family: var(--f-ui); font-size: .9rem; }
+  .verdict-cell b { font-variant-numeric: tabular-nums; }
+  .verdict-cell .who { display: block; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: .15rem; }
+  .up { color: var(--viz-above); } .down { color: var(--viz-below); }
+  .dl-list { list-style: none; padding: 0; margin: .6rem 0; font-family: var(--f-ui); font-size: .88rem; }
+  .dl-list li { padding: .35rem 0; border-bottom: 1px dashed var(--line-soft); }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <div class="masthead__top reveal d1">
+      <p class="wordmark">Bushwick<b>&nbsp;Daily</b></p>
+      <p class="masthead__meta">Grocery Price Index · 2017 · 2021 · 2026</p>
+    </div>
+    <span class="kicker reveal d2">The Historical Record</span>
+    <p class="hero-stat reveal d2">$102.64 <small>to</small> $123.80</p>
+    <h1 class="reveal d2" style="font-size:clamp(1.4rem,3.2vw,2rem)">The same 21 items, priced at twelve stores.<br>Nine years of receipts behind them.</h1>
+    <p class="masthead__dek reveal d3">Over the week of July 13, 2026, YJC student journalists priced an identical 21-item basket at 12 Bushwick-area stores. The gap between the cheapest and priciest cart: <b>$21.16</b> — about <b>$1,100 a year</b> of weekly shopping. This page puts that number next to the 2017 and 2021 Bushwick Daily surveys and asks what nine years did to the neighborhood's grocery bill.</p>
+  </div>
+</header>
+
+<section class="metastrip reveal d4" aria-label="The record at a glance">
+  <dl class="metastrip__card">
+    <div class="metastrip__cell"><dt>Surveys</dt><dd>3 — Mar 2017 (9 stores), Nov 2021 (10 stores), Jul 2026 (12 stores)</dd></div>
+    <div class="metastrip__cell"><dt>Price observations</dt><dd>435 compiled, quality-flagged, one shared schema</dd></div>
+    <div class="metastrip__cell"><dt>Inflation ruler</dt><dd>NY-metro food-at-home CPI +34.4% since the 2017 survey</dd></div>
+    <div class="metastrip__cell"><dt>Explore</dt><dd><a href="dashboard.html">Interactive dashboard</a> · <a href="explorer.html">Shelf explorer</a></dd></div>
+  </dl>
+</section>
+
+<main class="doc">
+  <div class="doc__body">
+
+    <p class="eyebrow chapter-num">Chapter 1 · 2026</p>
+    <h2 class="section-h">The league table — and the trap inside it</h2>
+    <p class="lead">Mr. Lemon posts the cheapest full basket, <b>$102.64</b>; Brooklyn&rsquo;s Natural the priciest, <b>$123.80</b>. But the full-basket ranking hides an availability trap: seven store-item combinations weren&rsquo;t carried at all, and missing items make a basket look cheaper. On the 18 items <em>every</em> store actually sells, <b>Met Fresh wins at $83.29</b>, Mr. Lemon drops to 5th, and the true spread widens to <b>1.29x</b>.</p>
+
+    <!-- FIGURE:S1 hero 2026 league table -->
+    <figure class="figure-frame" data-figure="s1-league-2026">
+      <h3>What the identical 21-item basket cost, July 13, 2026 <span class="chip-flag chip-flag--new">New in 2026: Whole Foods · SuperFresh · Mr. Lemon</span></h3>
+      <p class="dek">Effective prices (sale price when lower). Highlighted: cheapest and priciest carts.</p>
+      <picture>
+        <source media="(max-width: 619px)" srcset="figures/fig-league-2026-narrow.svg">
+        <img src="figures/fig-league-2026-wide.svg" alt="Bar chart: 2026 basket totals for 12 Bushwick stores, from Mr. Lemon at $102.64 to Brooklyn's Natural at $123.80 — a $21.16-per-basket gap worth $1,100.32 a year. Stores missing items (no beer, tofu, or chicken) are noted on their bars; hollow tick marks show each store's basket at regular pre-sale prices; Mr. Lemon, SuperFresh, and Whole Foods carry NEW IN 2026 chips. A note states that on the 18 items every store sells, Met Fresh is cheapest and Mr. Lemon falls to 5th. Full data in the table below.">
+      </picture>
+      <figcaption>Source: 2026 YJC Grocery Price Index, collected 2026-07-13/14/17 · Chart: Bushwick Daily</figcaption>
+      <details class="data-table"><summary>View the data</summary>
+        <table class="grid">
+          <thead><tr><th>Store</th><th>Full basket (21)</th><th>Items priced</th><th>Common-18 basket</th><th>Flags</th></tr></thead>
+          <tbody>
+            <tr><td>Mr. Lemon</td><td>$102.64</td><td>20 (no beer)</td><td>$87.65 (5th)</td><td>NEW IN 2026 · 3 unit Mismatches in produce</td></tr>
+            <tr><td>SuperFresh</td><td>$103.78</td><td>20 (no tofu)</td><td>$86.80 (4th)</td><td>NEW IN 2026</td></tr>
+            <tr><td>Billy&rsquo;s Marketplace</td><td>$103.88</td><td>20 (no tofu)</td><td>$86.40 (3rd)</td><td>—</td></tr>
+            <tr><td>Food Bazaar</td><td>$107.13</td><td>21</td><td>$83.66 (2nd)</td><td>—</td></tr>
+            <tr><td>Met Fresh</td><td>$107.50</td><td>21</td><td>$83.29 (1st)</td><td>—</td></tr>
+            <tr><td>Food Story Natural Market</td><td>$108.61</td><td>19 (no tofu, no chicken)</td><td>$95.62 (10th)</td><td>—</td></tr>
+            <tr><td>Key Food</td><td>$110.75</td><td>21</td><td>$87.78 (6th)</td><td>—</td></tr>
+            <tr><td>Hana</td><td>$114.40</td><td>20 (no chicken)</td><td>$96.42 (11th)</td><td>—</td></tr>
+            <tr><td>Whole Foods</td><td>$114.89</td><td>21</td><td>$93.92 (9th)</td><td>NEW IN 2026 · 81% of rows flagged</td></tr>
+            <tr><td>City Fresh</td><td>$115.29</td><td>21</td><td>$93.12 (8th)</td><td>—</td></tr>
+            <tr><td>Associated</td><td>$116.39</td><td>21</td><td>$92.42 (7th)</td><td>—</td></tr>
+            <tr><td>Brooklyn&rsquo;s Natural</td><td>$123.80</td><td>20 (no chicken)</td><td>$107.82 (12th)</td><td>—</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.75rem;color:var(--ink-mute)">Common-18 = the 18 items every store fully priced (tofu, chicken breast, and beer removed; no imputation). Full derivation in <code>analysis/04-analyst-2026-and-synthesis.md</code> (A1).</p>
+      </details>
+      <details class="note"><summary>Read the fine print (4)</summary>
+        <ol>
+          <li>Totals use effective prices — the sale price when lower. 18 sale rows were recorded across the tracker (5 with zero savings or excluded); 13 real discounts totaling $21.68. Met Fresh alone had $7.83 of sales, worth four rank places.</li>
+          <li>7 unavailable store-item rows clip both tails of the full-basket ranking; pair the printed 1.21x spread with the fairer common-18 1.29x.</li>
+          <li>Mr. Lemon&rsquo;s produce carries 3 unit-mismatch comparability flags; Whole Foods&rsquo; basket is 81% substitutions (organic/store-brand) — cheapest-at-store, not like-for-like.</li>
+          <li>Single visit per store, collected 2026-07-13/14/17 by YJC student journalists. 67 of 252 rows lack recorded dates (Brooklyn&rsquo;s Natural, Food Story, Whole Foods).</li>
+        </ol>
+        <p>Reproduce: <code>python3 analysis/scratch2_compute.py</code></p>
+      </details>
+    </figure>
+
+    <p>One more 2026 surprise: <b>Whole Foods arrived in Bushwick mid-pack</b> — 9th of 12 — while winning more cheapest-item honors than any other store (butter, cheddar, yogurt, Cheerios, tied bananas) and the cheapest dairy group outright. The &ldquo;Whole Paycheck&rdquo; era did not survive contact with the 2026 shelf. Its one indulgence: the survey&rsquo;s single priciest observation, $16.99 illy coffee.</p>
+
+    <p class="eyebrow chapter-num">Chapter 2 · 2017</p>
+    <h2 class="section-h">The $1,652 question</h2>
+    <p class="lead">In March 2017, Bushwick Daily priced a 17-item basket at nine stores. The identical cart cost <b>$48.05</b> at Trader Joe&rsquo;s and <b>$79.83</b> at Hana Natural — a 66% gap worth <b>$1,652.56 a year</b> of weekly shopping.</p>
+
+    <!-- FIGURE:V1 2017 basket totals -->
+    <figure class="figure-frame" data-figure="v1-2017-baskets">
+      <h3>2017: the same 17 items, eight complete baskets</h3>
+      <p class="dek">Brooklyn&rsquo;s Natural excluded — its $46.88 total was an artifact of unpriced and missing items.</p>
+      <picture>
+        <source media="(max-width: 619px)" srcset="figures/fig-2017-basket-narrow.svg">
+        <img src="figures/fig-2017-basket-wide.svg" alt="Bar chart: 2017 17-item basket totals across 8 stores, from Trader Joe's $48.05 to Hana Natural $79.83 — a 66% gap worth $1,652.56 a year. Trader Joe's bar is marked as located in Rego Park, not Bushwick; within Bushwick proper the City Fresh vs Hana gap is $24.72 a basket, $1,285.44 a year. Full data in the table below." loading="lazy">
+      </picture>
+      <figcaption>Source: Bushwick Daily, March 2017 survey · Chart: Bushwick Daily</figcaption>
+      <details class="data-table"><summary>View the data</summary>
+        <table class="grid"><thead><tr><th>Store</th><th>17-item basket</th><th>Note</th></tr></thead><tbody>
+<tr><td>Trader Joe&rsquo;s (Rego Park)</td><td>$48.05</td><td>out-of-area benchmark</td></tr>
+<tr><td>Associated</td><td>$53.04</td><td></td></tr>
+<tr><td>City Fresh</td><td>$55.11</td><td></td></tr>
+<tr><td>Key Food</td><td>$56.66</td><td></td></tr>
+<tr><td>Food Bazaar</td><td>$58.27</td><td></td></tr>
+<tr><td>Whole Foods (Williamsburg)</td><td>$61.29</td><td></td></tr>
+<tr><td>Food Story</td><td>$74.83</td><td></td></tr>
+<tr><td>Hana Natural</td><td>$79.83</td><td></td></tr>
+<tr><td>Brooklyn&rsquo;s Natural</td><td>$46.88</td><td>EXCLUDED — incomplete basket; adjusted est. $62.07 ex-2 items</td></tr>
+</tbody></table>
+      </details>
+      <details class="note"><summary>Read the fine print (3)</summary>
+        <ol>
+          <li>Single visit per store over four weeks, different staffers, some items on sale at visit time.</li>
+          <li>Trader Joe&rsquo;s is in Rego Park — a drive or bike ride, not a neighborhood walk.</li>
+          <li>Whole Foods (Williamsburg, $61.29) was only 27.6% above Trader Joe&rsquo;s — and $13.54 cheaper than Food Story.</li>
+        </ol>
+      </details>
+    </figure>
+
+    <p class="eyebrow chapter-num">Chapter 3 · 2017 → 2021 → 2026</p>
+    <h2 class="section-h">Expensive stays expensive — once you fix the basket</h2>
+    <p class="lead">Across three different baskets in nine years, store <em>order</em> is the durable fact: rank correlation with 2026 is <b>+0.68</b> (from 2017) and <b>+0.71</b> (from 2021) on the fair common-18 basket. Compare naively against the raw full basket instead and the sign flips to <b>−0.54</b> — missing items flatter the premium stores. Method is the message.</p>
+
+    <!-- FIGURE:S2 three-survey rank slope -->
+    <figure class="figure-frame" data-figure="s2-rank-slope">
+      <h3>Rank, not dollars: the five recurring stores across three surveys</h3>
+      <p class="dek">Basket definitions differ per survey, so the axis is rank within the recurring five. Key Food 2-1-2 · Food Bazaar 3-2-1 · City Fresh 1-4-3 · Food Story 4-3-4 · Hana 5-5-5.</p>
+      <picture>
+        <source media="(max-width: 619px)" srcset="figures/fig-rank-slope-narrow.svg">
+        <img src="figures/fig-rank-slope-wide.svg" alt="Slope chart: price rank across the 2017, 2021, and 2026 surveys for the five stores present in all three. City Fresh goes 1-4-3, Key Food 2-1-2, Food Bazaar 3-2-1 (now the cohort's cheapest), Food Story 4-3-4, and Hana 5-5-5 — last in every survey. The axis is rank within the cohort, 1 cheapest to 5 priciest; dollar totals are not comparable across surveys. Full data in the table below." loading="lazy">
+      </picture>
+      <figcaption>Sources: BD 2017 &amp; 2021 surveys; 2026 YJC index (common-18 ranks) · Chart: Bushwick Daily</figcaption>
+      <details class="data-table"><summary>View the data</summary>
+        <table class="grid"><thead><tr><th>Store</th><th>2017 rank</th><th>2021 rank</th><th>2026 rank (common-18)</th></tr></thead><tbody>
+<tr><td>Key Food</td><td>2</td><td>1</td><td>2</td></tr>
+<tr><td>Food Bazaar</td><td>3</td><td>2</td><td>1</td></tr>
+<tr><td>City Fresh</td><td>1</td><td>4</td><td>3</td></tr>
+<tr><td>Food Story</td><td>4</td><td>3</td><td>4</td></tr>
+<tr><td>Hana</td><td>5</td><td>5</td><td>5</td></tr>
+</tbody></table>
+        <p style="font-size:.75rem;color:var(--ink-mute)">Rank within the five-store recurring cohort, 1 = cheapest. Basket definitions differ per survey — ranks only.</p>
+      </details>
+      <details class="note"><summary>Read the fine print (3)</summary>
+        <ol>
+          <li>Three basket definitions (17-item totals; 6-item budget basket; common-18) — rank only, never a cross-year dollar slope.</li>
+          <li>City Fresh&rsquo;s 2021 point carries a $18.34–$21.34 sensitivity band from two article-vs-Tableau conflicts; its direction is robust.</li>
+          <li>Mr. Fruit (2021) → Mr. Lemon (2026) is an approximate entity mapping and is excluded from this cohort.</li>
+        </ol>
+      </details>
+    </figure>
+
+    <p><b>Hana is the exception that proves the method.</b> Last place three surveys running — yet its premium over the median store collapsed from <b>+39%</b> (2017) to <b>+83%</b> (2021) to <b>+7%</b> (2026), and it now sells the survey&rsquo;s cheapest milk. The tail persisted; the tax on it evaporated. <b>City Fresh ran the opposite arc</b>: readers&rsquo; favorite, 3rd cheapest in 2017, 2nd priciest in 2021, bottom-third in 2026 — the 2021 anomaly was repositioning, not bad data.</p>
+
+    <p class="eyebrow chapter-num">Chapter 4 · Bushwick vs. America</p>
+    <h2 class="section-h">The premium tripled</h2>
+    <p class="lead">In Nov 2021, Bushwick&rsquo;s <em>cheapest</em> staples ran 6–13% above the <em>national average</em> price. In 2026, even the cheapest shelf price in the neighborhood is <b>30–44% above</b> the national average — and the median is 67–166% above. Eggs tell it fastest: the 2021 nine-store band of <b>$1.39–$2.69</b> a dozen is extinct; the 2026 median is <b>$5.69</b>.</p>
+
+    
+    <figure class="figure-frame" data-figure="egg-band">
+      <h3>Eggs: the $2 dozen is extinct</h3>
+      <p class="dek">Every 2021 cheapest dozen vs every recorded 2026 dozen, with BLS national averages per year. Shapes mark conventional vs specialty SKUs — spec inflation is half the story.</p>
+      <picture>
+        <source media="(max-width: 619px)" srcset="figures/fig-egg-band-narrow.svg">
+        <img src="figures/fig-egg-band-wide.svg" alt="Two-row dot strip chart of egg prices per dozen. Top row, July 2026: twelve recorded prices from Billy's $1.67 sale price (regular $2.79, shown with a sale whisker) to Whole Foods' $8.49 organic dozen, median $5.69 — 165.8% above the BLS U.S. average of $2.141; olive circles mark conventional dozens, plum diamonds mark cage-free, organic, or farm-fresh SKUs, which dominate the upper range. Bottom row, November 2021: nine of ten stores' cheapest dozens cluster between $1.39 and $2.69 around the $1.718 BLS average, with Hana's $4.29 the lone outlier. Met Fresh's 2026 18-pack is adjusted to per-dozen and flagged MISMATCH. Full data in the table below." loading="lazy">
+      </picture>
+      <figcaption>2021: nine of ten stores sold a dozen for $1.39–$2.69. 2026: the cheapest regular dozen is $2.79 and the median is $5.69 — +165.8% over the U.S. average — with most recorded eggs now specialty SKUs.</figcaption>
+      <details class="data-table"><summary>View the data</summary>
+        <table class="grid"><thead><tr><th>Store</th><th>2026 price/dozen</th><th>Spec / flags</th><th>2021 cheapest dozen</th></tr></thead><tbody>
+<tr><td>Billy&rsquo;s Marketplace</td><td>$2.79 reg ($1.67 sale, 3-for-$5)</td><td>Sunshine Farms · ON SALE</td><td>$1.39</td></tr>
+<tr><td>Food Bazaar</td><td>$3.99</td><td>jumbo cage free · DIFFERENT</td><td>$1.59</td></tr>
+<tr><td>Hana</td><td>$4.99</td><td>&ldquo;farm fresh&rdquo; · DIFFERENT</td><td>$4.29</td></tr>
+<tr><td>SuperFresh</td><td>$5.49</td><td>Sunshine Farms · NEW IN 2026</td><td>—</td></tr>
+<tr><td>Associated</td><td>$5.69</td><td>Sunshine Farms</td><td>$2.00</td></tr>
+<tr><td>City Fresh</td><td>$5.69</td><td>cage free</td><td>$1.89</td></tr>
+<tr><td>Met Fresh</td><td>$5.99 (18-pack; ×12/18 = $3.99/doz)</td><td>MISMATCH</td><td>$1.69</td></tr>
+<tr><td>Food Story</td><td>$5.99</td><td>cage free · DIFFERENT</td><td>$2.69</td></tr>
+<tr><td>Mr. Lemon</td><td>$6.00</td><td>organic free range · UNCLEAR</td><td>—</td></tr>
+<tr><td>Brooklyn&rsquo;s Natural</td><td>$6.29</td><td>free range · DIFFERENT</td><td>—</td></tr>
+<tr><td>Key Food</td><td>$7.99</td><td>cage free brown · DIFFERENT</td><td>$1.67</td></tr>
+<tr><td>Whole Foods</td><td>$8.49</td><td>Organic Valley free range · DIFFERENT</td><td>—</td></tr>
+<tr><td>Shop Fair (2021 only)</td><td>—</td><td></td><td>$2.00</td></tr>
+<tr><td>Mr. Fruit (2021 only)</td><td>—</td><td></td><td>$1.99</td></tr>
+</tbody></table>
+        <p style="font-size:.75rem;color:var(--ink-mute)">BLS national averages: $1.718 (Nov 2021) · $2.141 (Jun 2026).</p>
+      </details>
+      <details class="note"><summary>Read the fine print (3)</summary>
+        <ol>
+          <li>Normalization: 2021 = cheapest-available dozen per store; 2026 = the one product each store recorded — constructions differ, so rows are compared to their own year&rsquo;s BLS line, never to each other item-for-item.</li>
+          <li>Met Fresh&rsquo;s 2026 18-pack is adjusted ×12/18 to per-dozen and flagged MISMATCH; Billy&rsquo;s $1.67 is a 3-for-$5 sale (whisker to its $2.79 regular price).</li>
+          <li>7 of the 9 prices ≥$4.99 are specialty SKUs (cage-free/free-range/organic/farm-fresh — mostly DIFFERENT or UNCLEAR flags) — the band shift mixes real inflation with spec drift.</li>
+        </ol>
+      </details>
+    </figure>
+
+    <!-- FIGURE:V7 floors vs national averages -->
+    <figure class="figure-frame" data-figure="v7-bls-floors">
+      <h3>Bushwick&rsquo;s floor vs. America&rsquo;s average</h3>
+      <p class="dek">Store-level cheapest prices against BLS national average lines, Nov 2021 and Jun 2026.</p>
+      <picture>
+        <source media="(max-width: 619px)" srcset="figures/fig-floors-2021-narrow.svg">
+        <img src="figures/fig-floors-2021-wide.svg" alt="Three small-multiple dot plots of November 2021 Bushwick store lows against dashed BLS national-average lines. Eggs: 6 of 10 stores' cheapest dozen sits above the $1.718 average, with Hana's $4.29 highest. Milk: all three observed gallons ($4.19, $4.49, $4.59 — unit-mismatch rows) sit 14–25% above the $3.671 average. Chicken breast: six per-pound prices from Key Food's $1.05 (a hollow marker — 70.98% below BLS, consistent with a visit-day sale) to Food Story's $15.99 only option, median $3.83, 5.9% above the $3.618 average. Full data in the table below." loading="lazy">
+      </picture>
+      <figcaption>Sources: BD/YJC surveys; U.S. BLS Average Price series (national), CPI NY-metro · Chart: Bushwick Daily</figcaption>
+      <details class="data-table"><summary>View the data</summary>
+        <table class="grid"><thead><tr><th>Item</th><th>Store</th><th>2021 cheapest price</th><th>Flag</th></tr></thead><tbody>
+<tr><td>Eggs /doz</td><td>Billy&rsquo;s</td><td>$1.39</td><td></td></tr>
+<tr><td>Eggs /doz</td><td>Food Bazaar</td><td>$1.59</td><td></td></tr>
+<tr><td>Eggs /doz</td><td>Key Food</td><td>$1.67</td><td></td></tr>
+<tr><td>Eggs /doz</td><td>Met Fresh</td><td>$1.69</td><td></td></tr>
+<tr><td>Eggs /doz</td><td>City Fresh</td><td>$1.89</td><td></td></tr>
+<tr><td>Eggs /doz</td><td>Mr. Fruit</td><td>$1.99</td><td></td></tr>
+<tr><td>Eggs /doz</td><td>Shop Fair</td><td>$2.00</td><td></td></tr>
+<tr><td>Eggs /doz</td><td>Associated</td><td>$2.00</td><td></td></tr>
+<tr><td>Eggs /doz</td><td>Food Story</td><td>$2.69</td><td></td></tr>
+<tr><td>Eggs /doz</td><td>Hana</td><td>$4.29</td><td></td></tr>
+<tr><td>Milk /gal</td><td>Associated</td><td>$4.19</td><td>UNIT MISMATCH</td></tr>
+<tr><td>Milk /gal</td><td>City Fresh</td><td>$4.49</td><td>UNIT MISMATCH</td></tr>
+<tr><td>Milk /gal</td><td>Met Fresh</td><td>$4.59</td><td>UNIT MISMATCH</td></tr>
+<tr><td>Chicken breast /lb</td><td>Key Food</td><td>$1.05</td><td>SALE-SUSPECT</td></tr>
+<tr><td>Chicken breast /lb</td><td>Billy&rsquo;s</td><td>$2.69</td><td></td></tr>
+<tr><td>Chicken breast /lb</td><td>Met Fresh</td><td>$3.54</td><td></td></tr>
+<tr><td>Chicken breast /lb</td><td>City Fresh</td><td>$4.12</td><td></td></tr>
+<tr><td>Chicken breast /lb</td><td>Food Bazaar</td><td>$6.00</td><td></td></tr>
+<tr><td>Chicken breast /lb</td><td>Food Story</td><td>$15.99</td><td>only option</td></tr>
+</tbody></table>
+        <p style="font-size:.75rem;color:var(--ink-mute)">BLS national averages Nov 2021: eggs $1.718/doz · milk $3.671/gal · chicken breast $3.618/lb.</p>
+      </details>
+      <details class="note"><summary>Read the fine print (3)</summary>
+        <ol>
+          <li>2021 recorded cheapest-available floors (conservative vs. an average); 2026 recorded one product per store, so 2026 medians overstate a cheapest-available premium — floors are the honest bound.</li>
+          <li>BLS values are national averages over standardized specifications, not NYC-metro item averages; they never share a nominal axis with survey floors without full labeling.</li>
+          <li>Milk is excluded from the 2026 comparison (organic vs. conventional — not comparable).</li>
+        </ol>
+      </details>
+    </figure>
+
+    <figure class="figure-frame" data-figure="premium-2026">
+      <h3>The premium, repeated at Jun-2026 BLS values</h3>
+      <p class="dek">The same floor-vs-average construction as above, re-run on the 2026 shelf: floors +30–44%, medians +67–166%.</p>
+      <picture>
+        <source media="(max-width: 619px)" srcset="figures/fig-premium-2026-narrow.svg">
+        <img src="figures/fig-premium-2026-wide.svg" alt="Range-bar chart of Bushwick price premiums over BLS national averages in June 2026, zero line at the BLS average. Eggs: floor $2.79 (+30.3%) to median $5.69 (+165.8%) vs a 2021 premium of +12.9%. Chicken breast: floor $5.99 (+43.3%) to median $6.99 (+67.2%) vs +5.9% in 2021. Coffee per-pound equivalent: floor $13.58 (+43.6%) to median $19.42 (+105.4%); the 2021 figure was not computable. Floors are the conservative bound because 2026 recorded one product per store; milk is excluded as organic-only. Full data in the table below." loading="lazy">
+      </picture>
+      <figcaption>Even the cheapest 2026 shelf price runs 30–44% above the BLS national average (medians 67–166% above), where 2021's premiums were 6–13%.</figcaption>
+      <details class="data-table"><summary>View the data</summary>
+        <table class="grid"><thead><tr><th>Item</th><th>BLS avg Jun 2026</th><th>2026 floor</th><th>2026 median</th><th>2021 premium</th></tr></thead><tbody>
+<tr><td>Eggs /doz</td><td>$2.141</td><td>$2.79 (+30.3%)</td><td>$5.69 (+165.8%)</td><td>+12.9%</td></tr>
+<tr><td>Chicken breast /lb</td><td>$4.181</td><td>$5.99 (+43.3%)</td><td>$6.99 (+67.2%)</td><td>+5.9%</td></tr>
+<tr><td>Coffee /lb equiv</td><td>$9.457</td><td>$13.58 (+43.6%)</td><td>$19.42 (+105.4%)</td><td>not computable</td></tr>
+</tbody></table>
+        <p style="font-size:.75rem;color:var(--ink-mute)">Floors = cheapest observed shelf price; 2026 medians overstate a cheapest-available premium (one product per store). Milk excluded (organic-only observations).</p>
+      </details>
+      <details class="note"><summary>Read the fine print (2)</summary>
+        <ol>
+          <li>Normalization: 2026 recorded one product per store, so the <em>floor</em> (cheapest observed shelf price) is the honest conservative bound; medians overstate a cheapest-available premium — the reverse of 2021&rsquo;s construction, and the reason both ends of the range are drawn.</li>
+          <li>Milk is excluded (2026 observations are organic-only — not comparable to the BLS conventional-gallon average); chicken cuts differ (thin-sliced premium at some stores).</li>
+        </ol>
+      </details>
+    </figure>
+
+
+    <p>And the single most quotable number in the record: <b>the same brick of Caf&eacute; Bustelo went from $3.99 (2021) to a $12.14 median (2026), +204%</b>, while national ground coffee rose +96%. The full Bustelo index — with every store&rsquo;s 2026 price — is on the <a href="dashboard.html">dashboard</a>.</p>
+
+    <figure class="figure-frame" data-figure="coffee-shock">
+      <h3>The Bustelo index</h3>
+      <p class="dek">One brand, one brick, ten stores: the cleanest like-for-like trend in the record.</p>
+      <picture>
+        <source media="(max-width: 619px)" srcset="figures/fig-coffee-shock-narrow.svg">
+        <img src="figures/fig-coffee-shock-wide.svg" alt="Dot strip chart: ten 2026 regular shelf prices for a 10-oz Cafe Bustelo brick, from Food Bazaar $8.49 to Associated $13.49, median $12.14 — 3.04 times the $3.99 the same brick cost in 2021 (+204.3%). Met Fresh and City Fresh were on sale on visit day: their solid dots sit at the sale prices ($6.99 and $8.99) with whiskers to hollow dots at their regular prices ($12.29 and $12.89); the median uses regular prices. A shaded band shows the BLS U.S. average in 10-oz equivalents rising from $3.01 (Nov 2021) to $5.91 (Jun 2026), +96.4% — every 2026 Bushwick price sits far right of it. Full data in the table below." loading="lazy">
+      </picture>
+      <figcaption>The same 10-oz brick of Cafe Bustelo: $3.99 in 2021 to a $12.14 regular-price median across ten 2026 stores (+204.3%), while BLS national ground coffee rose +96.4%.</figcaption>
+      <details class="data-table"><summary>View the data</summary>
+        <table class="grid"><thead><tr><th>Store</th><th>Bustelo 10 oz regular</th><th>Sale</th><th>Flag</th></tr></thead><tbody>
+<tr><td>Food Bazaar</td><td>$8.49</td><td></td><td></td></tr>
+<tr><td>Key Food</td><td>$8.99</td><td></td><td></td></tr>
+<tr><td>SuperFresh</td><td>$9.99</td><td></td><td></td></tr>
+<tr><td>Food Story</td><td>$10.99</td><td></td><td>UNCLEAR pack size</td></tr>
+<tr><td>Billy&rsquo;s</td><td>$11.99</td><td></td><td></td></tr>
+<tr><td>Met Fresh</td><td>$12.29</td><td>$6.99</td><td>ON SALE</td></tr>
+<tr><td>City Fresh</td><td>$12.89</td><td>$8.99</td><td>ON SALE</td></tr>
+<tr><td>Hana</td><td>$12.99</td><td></td><td></td></tr>
+<tr><td>Mr. Lemon</td><td>$13.00</td><td></td><td></td></tr>
+<tr><td>Associated</td><td>$13.49</td><td></td><td></td></tr>
+<tr><td>Brooklyn&rsquo;s Natural</td><td>$13.49 (own brand — not Bustelo)</td><td></td><td>DIFFERENT</td></tr>
+<tr><td>Whole Foods</td><td>$16.99 (illy — not Bustelo)</td><td></td><td>DIFFERENT</td></tr>
+</tbody></table>
+        <p style="font-size:.75rem;color:var(--ink-mute)">Regular-price median of the ten Bustelo stores: $12.14 (vs $3.99 in 2021, +204.3%). BLS ground coffee: $4.816 (Nov 2021) → $9.457/lb (Jun 2026).</p>
+      </details>
+      <details class="note"><summary>Read the fine print (3)</summary>
+        <ol>
+          <li>Normalization: single-brand (Cafe Bustelo 10&nbsp;oz) regular shelf prices — never compared to 2021&rsquo;s any-brand cheapest floors ($1.67), which measure a different thing.</li>
+          <li>The 2021 $3.99 pack size is assumed-standard 10&nbsp;oz (unverified in the source article); Food Story&rsquo;s 2026 size is flagged UNCLEAR.</li>
+          <li>Hollow dots are visit-day sale prices (Met Fresh $6.99, City Fresh $8.99); the median uses regular prices.</li>
+        </ol>
+      </details>
+    </figure>
+
+
+    <p class="eyebrow chapter-num">Chapter 5 · The verdict</p>
+    <h2 class="section-h">Did Bushwick outpace inflation?</h2>
+    <p class="lead">The NY-metro food-at-home CPI rose <b>+34.42%</b> between the 2017 and 2026 surveys — that&rsquo;s the break-even line. On the 15 overlap items, four stores beat it, and the two premium stores fell ~14% short of it. <b>Inflation was regressive: the cheap stores inflated hardest, and the market converged from both ends.</b></p>
+
+    <!-- FIGURE:V8a inflation ruler -->
+    <figure class="figure-frame" data-figure="v8a-cpi-ruler">
+      <h3>The inflation ruler: NY-metro food-at-home CPI, indexed to the 2017 survey</h3>
+      <p class="dek">250.689 (Mar 2017) → 283.223 (Nov 2021) → 336.978 (Jun 2026). All three survey dates now filled.</p>
+      <picture>
+        <source media="(max-width: 619px)" srcset="figures/fig-inflation-ruler-narrow.svg">
+        <img src="figures/fig-inflation-ruler-wide.svg" alt="Line chart of the NY-metro food-at-home CPI indexed to 100 at the March 2017 survey, rising to 113.0 at the November 2021 survey (+12.98%) and 134.4 at the June 2026 YJC survey (+34.42%). An annotation restates 2017's receipts in June 2026 dollars: the $48.05 cheapest basket equals $64.59, the $79.83 priciest equals $107.31. The dashed line is a benchmark, not observed Bushwick prices. Full data in the table below." loading="lazy">
+      </picture>
+      <figcaption>Source: U.S. BLS CPI-U, NY–Newark–Jersey City, food at home (CUURS12ASAF11) · Chart: Bushwick Daily</figcaption>
+      <details class="data-table"><summary>View the data</summary>
+        <table class="grid"><thead><tr><th>Date</th><th>CPI (1982-84=100)</th><th>Indexed to 2017 survey</th></tr></thead><tbody>
+<tr><td>Mar 2017 (survey 1)</td><td>250.689</td><td>100.0</td></tr>
+<tr><td>Nov 2021 (survey 2)</td><td>283.223</td><td>113.0</td></tr>
+<tr><td>Jun 2026 (survey 3)</td><td>336.978</td><td>134.4</td></tr>
+</tbody></table>
+        <p style="font-size:.75rem;color:var(--ink-mute)">2017 baskets restated in Jun-2026 dollars: TJ $48.05→$64.59 · Associated $53.04→$71.30 · City Fresh $55.11→$74.08 · Key Food $56.66→$76.16 · Food Bazaar $58.27→$78.33 · Whole Foods $61.29→$82.39 · Food Story $74.83→$100.59 · Hana $79.83→$107.31.</p>
+      </details>
+      <details class="note"><summary>Read the fine print (2)</summary><ol><li>The CPI ruler is a benchmark, not observed Bushwick prices — the surveys provide the observations; restated totals are the break-even line, not measured 2026 baskets.</li><li>Factors: 2017→2021 ×1.1298, 2021→2026 ×1.1898, 2017→2026 ×1.3442 (CUURS12ASAF11).</li></ol></details>
+    </figure>
+
+    
+    <figure class="figure-frame" data-figure="cpi-breakeven">
+      <h3>The break-even chart</h3>
+      <p class="dek">Lower-bound store inflation ratios against the 1.3442 CPI line — the visual form of the verdict grid below.</p>
+      <picture>
+        <source media="(max-width: 619px)" srcset="figures/fig-cpi-breakeven-narrow.svg">
+        <img src="figures/fig-cpi-breakeven-wide.svg" alt="Diverging bar chart anchored at the CPI break-even line of 1.3442x (NY-metro food-at-home, +34.42% Mar 2017 to Jun 2026). Above the line, in brick red: Associated 1.522x, Whole Foods 1.437x, City Fresh 1.431x, Key Food 1.384x — all outpaced CPI. Below, in navy: Food Bazaar 1.294x (indeterminate) and, hatched because their 2026 subsets miss 1–2 items, Hana 1.018x and Food Story 0.951x — both fell at least 14% short of inflation even after generous imputation. Full data in the table below." loading="lazy">
+      </picture>
+      <figcaption>Lower-bound inflation ratios (2026 overlap-15 ÷ full 2017 basket) against the +34.42% NY-metro food-at-home break-even: the cheap tier outpaced CPI, both natural markets fell short.</figcaption>
+      <details class="data-table"><summary>View the data</summary>
+        <table class="grid"><thead><tr><th>Store</th><th>Lower-bound ratio</th><th>Verdict</th></tr></thead><tbody>
+<tr><td>Associated</td><td>1.522x</td><td>outpaced inflation</td></tr>
+<tr><td>Whole Foods</td><td>1.437x</td><td>outpaced inflation</td></tr>
+<tr><td>City Fresh</td><td>1.431x</td><td>outpaced inflation</td></tr>
+<tr><td>Key Food</td><td>1.384x</td><td>outpaced (3% margin)</td></tr>
+<tr><td>Food Bazaar</td><td>1.294x</td><td>indeterminate</td></tr>
+<tr><td>Hana</td><td>1.018x*</td><td>&ge;14% below break-even</td></tr>
+<tr><td>Food Story</td><td>0.951x*</td><td>&ge;14% below break-even</td></tr>
+</tbody></table>
+        <p style="font-size:.75rem;color:var(--ink-mute)">* subset missing 1–2 items. Break-even line: 1.3442 (NY-metro food-at-home CPI, Mar 2017 → Jun 2026).</p>
+      </details>
+      <details class="note"><summary>Read the fine print (2)</summary>
+        <ol>
+          <li>Normalization: each ratio divides a store&rsquo;s 2026 price for the 15 items overlapping the 2017 basket by its FULL 17-item 2017 total — a deliberate lower bound, so &ldquo;outpaced inflation&rdquo; claims are conservative.</li>
+          <li>Hana and Food Story bars are hatched: their 2026 overlap subsets miss 1–2 items; they stay ≥14% below break-even under maximally generous imputation.</li>
+        </ol>
+      </details>
+    </figure>
+
+    <div class="figure-frame">
+      <h3>Store-by-store verdict vs. the +34.4% break-even</h3>
+      <p class="dek">Lower-bound ratios: 15 overlap items (2026) over the full 17-item 2017 total — conservative by construction.</p>
+      <div class="verdict-grid">
+        <div class="verdict-cell"><span class="who">Associated</span><b class="up">1.522x</b> — outpaced inflation</div>
+        <div class="verdict-cell"><span class="who">Whole Foods</span><b class="up">1.437x</b> — outpaced inflation</div>
+        <div class="verdict-cell"><span class="who">City Fresh</span><b class="up">1.431x</b> — outpaced inflation</div>
+        <div class="verdict-cell"><span class="who">Key Food</span><b class="up">1.384x</b> — outpaced, by a 3% margin</div>
+        <div class="verdict-cell"><span class="who">Food Bazaar</span><b>1.294x</b> — indeterminate (below the line, within construction error)</div>
+        <div class="verdict-cell"><span class="who">Hana</span><b class="down">1.018x*</b> — ≥14% below break-even</div>
+        <div class="verdict-cell"><span class="who">Food Story</span><b class="down">0.951x*</b> — ≥14% below break-even</div>
+        <div class="verdict-cell"><span class="who">The line</span><b>1.3442</b> — NY-metro food-at-home CPI, Mar 2017 → Jun 2026</div>
+      </div>
+      <details class="note"><summary>Read the fine print (3)</summary>
+        <ol>
+          <li>* Hana and Food Story subsets miss 1–2 items; they remain ≥14% below break-even even after maximally generous imputation.</li>
+          <li>Ratios are lower bounds: 15 overlap items priced in 2026 over the FULL 17-item 2017 totals.</li>
+          <li>Spec drift exists inside the overlap (yogurt deflates; Kerrygold butter inflates the 2026 side).</li>
+        </ol>
+      </details>
+    </div>
+
+    <p class="eyebrow">Explore the record</p>
+    <a class="phase" href="dashboard.html">
+      <span class="phase__num">→</span>
+      <span><b>The dashboard.</b> KPI tiles, the 2021 budget-basket league with its sensitivity band, 2026 food-group composition, the sales tracker, stars-vs-receipts, and the coffee cliff.</span>
+      <span class="phase__go">Open</span>
+    </a>
+    <a class="phase" href="explorer.html">
+      <span class="phase__num">→</span>
+      <span><b>The shelf explorer.</b> A custom D3 walk through chicken&rsquo;s 15x spread, the brand tax, and all 21 items × 12 stores of the 2026 shelf — sale whiskers, comparability chips and all.</span>
+      <span class="phase__go">Open</span>
+    </a>
+
+    <div class="deadline" style="margin-top:2rem">
+      <p><b>The 2026 index was reported by YJC student journalists</b> in the Journalism for All Summer Newsroom Internship, coordinated at Bushwick Daily by Cameron Leo — the first crew to price the neighborhood since 2021. <a href="https://bushwickdaily.com/news/a-citywide-program-dropped-nyc-high-schoolers-into-real-newsrooms-week-one-one-crew-was-pricing-groceries-across-bushwick/" style="color:var(--bd-yellow)">Read how it happened →</a></p>
+    </div>
+
+    <p class="eyebrow" style="margin-top:2rem">Data &amp; methods</p>
+    <p>Every number on these pages traces to a CSV row or a BLS series. Sources: the <a href="https://bushwickdaily.com/guides/4535-ultimate-guide-to-grocery-shopping-bushwick/">2017 survey</a>, the <a href="https://bushwickdaily.com/guides/bushwick-ridgewood-supermarkets-grocery-stores/">2021 survey</a> and its <a href="https://public.tableau.com/app/profile/will.kryjak/viz/GroceryGraph/BushwickAreaGroceryStores">companion Tableau viz</a>, the 2026 YJC index workbook, and BLS public series. Known defects are flagged in the data, printed on the charts, and never silently corrected — including a duplicated block in the 2021 source, three gallon-vs-half-gallon unit mismatches, and the 2026 availability holes.</p>
+    <ul class="dl-list">
+      <li><a href="data/compiled_grocery_prices.csv" download>compiled_grocery_prices.csv</a> — all 435 observations, 2017–2026, quality-flagged</li>
+      <li><a href="data/yjc2026_raw.csv" download>yjc2026_raw.csv</a> — the 2026 index, 252 rows as collected</li>
+      <li><a href="data/bd2017_basket_totals.csv" download>bd2017_basket_totals.csv</a> · <a href="data/bd2021_item_prices.csv" download>bd2021_item_prices.csv</a> · <a href="data/tableau_grocerygraph.csv" download>tableau_grocerygraph.csv</a> · <a href="data/bls_benchmarks.csv" download>bls_benchmarks.csv</a></li>
+    </ul>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <p>Bushwick Daily · Grocery Price Index — The Historical Record · <a href="../index.html">Intern project home</a> · <a href="dashboard.html">Dashboard</a> · <a href="explorer.html">Explorer</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,436 @@
+source,year,store,item,price_usd_low,price_usd_high,unit,brand_low,brand_high,note,quality_flag
+bd_article_2017,2017,Trader Joe's,17-item basket total,48.05,,basket,,,,
+bd_article_2017,2017,Associated,17-item basket total,53.04,,basket,,,,
+bd_article_2017,2017,City Fresh,17-item basket total,55.11,,basket,,,,
+bd_article_2017,2017,Key Food,17-item basket total,56.66,,basket,,,,
+bd_article_2017,2017,Food Bazaar,17-item basket total,58.27,,basket,,,,
+bd_article_2017,2017,Whole Foods,17-item basket total,61.29,,basket,,,,
+bd_article_2017,2017,Food Story,17-item basket total,74.83,,basket,,,,
+bd_article_2017,2017,Hana Natural,17-item basket total,79.83,,basket,,,,
+bd_article_2017,2017,Brooklyn's Natural,17-item basket total,46.88,,basket,,,incomplete basket: many items unpriced/absent; adjusted estimate $62.07 excluding canned beans and chicken breasts (not stocked),incomplete_basket
+bd_article_2017,2017,Trader Joe's,Peanut Butter,2.49,,jar,,,almost $1 cheaper than everywhere but Key Food,
+bd_article_2017,2017,Key Food,Peanut Butter,2.79,,jar,,,same size as Trader Joe's jar,
+bd_article_2017,2017,Associated,Chicken (family pack),1.69,,per lb,,,cheapest chicken of the bunch,
+bd_article_2017,2017,Food Story,Chicken,10.99,,per lb,,,most expensive chicken,
+bd_article_2017,2017,Associated,Butter,2.99,,per lb (four quarters),,,,
+bd_article_2017,2017,Hana Natural,Butter,6.69,,per lb,,,,
+bd_article_2017,2017,Associated,Kale,1.49,,per lb,,,,
+bd_article_2017,2017,City Fresh,Carrots,0.69,,per lb,,,greatest number of cheapest items,
+bd_article_2017,2017,Food Bazaar,Carrots,2.99,,2-lb bag,,,most expensive carrots,
+bd_article_2017,2017,City Fresh,Rice (Arroz Rico),1.99,,2-lb bag,,,,
+bd_article_2017,2017,City Fresh,Tofu,3.29,,each,,,most expensive tofu of the bunch,
+bd_article_2017,2017,Hana Natural,Black Beans (can),2.49,,can,,,,
+bd_article_2017,2017,Hana Natural,Greek Yogurt (Fage 17.5 oz),5.99,,17.5-oz container,,,one dollar more than Brooklyn's Natural,
+bd_article_2017,2017,Brooklyn's Natural,Greek Yogurt (Fage 17.5 oz),4.99,,17.5-oz container,,,implied: $1 less than Hana Natural,
+bd_article_2021,2021,Food Bazaar,Half Gallon Milk,2.99,7.99,half gallon,Cream-O-Land,Horizon Organic,,
+bd_article_2021,2021,Food Bazaar,12 Eggs,1.59,10.99,dozen,Esbenshade,Happy Egg,,
+bd_article_2021,2021,Food Bazaar,Banana,0.79,,per lb,,,,
+bd_article_2021,2021,Food Bazaar,Peanut Butter,3.49,14.29,jar,Jif,Justin's,,
+bd_article_2021,2021,Food Bazaar,Cheddar Cheese,2.99,5.49,pack,Borden,Kerrygold,,
+bd_article_2021,2021,Food Bazaar,Spinach,2.5,4.99,pack,Uncle Vinny's,Organic Girl,,
+bd_article_2021,2021,Food Bazaar,Chicken Breast,6.0,11.0,per lb,store brand,organic,,
+bd_article_2021,2021,Food Bazaar,Coffee,1.99,15.09,pack,Cafe Aroma,Illy,,
+bd_article_2021,2021,Mr. Fruit Stores,Half Gallon Milk,3.49,6.49,half gallon,Cream-O-Land,Organic Valley,,
+bd_article_2021,2021,Mr. Fruit Stores,12 Eggs,1.99,10.49,dozen,Saunders Amish Eggs,Handsome Brook Farm,,
+bd_article_2021,2021,Mr. Fruit Stores,Banana,0.79,1.29,per lb,,organic,,
+bd_article_2021,2021,Mr. Fruit Stores,Peanut Butter,3.99,8.49,jar,Jif,Once Again,,
+bd_article_2021,2021,Mr. Fruit Stores,Cheddar Cheese,3.49,4.99,pack,Borden,Cabot,,
+bd_article_2021,2021,Mr. Fruit Stores,Spinach,2.49,,pack,fresh,,,
+bd_article_2021,2021,Mr. Fruit Stores,Chicken Breast,13.99,,pack,Bell and Evans,,unit not stated in article,
+bd_article_2021,2021,Mr. Fruit Stores,Coffee,3.99,15.49,pack,Cafe Bustelo,Stumptown,,
+bd_article_2021,2021,Key Food,Half Gallon Milk,2.29,6.79,half gallon,Farmland,Organic Valley,,
+bd_article_2021,2021,Key Food,12 Eggs,1.67,6.89,dozen,Sunshine Farms,Pete and Gerry's,,
+bd_article_2021,2021,Key Food,Banana,0.49,0.79,per lb,,organic,,
+bd_article_2021,2021,Key Food,Peanut Butter,3.29,7.99,jar,Jif,Once Again,,
+bd_article_2021,2021,Key Food,Cheddar Cheese,2.49,5.19,pack,Urban Meadow,Cracker Barrel,,
+bd_article_2021,2021,Key Food,Spinach,2.99,4.99,pack,Dole,Attitude,,
+bd_article_2021,2021,Key Food,Chicken Breast,1.05,3.49,per lb,Urban Meadow,Perdue,,
+bd_article_2021,2021,Key Food,Coffee,2.19,17.99,pack,Cafe Aroma,Downstate Roasters,,
+bd_article_2021,2021,Food Story Natural Market,Half Gallon Milk,3.49,6.49,half gallon,Midland Farms,Organic Valley,,
+bd_article_2021,2021,Food Story Natural Market,12 Eggs,2.69,9.99,dozen,Pine Belt Eggs,Happy Egg,,
+bd_article_2021,2021,Food Story Natural Market,Banana,0.99,1.29,per lb,,organic,,
+bd_article_2021,2021,Food Story Natural Market,Peanut Butter,3.99,9.99,jar,Skippy,Once Again,,
+bd_article_2021,2021,Food Story Natural Market,Cheddar Cheese,4.67,5.39,pack,New York Cheddar,Cabot,,
+bd_article_2021,2021,Food Story Natural Market,Spinach,2.99,3.99,pack,fresh,Organic Girl,,
+bd_article_2021,2021,Food Story Natural Market,Chicken Breast,15.99,,per lb,only option,,,
+bd_article_2021,2021,Food Story Natural Market,Coffee,3.99,16.99,pack,Cafe Bustelo,Blue Bottle,,
+bd_article_2021,2021,Shop Fair,Half Gallon Milk,2.69,,half gallon,Cream-O-Land,,,
+bd_article_2021,2021,Shop Fair,12 Eggs,2.0,4.59,dozen,Sunshine Farms,Sunshine Farms Cage Free,,
+bd_article_2021,2021,Shop Fair,Banana,0.59,0.89,per lb,,organic,,
+bd_article_2021,2021,Shop Fair,Peanut Butter,2.99,6.29,jar,Jif,Smart Balance,,
+bd_article_2021,2021,Shop Fair,Cheddar Cheese,1.99,5.79,pack,Farms Creamery,Boar's Head,,
+bd_article_2021,2021,Shop Fair,Spinach,2.99,3.99,pack,Dole,Organic Girl,,
+bd_article_2021,2021,Shop Fair,Coffee,1.67,13.29,pack,Cafe Eldorado,Starbucks,no chicken listed,
+bd_article_2021,2021,City Fresh Market,Half Gallon Milk,4.49,9.99,gallon (as printed),2% Derle Hygrade,Maple Hill Creamery Organic,article lists a gallon price under half-gallon heading,unit_mismatch
+bd_article_2021,2021,City Fresh Market,12 Eggs,1.89,10.99,dozen,Mitlitsky,Happy Egg,,
+bd_article_2021,2021,City Fresh Market,Banana,0.69,,per lb,,,,
+bd_article_2021,2021,City Fresh Market,Peanut Butter,3.79,,jar,Jif,,,
+bd_article_2021,2021,City Fresh Market,Cheddar Cheese,4.99,,pack,Kraft,,,
+bd_article_2021,2021,City Fresh Market,Spinach,2.99,,bunch,bunch,,,
+bd_article_2021,2021,City Fresh Market,Chicken Breast,4.12,,per lb,,,,
+bd_article_2021,2021,City Fresh Market,Coffee,5.99,12.49,pack,Folgers,local roast,,
+bd_article_2021,2021,Hana Natural,Half Gallon Milk,4.59,,half gallon,Organic Valley,,,
+bd_article_2021,2021,Hana Natural,12 Eggs,4.29,10.0,dozen,,,,
+bd_article_2021,2021,Hana Natural,Banana,1.29,,per lb,,,,
+bd_article_2021,2021,Hana Natural,Peanut Butter,7.49,,jar,Woodstock Organic Farms,,,
+bd_article_2021,2021,Hana Natural,Cheddar Cheese,4.66,,pack,store brand,,,
+bd_article_2021,2021,Hana Natural,Spinach,3.29,,bunch,bunch,,,
+bd_article_2021,2021,Hana Natural,Coffee,7.99,,pack,,,'$7.99 and up'; no chicken listed,open_ended
+bd_article_2021,2021,Met Fresh,Half Gallon Milk,4.59,,gallon (as printed),Tuscan Dairy Farms,,article lists a gallon price under half-gallon heading,unit_mismatch
+bd_article_2021,2021,Met Fresh,12 Eggs,1.69,,dozen,,,,
+bd_article_2021,2021,Met Fresh,Banana,0.79,,per lb,,,,
+bd_article_2021,2021,Met Fresh,Peanut Butter,2.49,,jar,Avenue A,,,
+bd_article_2021,2021,Met Fresh,Cheddar Cheese,2.99,,pack,Tropical,,,
+bd_article_2021,2021,Met Fresh,Chicken Breast,3.54,,per lb,,,,
+bd_article_2021,2021,Met Fresh,Kale,1.29,,bunch,bunch,,kale instead of spinach,
+bd_article_2021,2021,Met Fresh,Coffee,5.29,7.99,pack,Folgers,local roasts,'$7.99 and up',open_ended
+bd_article_2021,2021,Billy's Marketplace (C Town),Half Gallon Milk,4.19,,half gallon,Tuscan Dairy Farms,,,
+bd_article_2021,2021,Billy's Marketplace (C Town),12 Eggs,1.39,,dozen,,,,
+bd_article_2021,2021,Billy's Marketplace (C Town),Banana,1.39,,per lb,,,,
+bd_article_2021,2021,Billy's Marketplace (C Town),Peanut Butter,3.19,,jar,Skippy,,,
+bd_article_2021,2021,Billy's Marketplace (C Town),Cheddar Cheese,2.49,,pack,Krasdale,,,
+bd_article_2021,2021,Billy's Marketplace (C Town),Chicken,2.69,,per lb,Perdue,,,
+bd_article_2021,2021,Billy's Marketplace (C Town),Spinach,3.69,,bunch,bunch,,,
+bd_article_2021,2021,Billy's Marketplace (C Town),Coffee,3.69,8.39,pack,Folgers,local roasts,'$8.39 and up',open_ended
+bd_article_2021,2021,Associated Supermarkets,Half Gallon Milk,4.19,,gallon (as printed),Cream-O-Land,,article lists a gallon price under half-gallon heading,unit_mismatch
+bd_article_2021,2021,Associated Supermarkets,12 Eggs,2.0,,dozen,,,,
+bd_article_2021,2021,Associated Supermarkets,Banana,1.09,,per lb,,,,
+bd_article_2021,2021,Associated Supermarkets,Chicken (legs),0.89,,per lb,,,,
+bd_article_2021,2021,Associated Supermarkets,Spinach,3.0,,bunch,bunch,,,
+bd_article_2021,2021,Associated Supermarkets,Peanut Butter,3.19,,jar,Skippy,,verbatim duplicate of Billy's line in source article,dup_from_billys
+bd_article_2021,2021,Associated Supermarkets,Cheddar Cheese,2.49,,pack,Krasdale,,verbatim duplicate of Billy's line in source article,dup_from_billys
+bd_article_2021,2021,Associated Supermarkets,Chicken,2.69,,per lb,Perdue,,verbatim duplicate of Billy's line in source article,dup_from_billys
+bd_article_2021,2021,Associated Supermarkets,Spinach,3.69,,bunch,bunch,,verbatim duplicate of Billy's line in source article; conflicts with $3.00 bunch above,dup_from_billys
+bd_article_2021,2021,Associated Supermarkets,Coffee,3.69,8.39,pack,Folgers,local roasts,verbatim duplicate of Billy's line in source article,dup_from_billys
+tableau_grocerygraph_2021,2021,Mr. Fruit Stores,Bananas (per lb),0.0,,per lb,N/A,,lowest-price option per Tableau viz,not_carried_or_unpriced
+tableau_grocerygraph_2021,2021,Key Food,Bananas (per lb),0.49,,per lb,(organic),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Shop Fair,Bananas (per lb),0.59,,per lb,(organic),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,City Fresh Market,Bananas (per lb),0.69,,per lb,(unknown),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Bazaar,Bananas (per lb),0.79,,per lb,(unknown),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Met Fresh,Bananas (per lb),0.79,,per lb,(unknown),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Story Natural Market,Bananas (per lb),0.99,,per lb,(organic),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Associated Supermarkets (Brooklyn),Bananas (per lb),1.09,,per lb,(unknown),,lowest-price option per Tableau viz,dup_from_billys_in_source_sheet
+tableau_grocerygraph_2021,2021,Hana Natural,Bananas (per lb),1.29,,per lb,(unknown),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Billy's Marketplace (C Town),Bananas (per lb),1.39,,per lb,(unknown),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Shop Fair,Cheddar Cheese,1.99,,pack,Farms Creamery,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Associated Supermarkets (Brooklyn),Cheddar Cheese,2.49,,pack,Krasdale,,lowest-price option per Tableau viz,dup_from_billys_in_source_sheet
+tableau_grocerygraph_2021,2021,Billy's Marketplace (C Town),Cheddar Cheese,2.49,,pack,Krasdale,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Key Food,Cheddar Cheese,2.49,,pack,Urban Meadow,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Met Fresh,Cheddar Cheese,2.9,,pack,Tropical,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,City Fresh Market,Cheddar Cheese,2.99,,pack,Kraft,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Bazaar,Cheddar Cheese,2.99,,pack,Borden,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Mr. Fruit Stores,Cheddar Cheese,3.49,,pack,Borden,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Hana Natural,Cheddar Cheese,4.66,,pack,Store Brand,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Story Natural Market,Cheddar Cheese,4.67,,pack,New York Cheddar,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Hana Natural,Chicken Breast (per lb),0.0,,per lb,N/A,,lowest-price option per Tableau viz,not_carried_or_unpriced
+tableau_grocerygraph_2021,2021,Shop Fair,Chicken Breast (per lb),0.0,,per lb,N/A,,lowest-price option per Tableau viz,not_carried_or_unpriced
+tableau_grocerygraph_2021,2021,Key Food,Chicken Breast (per lb),1.05,,per lb,Urban Meadow,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Associated Supermarkets (Brooklyn),Chicken Breast (per lb),2.69,,per lb,Perdue,,lowest-price option per Tableau viz,dup_from_billys_in_source_sheet
+tableau_grocerygraph_2021,2021,Billy's Marketplace (C Town),Chicken Breast (per lb),2.69,,per lb,Perdue,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Met Fresh,Chicken Breast (per lb),3.54,,per lb,(unknown),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,City Fresh Market,Chicken Breast (per lb),4.12,,per lb,(unknown),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Bazaar,Chicken Breast (per lb),6.0,,per lb,Store Brand,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Mr. Fruit Stores,Chicken Breast (per lb),13.99,,per lb,Bell and Evans,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Story Natural Market,Chicken Breast (per lb),15.99,,per lb,(unknown),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Shop Fair,Coffee,1.67,,pack,Cafe Eldorado,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Bazaar,Coffee,1.99,,pack,Cafe Aroma,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Key Food,Coffee,2.19,,pack,Cafe Aroma,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Associated Supermarkets (Brooklyn),Coffee,3.69,,pack,Folgers,,lowest-price option per Tableau viz,dup_from_billys_in_source_sheet
+tableau_grocerygraph_2021,2021,Billy's Marketplace (C Town),Coffee,3.69,,pack,Folgers,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Story Natural Market,Coffee,3.99,,pack,Cafe Bustelo,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Mr. Fruit Stores,Coffee,3.99,,pack,Cafe Bustelo,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Met Fresh,Coffee,5.29,,pack,Folgers,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,City Fresh Market,Coffee,5.99,,pack,Folgers,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Hana Natural,Coffee,7.99,,pack,(unknown),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Billy's Marketplace (C Town),Eggs (Dozen),1.39,,dozen,(unknown),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Bazaar,Eggs (Dozen),1.59,,dozen,Ebenshade,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Key Food,Eggs (Dozen),1.67,,dozen,Sunshine Farms,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Met Fresh,Eggs (Dozen),1.69,,dozen,(unknown),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,City Fresh Market,Eggs (Dozen),1.89,,dozen,Mitlitsky,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Mr. Fruit Stores,Eggs (Dozen),1.99,,dozen,Saunders Amish Eggs,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Associated Supermarkets (Brooklyn),Eggs (Dozen),2.0,,dozen,(unknown),,lowest-price option per Tableau viz,dup_from_billys_in_source_sheet
+tableau_grocerygraph_2021,2021,Shop Fair,Eggs (Dozen),2.0,,dozen,Sunshine Farms,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Story Natural Market,Eggs (Dozen),2.69,,dozen,Pine Belt Eggs,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Hana Natural,Eggs (Dozen),4.29,,dozen,(unknown),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Key Food,Milk (1/2 Gallon),2.29,,half gallon,Farmland,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Shop Fair,Milk (1/2 Gallon),2.69,,half gallon,Cream-o-Land,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Bazaar,Milk (1/2 Gallon),2.99,,half gallon,Cream-o-Land,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Story Natural Market,Milk (1/2 Gallon),3.49,,half gallon,Midland Farms,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Mr. Fruit Stores,Milk (1/2 Gallon),3.49,,half gallon,Cream-o-Land,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Associated Supermarkets (Brooklyn),Milk (1/2 Gallon),4.19,,half gallon,Cream-o-Land,,lowest-price option per Tableau viz,dup_from_billys_in_source_sheet
+tableau_grocerygraph_2021,2021,Billy's Marketplace (C Town),Milk (1/2 Gallon),4.19,,half gallon,Tuscan Dairy Farms Gal,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,City Fresh Market,Milk (1/2 Gallon),4.49,,half gallon,2% Derle Hygrade Gal,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Hana Natural,Milk (1/2 Gallon),4.59,,half gallon,Organic Valley,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Met Fresh,Milk (1/2 Gallon),4.59,,half gallon,Tuscan Dairy Farms Gal,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Met Fresh,Peanut Butter,2.49,,jar,Avenue A,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Shop Fair,Peanut Butter,2.99,,jar,Jif,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Associated Supermarkets (Brooklyn),Peanut Butter,3.19,,jar,Skippy,,lowest-price option per Tableau viz,dup_from_billys_in_source_sheet
+tableau_grocerygraph_2021,2021,Billy's Marketplace (C Town),Peanut Butter,3.19,,jar,Skippy,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Key Food,Peanut Butter,3.29,,jar,Jif,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Bazaar,Peanut Butter,3.49,,jar,Jif,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,City Fresh Market,Peanut Butter,3.79,,jar,Jif,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Story Natural Market,Peanut Butter,3.99,,jar,Skippy,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Mr. Fruit Stores,Peanut Butter,3.99,,jar,Jif,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Hana Natural,Peanut Butter,7.49,,jar,Woodstock Organic Farms,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Met Fresh,Spinach,1.29,,pack/bunch,Kale,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Mr. Fruit Stores,Spinach,2.49,,pack/bunch,(unknown),,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Bazaar,Spinach,2.5,,pack/bunch,Uncle Vinny's,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Food Story Natural Market,Spinach,2.99,,pack/bunch,Fresh,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Key Food,Spinach,2.99,,pack/bunch,Dole,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Shop Fair,Spinach,2.99,,pack/bunch,Dole,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Hana Natural,Spinach,3.29,,pack/bunch,Bunch,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,Associated Supermarkets (Brooklyn),Spinach,3.69,,pack/bunch,Bunch,,lowest-price option per Tableau viz,dup_from_billys_in_source_sheet
+tableau_grocerygraph_2021,2021,Billy's Marketplace (C Town),Spinach,3.69,,pack/bunch,Bunch,,lowest-price option per Tableau viz,
+tableau_grocerygraph_2021,2021,City Fresh Market,Spinach,5.99,,pack/bunch,Bunch,,lowest-price option per Tableau viz,
+yjc_index_2026,2026,Associated,Apples,2.69,,"Gala, per lb","Gala, per lb",,,
+yjc_index_2026,2026,Associated,Bananas,0.89,,"Dole, per lb","Dole, per lb",,,
+yjc_index_2026,2026,Associated,Tomatoes,2.69,,"On the vine, per lb","On the vine, per lb",,,
+yjc_index_2026,2026,Associated,Kale,1.99,,Per lb,Per lb,,,
+yjc_index_2026,2026,Associated,Spinach,4.79,,"Attitude, 5 oz","Attitude, 5 oz",,,
+yjc_index_2026,2026,Associated,Bread,2.99,,Wonderbread 20z,Wonderbread 20z,,,
+yjc_index_2026,2026,Associated,Peanut Butter,4.29,,"Jif, 16 oz","Jif, 16 oz",,"Jif (16oz) — different brand, ~same size",brand_tier_differs
+yjc_index_2026,2026,Associated,Honey,7.29,,Golden Blossom (12 oz),Golden Blossom (12 oz),,,
+yjc_index_2026,2026,Associated,Rice,3.49,,Caronlina (2lb),Caronlina (2lb),,,
+yjc_index_2026,2026,Associated,Coffee,13.49,,"Bustelo, 10 oz","Bustelo, 10 oz",,,
+yjc_index_2026,2026,Associated,Black Beans,1.69,,"Goya, 1 standard can","Goya, 1 standard can",,,
+yjc_index_2026,2026,Associated,Milk,9.99,,Organic Vally,Organic Vally,,Half-gallon size not explicitly confirmed,brand_unclear
+yjc_index_2026,2026,Associated,Butter,7.99,,Kerrygold 8oz,Kerrygold 8oz,,,
+yjc_index_2026,2026,Associated,Cheddar Cheese,5.99,,Cabot (8oz),Cabot (8oz),,,
+yjc_index_2026,2026,Associated,Greek yogurt,2.49,,Chobani (5.3 oz),Chobani (5.3 oz),,,
+yjc_index_2026,2026,Associated,Tofu,2.99,,House foods,House foods,,,
+yjc_index_2026,2026,Associated,Chicken Breast,7.99,,Perdue thin sliced chicken cutlets (per lb),Perdue thin sliced chicken cutlets (per lb),,"Perdue, thin-sliced cutlets",brand_tier_differs
+yjc_index_2026,2026,Associated,Beer,12.99,,"Modelo, 6 pack","Modelo, 6 pack",,,
+yjc_index_2026,2026,Associated,Ice Cream,5.99,,Hagen-Daz,Hagen-Daz,,,
+yjc_index_2026,2026,Associated,Cereal,7.99,,Honey Nut Cheerios (10.8 oz),Honey Nut Cheerios (10.8 oz),,"Honey Nut Cheerios, 10.8oz — different flavor AND a larger box than the 8.9oz plain Cheerios elsewhere",unit_mismatch
+yjc_index_2026,2026,Associated,Eggs,5.69,,Sunshine Farms (12 pack),Sunshine Farms (12 pack),,,
+yjc_index_2026,2026,Billy's Marketplace,Apples,1.99,1.99,"Store brand, per lb","Store brand, per lb",,"Just ""store brand"" — variety not recorded",brand_unclear
+yjc_index_2026,2026,Billy's Marketplace,Bananas,0.79,,"Chiquitas, per lb","Chiquitas, per lb",,,
+yjc_index_2026,2026,Billy's Marketplace,Tomatoes,2.49,,On the vine,On the vine,,"Just ""USA"" — variety not recorded",brand_unclear
+yjc_index_2026,2026,Billy's Marketplace,Kale,2.0,,"store brand (by bunch, weight around .45lb)","store brand (by bunch, weight around .45lb)",,"Priced by the bunch, not per lb — not directly comparable",unit_mismatch
+yjc_index_2026,2026,Billy's Marketplace,Spinach,4.69,,Olivia organic,Olivia organic,,Bag size not recorded,brand_unclear
+yjc_index_2026,2026,Billy's Marketplace,Bread,3.49,,Wonder Bread (20oz),Wonder Bread (20oz),,,
+yjc_index_2026,2026,Billy's Marketplace,Peanut Butter,3.5,,Jif (16oz),Jif (16oz),,"Jif (16oz) — different brand, ~same size",brand_tier_differs
+yjc_index_2026,2026,Billy's Marketplace,Honey,8.29,,Golden Blossom (12oz),Golden Blossom (12oz),,,
+yjc_index_2026,2026,Billy's Marketplace,Rice,3.49,,Caronlina (2lb),Caronlina (2lb),,,
+yjc_index_2026,2026,Billy's Marketplace,Coffee,11.99,,"Cafe Bustelo, 10 oz","Cafe Bustelo, 10 oz",,,
+yjc_index_2026,2026,Billy's Marketplace,Black Beans,1.67,1.69,Goya,Goya,,sale: 3 for $5,sale_price
+yjc_index_2026,2026,Billy's Marketplace,Milk,8.49,,Organic Valley,Organic Valley,,Half-gallon size not explicitly confirmed,brand_unclear
+yjc_index_2026,2026,Billy's Marketplace,Butter,7.99,,Kerrygold (2 stick),Kerrygold (2 stick),,,
+yjc_index_2026,2026,Billy's Marketplace,Cheddar Cheese,6.19,,Cabot,Cabot,,Size not recorded,brand_unclear
+yjc_index_2026,2026,Billy's Marketplace,Greek yogurt,2.49,,Chobani,Chobani,,Cup size not recorded,brand_unclear
+yjc_index_2026,2026,Billy's Marketplace,Tofu,,,,,,Not available / not recorded at this store,not_carried_or_unpriced
+yjc_index_2026,2026,Billy's Marketplace,Chicken Breast,6.49,,Chicken breast thin sliced (per lb),Chicken breast thin sliced (per lb),,"Perdue, thin-sliced",brand_tier_differs
+yjc_index_2026,2026,Billy's Marketplace,Beer,10.99,11.99,"Modelo, 6 pack","Modelo, 6 pack",,,sale_price
+yjc_index_2026,2026,Billy's Marketplace,Ice Cream,8.19,,Ben&Jerrys,Ben&Jerrys,,Breyers — a lower-tier brand than Häagen-Dazs,brand_tier_differs
+yjc_index_2026,2026,Billy's Marketplace,Cereal,6.99,,Cheerios (8.9oz),Cheerios (8.9oz),,,
+yjc_index_2026,2026,Billy's Marketplace,Eggs,1.67,2.79,Sunshine Farms,Sunshine Farms,,sale: 3 for 5,sale_price
+yjc_index_2026,2026,Brooklyn's Natural,Apples,2.49,,"Gala- USA, per lb","Gala- USA, per lb",,,
+yjc_index_2026,2026,Brooklyn's Natural,Bananas,0.99,,"Chiquitas, per lb","Chiquitas, per lb",,,
+yjc_index_2026,2026,Brooklyn's Natural,Tomatoes,4.99,,"stem tomato, per lb","stem tomato, per lb",,"Stem tomatoes, not on-the-vine",brand_tier_differs
+yjc_index_2026,2026,Brooklyn's Natural,Kale,2.49,,"USA, per bunch","USA, per bunch",,"Priced per bunch (USA), not per lb — not directly comparable",unit_mismatch
+yjc_index_2026,2026,Brooklyn's Natural,Spinach,4.79,,Organic Girl,Organic Girl,,,
+yjc_index_2026,2026,Brooklyn's Natural,Bread,4.99,,Bakery of New York,Bakery of New York,,"Bakery of New York — artisan loaf, not mass-market sandwich bread; size not recorded",brand_tier_differs
+yjc_index_2026,2026,Brooklyn's Natural,Peanut Butter,5.29,,Skippy (16.3oz),Skippy (16.3oz),,,
+yjc_index_2026,2026,Brooklyn's Natural,Honey,6.49,,Sandt's Golden Honey (12oz),Sandt's Golden Honey (12oz),,"Sandt's Golden Honey — different brand, same 12oz size",brand_tier_differs
+yjc_index_2026,2026,Brooklyn's Natural,Rice,10.99,,Lundberg (2lbs),Lundberg (2lbs),,"Lundberg — premium brand, same 2lb size",brand_tier_differs
+yjc_index_2026,2026,Brooklyn's Natural,Coffee,13.49,,Brooklyn's Own Ground Coffee Espresso ,Brooklyn's Own Ground Coffee Espresso ,,Brooklyn's own ground espresso — different (local) brand; size not recorded,brand_tier_differs
+yjc_index_2026,2026,Brooklyn's Natural,Black Beans,4.49,,Eden's,Eden's,,Eden's — different (premium) brand,brand_tier_differs
+yjc_index_2026,2026,Brooklyn's Natural,Milk,7.99,,Organic Valley (half gallon),Organic Valley (half gallon),,,
+yjc_index_2026,2026,Brooklyn's Natural,Butter,6.79,,"Kerrygold (salted Irish butter, 1 stick)","Kerrygold (salted Irish butter, 1 stick)",,"Only 1 stick (4oz) vs. 2 sticks (8oz) elsewhere — roughly double the per-oz price of a ""2-stick"" store",unit_mismatch
+yjc_index_2026,2026,Brooklyn's Natural,Cheddar Cheese,5.79,,Cabot,Cabot,,Size not recorded,brand_unclear
+yjc_index_2026,2026,Brooklyn's Natural,Greek yogurt,2.49,,Chobani,Chobani,,Cup size not recorded,brand_unclear
+yjc_index_2026,2026,Brooklyn's Natural,Tofu,1.99,,House Foods,House Foods,,,
+yjc_index_2026,2026,Brooklyn's Natural,Chicken Breast,,,did not have in store,did not have in store,,did not have in store,not_carried_or_unpriced
+yjc_index_2026,2026,Brooklyn's Natural,Beer,13.99,,Model 6 pack,Model 6 pack,,,
+yjc_index_2026,2026,Brooklyn's Natural,Ice Cream,8.99,,Haagen Dazs,Haagen Dazs,,,
+yjc_index_2026,2026,Brooklyn's Natural,Cereal,7.99,,Honey grahams,Honey grahams,,"Magic Spoon — an entirely different (premium, low-carb) cereal brand, not a Cheerios comparison at all",unit_mismatch
+yjc_index_2026,2026,Brooklyn's Natural,Eggs,6.29,,Farm Fresh Free Range,Farm Fresh Free Range,,Farm Fresh Free Range,brand_tier_differs
+yjc_index_2026,2026,City Fresh,Apples,1.99,2.49,"Gala, per lb","Gala, per lb",,,sale_price
+yjc_index_2026,2026,City Fresh,Bananas,0.79,0.79,Dole - could not find non-sale price,Dole - could not find non-sale price,,Dole - could not find non-sale price,
+yjc_index_2026,2026,City Fresh,Tomatoes,4.99,,"On the vine, per lb","On the vine, per lb",,,
+yjc_index_2026,2026,City Fresh,Kale,1.49,2.49,Per lb,Per lb,,,sale_price
+yjc_index_2026,2026,City Fresh,Spinach,4.49,,Attitude,Attitude,,Bag size not recorded,brand_unclear
+yjc_index_2026,2026,City Fresh,Bread,3.99,,Wonderbread,Wonderbread,,,
+yjc_index_2026,2026,City Fresh,Peanut Butter,4.29,,Skippy (16.3oz),Skippy (16.3oz),,,
+yjc_index_2026,2026,City Fresh,Honey,8.99,,Golden Blossom (12oz),Golden Blossom (12oz),,,
+yjc_index_2026,2026,City Fresh,Rice,3.69,,Caronlina (2lb),Caronlina (2lb),,,
+yjc_index_2026,2026,City Fresh,Coffee,8.99,12.89,"Cafe Bustelo, 10 oz","Cafe Bustelo, 10 oz",,,sale_price
+yjc_index_2026,2026,City Fresh,Black Beans,1.89,, Goya, Goya,,,
+yjc_index_2026,2026,City Fresh,Milk,7.99,,Organic Valley (half gallon),Organic Valley (half gallon),,,
+yjc_index_2026,2026,City Fresh,Butter,7.99,,Kerygold,Kerygold,,Stick count / oz not recorded,brand_unclear
+yjc_index_2026,2026,City Fresh,Cheddar Cheese,5.99,,Land O Lakes,Land O Lakes,,"Land O Lakes — different brand, size not recorded",brand_tier_differs
+yjc_index_2026,2026,City Fresh,Greek yogurt,2.69,,Chobani (mixed berry greek yogurt 5.3 oz),Chobani (mixed berry greek yogurt 5.3 oz),,,
+yjc_index_2026,2026,City Fresh,Tofu,2.69,,House foods Tofu (Soft),House foods Tofu (Soft),,,
+yjc_index_2026,2026,City Fresh,Chicken Breast,5.99,,Chicken breast boneless,Chicken breast boneless,,"Unbranded, generic ""boneless""",brand_unclear
+yjc_index_2026,2026,City Fresh,Beer,13.49,,"Model, 6 pack","Model, 6 pack",,,
+yjc_index_2026,2026,City Fresh,Ice Cream,9.19,,Hagen-Daz,Hagen-Daz,,,
+yjc_index_2026,2026,City Fresh,Cereal,7.99,,Cheerios (8.9oz),Cheerios (8.9oz),,,
+yjc_index_2026,2026,City Fresh,Eggs,5.69,,Sunhine Farms( cage free 12 pack),Sunhine Farms( cage free 12 pack),,,
+yjc_index_2026,2026,Food Bazaar,Apples,2.99,,Honey Crisp (Manager's Special),Honey Crisp (Manager's Special),,"Honey Crisp variety, not Gala",brand_tier_differs
+yjc_index_2026,2026,Food Bazaar,Bananas,0.79,,"Chiquitasm, per lb","Chiquitasm, per lb",,,
+yjc_index_2026,2026,Food Bazaar,Tomatoes,1.49,1.49,On the vine (Weekly Special),On the vine (Weekly Special),,,
+yjc_index_2026,2026,Food Bazaar,Kale,1.79,,per lb,per lb,,,
+yjc_index_2026,2026,Food Bazaar,Spinach,3.5,4.19,"Uncle Vinny's, 5 oz","Uncle Vinny's, 5 oz",,sale: 2 for $7,sale_price
+yjc_index_2026,2026,Food Bazaar,Bread,3.99,,Wonder Break (20oz),Wonder Break (20oz),,,
+yjc_index_2026,2026,Food Bazaar,Peanut Butter,3.0,,Jif (16oz),Jif (16oz),,"Jif (16oz) — different brand, ~same size",brand_tier_differs
+yjc_index_2026,2026,Food Bazaar,Honey,8.39,,Golden Blossom (12oz),Golden Blossom (12oz),,,
+yjc_index_2026,2026,Food Bazaar,Rice,3.99,,Caronlina (2lb),Caronlina (2lb),,,
+yjc_index_2026,2026,Food Bazaar,Coffee,8.49,,"Cafe Bustelo, 10 oz","Cafe Bustelo, 10 oz",,,
+yjc_index_2026,2026,Food Bazaar,Black Beans,1.5,,Goya,Goya,,,
+yjc_index_2026,2026,Food Bazaar,Milk,7.49,,Organic Valley,Organic Valley,,Half-gallon size not explicitly confirmed,brand_unclear
+yjc_index_2026,2026,Food Bazaar,Butter,7.29,,Kerygold,Kerygold,,Stick count / oz not recorded,brand_unclear
+yjc_index_2026,2026,Food Bazaar,Cheddar Cheese,4.99,,Cabot,Cabot,,Size not recorded,brand_unclear
+yjc_index_2026,2026,Food Bazaar,Greek yogurt,5.0,5,Chobani (mixed berry 5.3 oz),Chobani (mixed berry 5.3 oz),,,
+yjc_index_2026,2026,Food Bazaar,Tofu,2.99,,House Foods ,House Foods ,,,
+yjc_index_2026,2026,Food Bazaar,Chicken Breast,7.99,,Thin slice boneless (6 cut thin),Thin slice boneless (6 cut thin),,"Unbranded, generic ""thin slice""",brand_unclear
+yjc_index_2026,2026,Food Bazaar,Beer,12.49,,"Modelo, 6 pack","Modelo, 6 pack",,,
+yjc_index_2026,2026,Food Bazaar,Ice Cream,8.99,,Hagen-Daz,Hagen-Daz,,,
+yjc_index_2026,2026,Food Bazaar,Cereal,5.99,,Cheerios (8.9oz),Cheerios (8.9oz),,,
+yjc_index_2026,2026,Food Bazaar,Eggs,3.99,,Mitilisky jumbo cage free,Mitilisky jumbo cage free,,"Mitilisky, jumbo cage-free",brand_tier_differs
+yjc_index_2026,2026,Food Story Natural Market,Apples,2.99,,Gala ,Gala ,,,
+yjc_index_2026,2026,Food Story Natural Market,Bananas,1.99,,Chiquitas ,Chiquitas ,,,
+yjc_index_2026,2026,Food Story Natural Market,Tomatoes,1.99,,USA,USA,,"Just ""USA"" — variety not recorded",brand_unclear
+yjc_index_2026,2026,Food Story Natural Market,Kale,2.99,,Organic- Store Brand (per lb),Organic- Store Brand (per lb),,,
+yjc_index_2026,2026,Food Story Natural Market,Spinach,4.99,,Organic girl,Organic girl,,Bag size not recorded,brand_unclear
+yjc_index_2026,2026,Food Story Natural Market,Bread,4.99,,Bakery of New York,Bakery of New York,,"Bakery of New York — artisan loaf, not mass-market sandwich bread; size not recorded",brand_tier_differs
+yjc_index_2026,2026,Food Story Natural Market,Peanut Butter,3.99,,Skippy (16.3),Skippy (16.3),,,
+yjc_index_2026,2026,Food Story Natural Market,Honey,8.49,,Golden Blosson Honey (12.oz),Golden Blosson Honey (12.oz),,,
+yjc_index_2026,2026,Food Story Natural Market,Rice,3.99,,Carolina (2lbs),Carolina (2lbs),,,
+yjc_index_2026,2026,Food Story Natural Market,Coffee,10.99,,Cafe Bustelo (vacuum pack),Cafe Bustelo (vacuum pack),,"Cafe Bustelo ""vacuum pack"" — size not confirmed as 10oz",brand_unclear
+yjc_index_2026,2026,Food Story Natural Market,Black Beans,1.99,,Progresso,Progresso,,Progresso — different brand,brand_tier_differs
+yjc_index_2026,2026,Food Story Natural Market,Milk,7.99,,Organic Milk,Organic Milk,,"Just ""Organic Milk"" — brand and size not recorded",brand_unclear
+yjc_index_2026,2026,Food Story Natural Market,Butter,7.49,,Kerrygold (1 stick),Kerrygold (1 stick),,Only 1 stick (4oz) vs. 2 sticks (8oz) elsewhere,unit_mismatch
+yjc_index_2026,2026,Food Story Natural Market,Cheddar Cheese,6.99,,Cabot,Cabot,,Size not recorded,brand_unclear
+yjc_index_2026,2026,Food Story Natural Market,Greek yogurt,2.29,,Chobani,Chobani,,Cup size not recorded,brand_unclear
+yjc_index_2026,2026,Food Story Natural Market,Tofu,,,,,,Not available / not recorded at this store,not_carried_or_unpriced
+yjc_index_2026,2026,Food Story Natural Market,Chicken Breast,,,,,,Not available / not recorded at this store,not_carried_or_unpriced
+yjc_index_2026,2026,Food Story Natural Market,Beer,12.99,,Modelo 6 pack,Modelo 6 pack,,,
+yjc_index_2026,2026,Food Story Natural Market,Ice Cream,7.99,,Hagen-Daz,Hagen-Daz,,,
+yjc_index_2026,2026,Food Story Natural Market,Cereal,7.49,,Cheerios (8.9oz),Cheerios (8.9oz),,,
+yjc_index_2026,2026,Food Story Natural Market,Eggs,5.99,,Barnyards (Cage Free 12 Pack),Barnyards (Cage Free 12 Pack),,"Barnyards, cage-free 12-pack",brand_tier_differs
+yjc_index_2026,2026,Hana,Apples,2.99,,Gala,Gala,,,
+yjc_index_2026,2026,Hana,Bananas,0.99,,"Chiquita, per lb","Chiquita, per lb",,,
+yjc_index_2026,2026,Hana,Tomatoes,3.99,,"On the vine, per lb","On the vine, per lb",,,
+yjc_index_2026,2026,Hana,Kale,1.99,,By the bunch,By the bunch,,"Priced by the bunch, not per lb — not directly comparable",unit_mismatch
+yjc_index_2026,2026,Hana,Spinach,5.69,,Organic Girl,Organic Girl,,,
+yjc_index_2026,2026,Hana,Bread,7.29,,Bread Alone (20oz),Bread Alone (20oz),,"Bread Alone (20oz) — different brand, same size",brand_tier_differs
+yjc_index_2026,2026,Hana,Peanut Butter,4.59,,Skippy (16.3oz),Skippy (16.3oz),,,
+yjc_index_2026,2026,Hana,Honey,6.99,,Golden Blossom (12oz),Golden Blossom (12oz),,,
+yjc_index_2026,2026,Hana,Rice,3.99,,Carolina (2lb),Carolina (2lb),,,
+yjc_index_2026,2026,Hana,Coffee,12.99,,Cafe Bustelo (10oz),Cafe Bustelo (10oz),,,
+yjc_index_2026,2026,Hana,Black Beans,2.99,,Delallo,Delallo,,,
+yjc_index_2026,2026,Hana,Milk,4.99,,Organic Vally(half Gallon,Organic Vally(half Gallon,,,
+yjc_index_2026,2026,Hana,Butter,7.99,,Keryygold (2 sticks),Keryygold (2 sticks),,,
+yjc_index_2026,2026,Hana,Cheddar Cheese,5.49,,Cabot (8.oz),Cabot (8.oz),,,
+yjc_index_2026,2026,Hana,Greek yogurt,2.49,,Chobani (mixed berry greek yogurt 5.3.oz),Chobani (mixed berry greek yogurt 5.3.oz),,,
+yjc_index_2026,2026,Hana,Tofu,2.99,,House foods Tofu,House foods Tofu,,,
+yjc_index_2026,2026,Hana,Chicken Breast,,,Does not sell,Does not sell,,Does not sell,not_carried_or_unpriced
+yjc_index_2026,2026,Hana,Beer,14.99,,Modelo 6 pack,Modelo 6 pack,,,
+yjc_index_2026,2026,Hana,Ice Cream,8.99,,Hagen-Daz ,Hagen-Daz ,,,
+yjc_index_2026,2026,Hana,Cereal,6.99,,Cheerios (8.9oz),Cheerios (8.9oz),,,
+yjc_index_2026,2026,Hana,Eggs,4.99,,"1 dozen, ""farm fresh"" Noah's Pride","1 dozen, ""farm fresh"" Noah's Pride",,"Noah's Pride, farm fresh dozen",brand_tier_differs
+yjc_index_2026,2026,Key Food,Apples,2.69,,"Gala, per lb","Gala, per lb",,,
+yjc_index_2026,2026,Key Food,Bananas,0.89,,"Chiquita, per lb","Chiquita, per lb",,,
+yjc_index_2026,2026,Key Food,Tomatoes,1.49,,"On the vine, per lb","On the vine, per lb",,,
+yjc_index_2026,2026,Key Food,Kale,2.19,,Per lb,Per lb,,,
+yjc_index_2026,2026,Key Food,Spinach,3.99,,"Attitude, 5 oz","Attitude, 5 oz",,,
+yjc_index_2026,2026,Key Food,Bread,4.99,,All Natural Country (20oz),All Natural Country (20oz),,"All Natural Country (20oz) — different brand, same size",brand_tier_differs
+yjc_index_2026,2026,Key Food,Peanut Butter,3.99,,Skippy (16.3oz),Skippy (16.3oz),,,
+yjc_index_2026,2026,Key Food,Honey,7.69,,Golden Blossom (12oz),Golden Blossom (12oz),,,
+yjc_index_2026,2026,Key Food,Rice,3.79,,Carolina (2lb),Carolina (2lb),,,
+yjc_index_2026,2026,Key Food,Coffee,8.99,,"Cafe Bustelo, 10 oz","Cafe Bustelo, 10 oz",,,
+yjc_index_2026,2026,Key Food,Black Beans,1.25,,Goya,Goya,,,
+yjc_index_2026,2026,Key Food,Milk,7.99,,Organic Farms (half Gallon),Organic Farms (half Gallon),,"Organic Farms — different brand, half gallon confirmed",brand_tier_differs
+yjc_index_2026,2026,Key Food,Butter,8.19,,Kerygold (could not find four stick only 2),Kerygold (could not find four stick only 2),,"Wanted a 4-stick pack, settled for 2-stick — same as most others but worth noting; Kerygold (could not find four stick only 2)",brand_unclear
+yjc_index_2026,2026,Key Food,Cheddar Cheese,4.99,,Cabot (cheader cheese 8.oz,Cabot (cheader cheese 8.oz,,,
+yjc_index_2026,2026,Key Food,Greek yogurt,2.19,,Chobani (mixed berry greek yogurt 5.3 oz),Chobani (mixed berry greek yogurt 5.3 oz),,,
+yjc_index_2026,2026,Key Food,Tofu,3.99,,House foods Tofu Soft ,House foods Tofu Soft ,,,
+yjc_index_2026,2026,Key Food,Chicken Breast,7.99,,Store packed boneless chicken breasts thin sliced (per lb),Store packed boneless chicken breasts thin sliced (per lb),,"Unbranded, store-packed",brand_unclear
+yjc_index_2026,2026,Key Food,Beer,10.99,12.99,"Modelo, 6 pack","Modelo, 6 pack",,,sale_price
+yjc_index_2026,2026,Key Food,Ice Cream,6.99,,Hangen-Daz ,Hangen-Daz ,,,
+yjc_index_2026,2026,Key Food,Cereal,7.49,,Cheerios (8.9oz,Cheerios (8.9oz,,,
+yjc_index_2026,2026,Key Food,Eggs,7.99,,Cage free Brown eggs(Natural Garden dozen),Cage free Brown eggs(Natural Garden dozen),,"Natural Garden, cage-free dozen",brand_tier_differs
+yjc_index_2026,2026,Met Fresh,Apples,1.99,,Store brand,Store brand,,"Just ""store brand"" — variety not recorded",brand_unclear
+yjc_index_2026,2026,Met Fresh,Bananas,1.49,,Dole,Dole,,,
+yjc_index_2026,2026,Met Fresh,Tomatoes,1.99,,on the vine (per lb),on the vine (per lb),,,
+yjc_index_2026,2026,Met Fresh,Kale,2.99,,Store brand,Store brand,,,
+yjc_index_2026,2026,Met Fresh,Spinach,3.0,4.99,organic girl,organic girl,,sale: 2/6.00,sale_price
+yjc_index_2026,2026,Met Fresh,Bread,3.49,,Wonder Bread (20oz)3.49,Wonder Bread (20oz)3.49,,,
+yjc_index_2026,2026,Met Fresh,Peanut Butter,4.29,,Jif ( 16oz),Jif ( 16oz),,"Jif (16oz) — different brand, ~same size",brand_tier_differs
+yjc_index_2026,2026,Met Fresh,Honey,8.69,,Golden Blossom (12oz),Golden Blossom (12oz),,,
+yjc_index_2026,2026,Met Fresh,Rice,3.29,,Carolina (2lb),Carolina (2lb),,,
+yjc_index_2026,2026,Met Fresh,Coffee,6.99,12.29,"Cafe Bustelo, 10 oz","Cafe Bustelo, 10 oz",,,sale_price
+yjc_index_2026,2026,Met Fresh,Black Beans,1.25,1.79,Goya,Goya,,sale: 4 for $5,sale_price
+yjc_index_2026,2026,Met Fresh,Milk,6.99,,Organic Valley,Organic Valley,,Half-gallon size not explicitly confirmed,brand_unclear
+yjc_index_2026,2026,Met Fresh,Butter,7.79,,"Kerygold (one stick, did not have two stick)","Kerygold (one stick, did not have two stick)",,"Only 1 stick — store was out of the 2-stick pack; Kerygold (one stick, did not have two stick)",unit_mismatch
+yjc_index_2026,2026,Met Fresh,Cheddar Cheese,6.29,,Cabot (8oz),Cabot (8oz),,,
+yjc_index_2026,2026,Met Fresh,Greek yogurt,2.29,,Chobani (5.3 oz),Chobani (5.3 oz),,,
+yjc_index_2026,2026,Met Fresh,Tofu,3.99,,House-Foods soft,House-Foods soft,,,
+yjc_index_2026,2026,Met Fresh,Chicken Breast,6.23,,Boneless chicken breast,Boneless chicken breast,,"Unbranded, generic ""boneless""",brand_unclear
+yjc_index_2026,2026,Met Fresh,Beer,13.99,,Modelo,Modelo,,,
+yjc_index_2026,2026,Met Fresh,Ice Cream,6.99,,Hagen-Daz,Hagen-Daz,,,
+yjc_index_2026,2026,Met Fresh,Cereal,7.49,,Cheerios (8.9oz),Cheerios (8.9oz),,,
+yjc_index_2026,2026,Met Fresh,Eggs,5.99,,Sunshine Farms(18 pack),Sunshine Farms(18 pack),,Sunshine Farms 18-pack — 1.5x the eggs of the 12-pack sold elsewhere; price is not directly comparable without adjusting per egg,unit_mismatch
+yjc_index_2026,2026,Mr. Lemon,Apples,1.0,,"USA, per apple","USA, per apple",,"Priced per individual apple, not per lb — not directly comparable",unit_mismatch
+yjc_index_2026,2026,Mr. Lemon,Bananas,1.49,,"Dole, per lb","Dole, per lb",,,
+yjc_index_2026,2026,Mr. Lemon,Tomatoes,1.49,,"plum, per lb","plum, per lb",,"Plum tomatoes, not on-the-vine",brand_tier_differs
+yjc_index_2026,2026,Mr. Lemon,Kale,2.99,,"generic, per bunch","generic, per bunch",,"Priced per bunch, not per lb — not directly comparable",unit_mismatch
+yjc_index_2026,2026,Mr. Lemon,Spinach,1.9,,"store brand, per lb","store brand, per lb",,"Loose spinach priced per lb, not a ~5oz bag — not directly comparable",unit_mismatch
+yjc_index_2026,2026,Mr. Lemon,Bread,5.29,,White bread (NEED TO GET BRAND),White bread (NEED TO GET BRAND),,"Brand never recorded (""NEED TO GET BRAND"" left in intern notes)",brand_unclear
+yjc_index_2026,2026,Mr. Lemon,Peanut Butter,4.0,,Skippy (16.3oz),Skippy (16.3oz),,,
+yjc_index_2026,2026,Mr. Lemon,Honey,5.0,,Gunters Pure Honey Golden (12oz),Gunters Pure Honey Golden (12oz),,"Gunter's Pure Honey — different brand, same 12oz size",brand_tier_differs
+yjc_index_2026,2026,Mr. Lemon,Rice,5.0,,Carolina (2lb),Carolina (2lb),,,
+yjc_index_2026,2026,Mr. Lemon,Coffee,13.0,,"Cafe Bustelo, 10 oz","Cafe Bustelo, 10 oz",,,
+yjc_index_2026,2026,Mr. Lemon,Black Beans,2.0,,Goya,Goya,,,
+yjc_index_2026,2026,Mr. Lemon,Milk,8.0,,Organic Valley,Organic Valley,,Half-gallon size not explicitly confirmed,brand_unclear
+yjc_index_2026,2026,Mr. Lemon,Butter,7.0,,Kerygold (,Kerygold (,,Stick count / oz not recorded (entry incomplete),brand_unclear
+yjc_index_2026,2026,Mr. Lemon,Cheddar Cheese,5.0,,Cabot (8oz),Cabot (8oz),,,
+yjc_index_2026,2026,Mr. Lemon,Greek yogurt,2.0,,Chobani (5.3 oz),Chobani (5.3 oz),,,
+yjc_index_2026,2026,Mr. Lemon,Tofu,4.0,,House-Foods soft,House-Foods soft,,,
+yjc_index_2026,2026,Mr. Lemon,Chicken Breast,10.99,,"Dartagnan, regeneratively raised (per lb)","Dartagnan, regeneratively raised (per lb)",,"D'Artagnan, regeneratively raised — premium specialty brand, likely explains its being the priciest chicken in the basket",unit_mismatch
+yjc_index_2026,2026,Mr. Lemon,Beer,,,Only sold individual beers,Only sold individual beers,,"Sold only as single bottles ($2.25 ea), not a 6-pack — already excluded from basket totals as not comparable; Only sold as single bottles ($2.25 ea) — not a 6-pack, excluded from basket totals as not comparable",not_carried_or_unpriced
+yjc_index_2026,2026,Mr. Lemon,Ice Cream,8.49,,Hagen-Daz,Hagen-Daz,,,
+yjc_index_2026,2026,Mr. Lemon,Cereal,8.0,,Cheerios (8.9oz),Cheerios (8.9oz),,,
+yjc_index_2026,2026,Mr. Lemon,Eggs,6.0,,organic free range born to be egg,organic free range born to be egg,,"Organic free range, brand not clearly recorded",brand_unclear
+yjc_index_2026,2026,SuperFresh Supermarket,Apples,1.99,,USA,USA,,"Just ""USA"" — variety not recorded",brand_unclear
+yjc_index_2026,2026,SuperFresh Supermarket,Bananas,1.29,,Dole,Dole,,,
+yjc_index_2026,2026,SuperFresh Supermarket,Tomatoes,1.49,,n/a,n/a,,Variety not recorded,brand_unclear
+yjc_index_2026,2026,SuperFresh Supermarket,Kale,1.99,,"store brand, per lb","store brand, per lb",,,
+yjc_index_2026,2026,SuperFresh Supermarket,Spinach,4.99,,Fresh Express,Fresh Express,,Bag size not recorded,brand_unclear
+yjc_index_2026,2026,SuperFresh Supermarket,Bread,3.99,,Wonder Bread (20oz),Wonder Bread (20oz),,,
+yjc_index_2026,2026,SuperFresh Supermarket,Peanut Butter,4.29,,Skippy (16.3oz),Skippy (16.3oz),,,
+yjc_index_2026,2026,SuperFresh Supermarket,Honey,7.79,,Golden Blossom Honey,Golden Blossom Honey,,,
+yjc_index_2026,2026,SuperFresh Supermarket,Rice,2.99,,Carolina (2lb),Carolina (2lb),,,
+yjc_index_2026,2026,SuperFresh Supermarket,Coffee,9.99,,Cafe Bustelo 10 oz,Cafe Bustelo 10 oz,,,
+yjc_index_2026,2026,SuperFresh Supermarket,Black Beans,1.67,2.29,Goya,Goya,,sale: 3 for $5,sale_price
+yjc_index_2026,2026,SuperFresh Supermarket,Milk,8.99,,Organic Valley,Organic Valley,,Half-gallon size not explicitly confirmed,brand_unclear
+yjc_index_2026,2026,SuperFresh Supermarket,Butter,7.99,,Kerrygold (2 stick),Kerrygold (2 stick),,,
+yjc_index_2026,2026,SuperFresh Supermarket,Cheddar Cheese,5.99,,Cabot ,Cabot ,,Size not recorded,brand_unclear
+yjc_index_2026,2026,SuperFresh Supermarket,Greek yogurt,2.39,,Chobani,Chobani,,Cup size not recorded,brand_unclear
+yjc_index_2026,2026,SuperFresh Supermarket,Tofu,,,,,,Not available / not recorded at this store,not_carried_or_unpriced
+yjc_index_2026,2026,SuperFresh Supermarket,Chicken Breast,5.99,,Superfresh brand boneless chicken breast  (per lb),Superfresh brand boneless chicken breast  (per lb),,Store-brand,brand_tier_differs
+yjc_index_2026,2026,SuperFresh Supermarket,Beer,10.99,13.99,"Modelo, 6 pack","Modelo, 6 pack",,,sale_price
+yjc_index_2026,2026,SuperFresh Supermarket,Ice Cream,6.99,,Hagen-Daz,Hagen-Daz,,,
+yjc_index_2026,2026,SuperFresh Supermarket,Cereal,6.49,,Cheerios (8.9oz),Cheerios (8.9oz),,,
+yjc_index_2026,2026,SuperFresh Supermarket,Eggs,5.49,,Sunshine Farms (12 pack),Sunshine Farms (12 pack),,,
+yjc_index_2026,2026,Whole Foods,Apples,3.99,,"Honey Crisp, per lb","Honey Crisp, per lb",,"Honey Crisp variety, not Gala",brand_tier_differs
+yjc_index_2026,2026,Whole Foods,Bananas,0.79,,Organic- Whole foods Market,Organic- Whole foods Market,,Organic bananas — different tier than conventional elsewhere,brand_tier_differs
+yjc_index_2026,2026,Whole Foods,Tomatoes,2.79,,"on the vine, per lb","on the vine, per lb",,,
+yjc_index_2026,2026,Whole Foods,Kale,2.99,,"Cal- Organic Farms, per bunch","Cal- Organic Farms, per bunch",,"Priced per bunch, not per lb — not directly comparable",unit_mismatch
+yjc_index_2026,2026,Whole Foods,Spinach,3.19,,Organic- 365 Whole Foods Market,Organic- 365 Whole Foods Market,,Bag size not recorded,brand_unclear
+yjc_index_2026,2026,Whole Foods,Bread,4.79,,Natures Own ,Natures Own ,,Nature's Own — different brand tier; size not recorded,brand_tier_differs
+yjc_index_2026,2026,Whole Foods,Peanut Butter,4.99,,Organic WF Brand,Organic WF Brand,,Store-brand organic — different brand tier; size not recorded,brand_tier_differs
+yjc_index_2026,2026,Whole Foods,Honey,7.29,,Stiles Honey (12oz),Stiles Honey (12oz),,"Stiles Honey — different brand, same 12oz size",brand_tier_differs
+yjc_index_2026,2026,Whole Foods,Rice,5.29,,Organic WF Brand,Organic WF Brand,,Store-brand organic — different brand tier; size not recorded,brand_unclear
+yjc_index_2026,2026,Whole Foods,Coffee,16.99,,illy,illy,,"Illy — premium gourmet brand, likely explains its much higher price; size not recorded",brand_tier_differs
+yjc_index_2026,2026,Whole Foods,Black Beans,1.69,,Organic WF Brand,Organic WF Brand,,Store-brand organic — different brand tier,brand_tier_differs
+yjc_index_2026,2026,Whole Foods,Milk,6.99,,Organic Valley (half gallon),Organic Valley (half gallon),,,
+yjc_index_2026,2026,Whole Foods,Butter,5.99,,Kerrygold (Salted Irish butter),Kerrygold (Salted Irish butter),,Stick count / oz not recorded,brand_unclear
+yjc_index_2026,2026,Whole Foods,Cheddar Cheese,4.29,,Cabot,Cabot,,Size not recorded,brand_unclear
+yjc_index_2026,2026,Whole Foods,Greek yogurt,1.79,,Chobani,Chobani,,Cup size not recorded,brand_unclear
+yjc_index_2026,2026,Whole Foods,Tofu,2.49,,Organic WF Brand,Organic WF Brand,,Store-brand organic — different brand tier,brand_tier_differs
+yjc_index_2026,2026,Whole Foods,Chicken Breast,6.99,,whole foods brand,whole foods brand,,Store-brand,brand_tier_differs
+yjc_index_2026,2026,Whole Foods,Beer,11.49,,Modelo 6 pack,Modelo 6 pack,,,
+yjc_index_2026,2026,Whole Foods,Ice Cream,6.19,,Ben&Jerrys,Ben&Jerrys,,Ben & Jerry's — a different (premium) brand than Häagen-Dazs,brand_tier_differs
+yjc_index_2026,2026,Whole Foods,Cereal,5.39,,Cheerios (8.9oz),Cheerios (8.9oz),,,
+yjc_index_2026,2026,Whole Foods,Eggs,8.49,,Free range organic valley,Free range organic valley,,"Organic Valley, free range",brand_tier_differs

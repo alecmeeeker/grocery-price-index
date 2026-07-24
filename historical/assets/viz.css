@@ -1,0 +1,129 @@
+/* ============================================================================
+   Bushwick Daily — Grocery Price Index /historical/ data-viz layer.
+   Adds to ../assets/css/bd.css. Never overrides it.
+   Tokens per analysis/03-creative-direction.md §2 (machine-validated on #f7f3e9).
+   ========================================================================== */
+:root {
+  /* store roster — fixed order is the CVD-safety mechanism (§2.2) */
+  --viz-key-food: #2c6e1f;
+  --viz-shop-fair: #1f5a9e;
+  --viz-mr-fruit: #c9611e;
+  --viz-city-fresh: #00958a;
+  --viz-hana: #b3402e;
+  --viz-food-story: #8a4a9e;
+  --viz-food-bazaar: #3d8fd4;
+  --viz-met-fresh: #8a6d1a;
+  --viz-billys: #5352c2;
+  --viz-whole-foods: #c25a84;
+  --viz-superfresh: #1188b8;
+  --viz-brooklyns-natural: #96551c;
+  --viz-mr-lemon: #a3308f;
+  --viz-associated: #8a8172;
+  --viz-trader-joes: #5c5344;
+  --viz-neutral: #5c5344;
+
+  /* food groups, stack order bottom→top (§2.4) */
+  --viz-grains: #8a6d1a;
+  --viz-dairy: #3d8fd4;
+  --viz-protein: #b3402e;
+  --viz-pantry: #8a4a9e;
+  --viz-produce: #2c6e1f;
+  --viz-treats: #c25a84;
+
+  /* ink + chrome (§2.1, §2.8) */
+  --viz-data-ink: #7a5300;
+  --viz-grid: #e9e2cf;
+  --viz-baseline: #ded5bf;
+  --viz-tick-text: #6f6650;
+  --viz-value-text: #1a160f;
+  --viz-excluded-fill: #b5ac97;
+  --viz-benchmark: #1a160f;
+  --viz-above: #9a3524;
+  --viz-below: #2f5f1a;
+  --viz-highlight-wash: rgba(255, 225, 53, 0.18);
+}
+
+/* figure frame (§2.8) */
+.figure-frame {
+  background: var(--paper-card, #fcfaf3);
+  border: 1px solid var(--line, #ded5bf);
+  box-shadow: var(--shadow-card);
+  padding: 1rem;
+  margin: var(--step, 1.6rem) 0;
+}
+@media (min-width: 720px) { .figure-frame { padding: 1.4rem; } }
+.figure-frame h3 {
+  font-family: var(--f-ui);
+  font-weight: 600;
+  font-size: 1.08rem;
+  margin: 0 0 0.2rem;
+  color: var(--ink, #1a160f);
+}
+.figure-frame .dek {
+  font-family: var(--f-ui);
+  font-size: 0.86rem;
+  color: var(--ink-soft, #423b2c);
+  margin: 0 0 0.9rem;
+}
+.figure-frame img, .figure-frame svg { width: 100%; height: auto; }
+.figure-frame figcaption {
+  font-family: var(--f-ui);
+  font-size: 0.74rem;
+  color: var(--ink-mute, #6f6650);
+  margin-top: 0.7rem;
+}
+
+/* flag chips (§6.2) */
+.chip-flag {
+  display: inline-block;
+  font-family: var(--f-ui);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.12rem 0.5rem;
+  border: 1px solid var(--line, #ded5bf);
+  border-radius: 999px;
+  color: var(--ink-soft, #423b2c);
+  background: var(--paper-sunk, #efe9d9);
+  vertical-align: middle;
+}
+.chip-flag--new { background: #0a0a0a; color: #ffe135; border-color: #0a0a0a; }
+
+/* caveat ledger (§6.7) */
+details.note {
+  font-family: var(--f-ui);
+  font-size: 0.8rem;
+  color: var(--ink-soft, #423b2c);
+  border-top: 1px dashed var(--line, #ded5bf);
+  margin-top: 0.8rem;
+  padding-top: 0.5rem;
+}
+details.note summary { cursor: pointer; color: var(--ink-mute, #6f6650); }
+details.note ol { margin: 0.5rem 0 0.2rem 1.1rem; padding: 0; }
+details.note li { margin-bottom: 0.3rem; }
+
+/* data-table fallback (§8.4) */
+details.data-table table { width: 100%; border-collapse: collapse; font-family: var(--f-ui); font-size: 0.8rem; }
+details.data-table th, details.data-table td {
+  text-align: left; padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid var(--line-soft, #e9e2cf);
+  font-variant-numeric: tabular-nums;
+}
+details.data-table th { color: var(--ink-mute, #6f6650); font-weight: 600; }
+details.data-table { overflow-x: auto; }
+
+/* verdict tile + KPI numerals */
+.kpi-value {
+  font-family: var(--f-ui);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  font-size: 2.2rem;
+  color: var(--viz-value-text);
+}
+@media (min-width: 720px) { .kpi-value { font-size: 2.6rem; } }
+
+@media print {
+  details.note, details.data-table { display: block; }
+  details.note[open], details.note:not([open]) summary ~ * { display: block; }
+}

@@ -1,0 +1,22 @@
+series_id,series_title,area,period,value_usd_or_index,aligned_to
+APU0000708111,"Eggs, grade A, large, per doz.",US city average,2017-03,1.404,BD 2017 survey (Mar 2017)
+APU0000708111,"Eggs, grade A, large, per doz.",US city average,2021-11,1.718,BD 2021 survey (Nov 2021)
+APU0000708111,"Eggs, grade A, large, per doz.",US city average,2026-06,2.141,latest available (Jun 2026)
+APU0000709112,"Milk, fresh, whole, fortified, per gal.",US city average,2017-03,3.315,BD 2017 survey
+APU0000709112,"Milk, fresh, whole, fortified, per gal.",US city average,2021-11,3.671,BD 2021 survey
+APU0000709112,"Milk, fresh, whole, fortified, per gal.",US city average,2026-06,4.317,latest available
+APU0000706111,"Chicken, fresh, whole, per lb.",US city average,2017-03,1.462,BD 2017 survey
+APU0000706111,"Chicken, fresh, whole, per lb.",US city average,2021-11,1.583,BD 2021 survey
+APU0000706111,"Chicken, fresh, whole, per lb.",US city average,2026-06,2.044,latest available
+APU0000706212,"Chicken legs, bone-in, per lb.",US city average,2017-03,1.480,BD 2017 survey
+APU0000706212,"Chicken legs, bone-in, per lb.",US city average,2021-11,1.733,BD 2021 survey
+APU0000706212,"Chicken legs, bone-in, per lb.",US city average,2026-06,1.688,latest available
+APU0000FF1101,"Chicken breast, boneless, per lb.",US city average,2017-03,3.291,BD 2017 survey
+APU0000FF1101,"Chicken breast, boneless, per lb.",US city average,2021-11,3.618,BD 2021 survey
+APU0000FF1101,"Chicken breast, boneless, per lb.",US city average,2026-06,4.181,latest available
+APU0000717311,"Coffee, 100% ground roast, all sizes, per lb.",US city average,2017-03,4.650,BD 2017 survey
+APU0000717311,"Coffee, 100% ground roast, all sizes, per lb.",US city average,2021-11,4.816,BD 2021 survey
+APU0000717311,"Coffee, 100% ground roast, all sizes, per lb.",US city average,2026-06,9.457,latest available
+CUURS12ASAF11,"CPI-U Food at home (index, 1982-84=100)","NY-Newark-Jersey City metro",2017-03,250.689,BD 2017 survey
+CUURS12ASAF11,"CPI-U Food at home (index, 1982-84=100)","NY-Newark-Jersey City metro",2021-11,283.223,BD 2021 survey
+CUURS12ASAF11,"CPI-U Food at home (index, 1982-84=100)","NY-Newark-Jersey City metro",2026-06,336.978,latest available

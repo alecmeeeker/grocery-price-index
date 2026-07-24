@@ -1,0 +1,211 @@
+{
+"meta": {
+"expected_years": [
+2017,
+2021,
+2026
+],
+"generated": "2026-07-24",
+"source": "compiled from Bushwick Daily surveys 2017/2021 + Tableau + YJC 2026 index"
+},
+"rows": [
+{
+"store_id": "billys",
+"store": "Billy's Marketplace",
+"item": "Apples",
+"food_group": "Produce",
+"regular_price": "1.99",
+"sale_price": "1.99",
+"sale_note": "",
+"savings_usd": "0.0",
+"savings_pct": "0.0"
+},
+{
+"store_id": "billys",
+"store": "Billy's Marketplace",
+"item": "Black Beans",
+"food_group": "Protein",
+"regular_price": "1.69",
+"sale_price": "1.67",
+"sale_note": "3 for $5",
+"savings_usd": "0.02",
+"savings_pct": "1.2"
+},
+{
+"store_id": "billys",
+"store": "Billy's Marketplace",
+"item": "Beer",
+"food_group": "Treats & Alcohol",
+"regular_price": "11.99",
+"sale_price": "10.99",
+"sale_note": "",
+"savings_usd": "1.0",
+"savings_pct": "8.3"
+},
+{
+"store_id": "billys",
+"store": "Billy's Marketplace",
+"item": "Eggs",
+"food_group": "Protein",
+"regular_price": "2.79",
+"sale_price": "1.67",
+"sale_note": "3 for 5",
+"savings_usd": "1.12",
+"savings_pct": "40.1"
+},
+{
+"store_id": "city_fresh",
+"store": "City Fresh",
+"item": "Apples",
+"food_group": "Produce",
+"regular_price": "2.49",
+"sale_price": "1.99",
+"sale_note": "",
+"savings_usd": "0.5",
+"savings_pct": "20.1"
+},
+{
+"store_id": "city_fresh",
+"store": "City Fresh",
+"item": "Bananas",
+"food_group": "Produce",
+"regular_price": "0.79",
+"sale_price": "0.79",
+"sale_note": "",
+"savings_usd": "0.0",
+"savings_pct": "0.0"
+},
+{
+"store_id": "city_fresh",
+"store": "City Fresh",
+"item": "Kale",
+"food_group": "Produce",
+"regular_price": "2.49",
+"sale_price": "1.49",
+"sale_note": "",
+"savings_usd": "1.0",
+"savings_pct": "40.2"
+},
+{
+"store_id": "city_fresh",
+"store": "City Fresh",
+"item": "Coffee",
+"food_group": "Pantry & Beverages",
+"regular_price": "12.89",
+"sale_price": "8.99",
+"sale_note": "",
+"savings_usd": "3.9",
+"savings_pct": "30.3"
+},
+{
+"store_id": "food_bazaar",
+"store": "Food Bazaar",
+"item": "Tomatoes",
+"food_group": "Produce",
+"regular_price": "1.49",
+"sale_price": "1.49",
+"sale_note": "",
+"savings_usd": "0.0",
+"savings_pct": "0.0"
+},
+{
+"store_id": "food_bazaar",
+"store": "Food Bazaar",
+"item": "Spinach",
+"food_group": "Produce",
+"regular_price": "4.19",
+"sale_price": "3.5",
+"sale_note": "2 for $7",
+"savings_usd": "0.69",
+"savings_pct": "16.5"
+},
+{
+"store_id": "food_bazaar",
+"store": "Food Bazaar",
+"item": "Greek yogurt",
+"food_group": "Dairy",
+"regular_price": "5.0",
+"sale_price": "5.0",
+"sale_note": "",
+"savings_usd": "0.0",
+"savings_pct": "0.0"
+},
+{
+"store_id": "key_food",
+"store": "Key Food",
+"item": "Beer",
+"food_group": "Treats & Alcohol",
+"regular_price": "12.99",
+"sale_price": "10.99",
+"sale_note": "",
+"savings_usd": "2.0",
+"savings_pct": "15.4"
+},
+{
+"store_id": "met_fresh",
+"store": "Met Fresh",
+"item": "Spinach",
+"food_group": "Produce",
+"regular_price": "4.99",
+"sale_price": "3.0",
+"sale_note": "2/6.00",
+"savings_usd": "1.99",
+"savings_pct": "39.9"
+},
+{
+"store_id": "met_fresh",
+"store": "Met Fresh",
+"item": "Coffee",
+"food_group": "Pantry & Beverages",
+"regular_price": "12.29",
+"sale_price": "6.99",
+"sale_note": "",
+"savings_usd": "5.3",
+"savings_pct": "43.1"
+},
+{
+"store_id": "met_fresh",
+"store": "Met Fresh",
+"item": "Black Beans",
+"food_group": "Protein",
+"regular_price": "1.79",
+"sale_price": "1.25",
+"sale_note": "4 for $5",
+"savings_usd": "0.54",
+"savings_pct": "30.2"
+},
+{
+"store_id": "mr_lemon",
+"store": "Mr. Lemon",
+"item": "Beer",
+"food_group": "Treats & Alcohol",
+"regular_price": "",
+"sale_price": "2.25",
+"sale_note": "",
+"savings_usd": "",
+"savings_pct": ""
+},
+{
+"store_id": "superfresh",
+"store": "SuperFresh Supermarket",
+"item": "Black Beans",
+"food_group": "Protein",
+"regular_price": "2.29",
+"sale_price": "1.67",
+"sale_note": "3 for $5",
+"savings_usd": "0.62",
+"savings_pct": "27.1"
+},
+{
+"store_id": "superfresh",
+"store": "SuperFresh Supermarket",
+"item": "Beer",
+"food_group": "Treats & Alcohol",
+"regular_price": "13.99",
+"sale_price": "10.99",
+"sale_note": "",
+"savings_usd": "3.0",
+"savings_pct": "21.4"
+}
+]
+}

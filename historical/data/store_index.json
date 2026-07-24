@@ -1,0 +1,169 @@
+{
+"meta": {
+"expected_years": [
+2017,
+2021,
+2026
+],
+"generated": "2026-07-24",
+"source": "compiled from Bushwick Daily surveys 2017/2021 + Tableau + YJC 2026 index"
+},
+"rows": [
+{
+"store_id": "associated",
+"store_canonical": "Associated Supermarkets",
+"name_variants": "Associated; Associated Supermarkets",
+"basket_total_2017_usd": "53.04",
+"selection_2021": "4",
+"accessibility_2021": "4",
+"cleanliness_2021": "3",
+"price_2021": "4",
+"sales_discounts_2021": "5",
+"customer_service_2021": "4"
+},
+{
+"store_id": "billys",
+"store_canonical": "Billy's Marketplace (C Town)",
+"name_variants": "Billy's Marketplace (C Town)",
+"basket_total_2017_usd": "",
+"selection_2021": "5",
+"accessibility_2021": "4",
+"cleanliness_2021": "4",
+"price_2021": "4",
+"sales_discounts_2021": "5",
+"customer_service_2021": "3"
+},
+{
+"store_id": "brooklyns_natural",
+"store_canonical": "Brooklyn's Natural",
+"name_variants": "Brooklyn's Natural",
+"basket_total_2017_usd": "46.88",
+"selection_2021": "",
+"accessibility_2021": "",
+"cleanliness_2021": "",
+"price_2021": "",
+"sales_discounts_2021": "",
+"customer_service_2021": ""
+},
+{
+"store_id": "city_fresh",
+"store_canonical": "City Fresh Market",
+"name_variants": "City Fresh; City Fresh Market",
+"basket_total_2017_usd": "55.11",
+"selection_2021": "5",
+"accessibility_2021": "5",
+"cleanliness_2021": "4",
+"price_2021": "4",
+"sales_discounts_2021": "4",
+"customer_service_2021": "5"
+},
+{
+"store_id": "food_bazaar",
+"store_canonical": "Food Bazaar",
+"name_variants": "Food Bazaar",
+"basket_total_2017_usd": "58.27",
+"selection_2021": "5",
+"accessibility_2021": "4",
+"cleanliness_2021": "4",
+"price_2021": "5",
+"sales_discounts_2021": "5",
+"customer_service_2021": "4"
+},
+{
+"store_id": "food_story",
+"store_canonical": "Food Story Natural Market",
+"name_variants": "Food Story; Food Story Natural Market",
+"basket_total_2017_usd": "74.83",
+"selection_2021": "5",
+"accessibility_2021": "5",
+"cleanliness_2021": "5",
+"price_2021": "3",
+"sales_discounts_2021": "3",
+"customer_service_2021": "5"
+},
+{
+"store_id": "hana",
+"store_canonical": "Hana Natural",
+"name_variants": "Hana Natural",
+"basket_total_2017_usd": "79.83",
+"selection_2021": "3",
+"accessibility_2021": "5",
+"cleanliness_2021": "5",
+"price_2021": "2",
+"sales_discounts_2021": "2",
+"customer_service_2021": "5"
+},
+{
+"store_id": "key_food",
+"store_canonical": "Key Food",
+"name_variants": "Key Food",
+"basket_total_2017_usd": "56.66",
+"selection_2021": "4",
+"accessibility_2021": "5",
+"cleanliness_2021": "5",
+"price_2021": "4",
+"sales_discounts_2021": "4",
+"customer_service_2021": "5"
+},
+{
+"store_id": "met_fresh",
+"store_canonical": "Met Fresh",
+"name_variants": "Met Fresh",
+"basket_total_2017_usd": "",
+"selection_2021": "3",
+"accessibility_2021": "4",
+"cleanliness_2021": "4",
+"price_2021": "5",
+"sales_discounts_2021": "5",
+"customer_service_2021": "4"
+},
+{
+"store_id": "mr_fruit",
+"store_canonical": "Mr. Fruit Stores",
+"name_variants": "Mr. Fruit Stores",
+"basket_total_2017_usd": "",
+"selection_2021": "5",
+"accessibility_2021": "4",
+"cleanliness_2021": "4",
+"price_2021": "4",
+"sales_discounts_2021": "4",
+"customer_service_2021": "5"
+},
+{
+"store_id": "shop_fair",
+"store_canonical": "Shop Fair",
+"name_variants": "Shop Fair",
+"basket_total_2017_usd": "",
+"selection_2021": "4",
+"accessibility_2021": "4",
+"cleanliness_2021": "5",
+"price_2021": "5",
+"sales_discounts_2021": "4",
+"customer_service_2021": "4"
+},
+{
+"store_id": "trader_joes",
+"store_canonical": "Trader Joe's",
+"name_variants": "Trader Joe's",
+"basket_total_2017_usd": "48.05",
+"selection_2021": "",
+"accessibility_2021": "",
+"cleanliness_2021": "",
+"price_2021": "",
+"sales_discounts_2021": "",
+"customer_service_2021": ""
+},
+{
+"store_id": "whole_foods",
+"store_canonical": "Whole Foods",
+"name_variants": "Whole Foods",
+"basket_total_2017_usd": "61.29",
+"selection_2021": "",
+"accessibility_2021": "",
+"cleanliness_2021": "",
+"price_2021": "",
+"sales_discounts_2021": "",
+"customer_service_2021": ""
+}
+]
+}

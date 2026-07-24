@@ -1,0 +1,10 @@
+store,address,neighborhood,basket_total_usd,rank_cheapest,note
+Trader Joe's,9030 Metropolitan Ave.,Rego Park,48.05,1,
+Associated,333 Seneca Ave.,Ridgewood,53.04,2,
+City Fresh,229 Knickerbocker Ave.,Bushwick,55.11,3,
+Key Food,72-80 Wyckoff Ave.,Bushwick,56.66,4,
+Food Bazaar,1590 Gates Ave.,Ridgewood,58.27,5,
+Whole Foods,238 Bedford Ave.,Williamsburg,61.29,6,
+Food Story,40 Bogart St.,East Williamsburg,74.83,7,
+Hana Natural,24 Wyckoff Ave.,Bushwick,79.83,8,
+Brooklyn's Natural,49 Bogart St.,East Williamsburg,46.88,,incomplete basket: many items unpriced/absent; adjusted estimate $62.07 excluding canned beans and chicken breasts (not stocked)

@@ -1,0 +1,15 @@
+store,item,price_usd,unit,note
+Trader Joe's,Peanut Butter,2.49,jar,almost $1 cheaper than everywhere but Key Food
+Key Food,Peanut Butter,2.79,jar,same size as Trader Joe's jar
+Associated,Chicken (family pack),1.69,per lb,cheapest chicken of the bunch
+Food Story,Chicken,10.99,per lb,most expensive chicken
+Associated,Butter,2.99,per lb (four quarters),
+Hana Natural,Butter,6.69,per lb,
+Associated,Kale,1.49,per lb,
+City Fresh,Carrots,0.69,per lb,greatest number of cheapest items
+Food Bazaar,Carrots,2.99,2-lb bag,most expensive carrots
+City Fresh,Rice (Arroz Rico),1.99,2-lb bag,
+City Fresh,Tofu,3.29,each,most expensive tofu of the bunch
+Hana Natural,Black Beans (can),2.49,can,
+Hana Natural,Greek Yogurt (Fage 17.5 oz),5.99,17.5-oz container,one dollar more than Brooklyn's Natural
+Brooklyn's Natural,Greek Yogurt (Fage 17.5 oz),4.99,17.5-oz container,implied: $1 less than Hana Natural

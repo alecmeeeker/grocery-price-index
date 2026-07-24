@@ -1,0 +1,517 @@
+{
+"meta": {
+"expected_years": [
+2017,
+2021,
+2026
+],
+"generated": "2026-07-24",
+"source": "compiled from Bushwick Daily surveys 2017/2021 + Tableau + YJC 2026 index"
+},
+"rows": [
+{
+"store_id": "associated",
+"store": "Associated",
+"food_group": "Dairy",
+"total": 26.46,
+"year": 2026
+},
+{
+"store_id": "associated",
+"store": "Associated",
+"food_group": "Grains",
+"total": 14.47,
+"year": 2026
+},
+{
+"store_id": "associated",
+"store": "Associated",
+"food_group": "Pantry & Beverages",
+"total": 20.78,
+"year": 2026
+},
+{
+"store_id": "associated",
+"store": "Associated",
+"food_group": "Produce",
+"total": 13.05,
+"year": 2026
+},
+{
+"store_id": "associated",
+"store": "Associated",
+"food_group": "Protein",
+"total": 22.65,
+"year": 2026
+},
+{
+"store_id": "associated",
+"store": "Associated",
+"food_group": "Treats & Alcohol",
+"total": 18.98,
+"year": 2026
+},
+{
+"store_id": "billys",
+"store": "Billy's Marketplace",
+"food_group": "Dairy",
+"total": 25.16,
+"year": 2026
+},
+{
+"store_id": "billys",
+"store": "Billy's Marketplace",
+"food_group": "Grains",
+"total": 13.97,
+"year": 2026
+},
+{
+"store_id": "billys",
+"store": "Billy's Marketplace",
+"food_group": "Pantry & Beverages",
+"total": 20.28,
+"year": 2026
+},
+{
+"store_id": "billys",
+"store": "Billy's Marketplace",
+"food_group": "Produce",
+"total": 11.96,
+"year": 2026
+},
+{
+"store_id": "billys",
+"store": "Billy's Marketplace",
+"food_group": "Protein",
+"total": 13.33,
+"year": 2026
+},
+{
+"store_id": "billys",
+"store": "Billy's Marketplace",
+"food_group": "Treats & Alcohol",
+"total": 19.18,
+"year": 2026
+},
+{
+"store_id": "brooklyns_natural",
+"store": "Brooklyn's Natural",
+"food_group": "Dairy",
+"total": 23.06,
+"year": 2026
+},
+{
+"store_id": "brooklyns_natural",
+"store": "Brooklyn's Natural",
+"food_group": "Grains",
+"total": 23.97,
+"year": 2026
+},
+{
+"store_id": "brooklyns_natural",
+"store": "Brooklyn's Natural",
+"food_group": "Pantry & Beverages",
+"total": 19.98,
+"year": 2026
+},
+{
+"store_id": "brooklyns_natural",
+"store": "Brooklyn's Natural",
+"food_group": "Produce",
+"total": 15.75,
+"year": 2026
+},
+{
+"store_id": "brooklyns_natural",
+"store": "Brooklyn's Natural",
+"food_group": "Protein",
+"total": 18.06,
+"year": 2026
+},
+{
+"store_id": "brooklyns_natural",
+"store": "Brooklyn's Natural",
+"food_group": "Treats & Alcohol",
+"total": 22.98,
+"year": 2026
+},
+{
+"store_id": "city_fresh",
+"store": "City Fresh",
+"food_group": "Dairy",
+"total": 24.66,
+"year": 2026
+},
+{
+"store_id": "city_fresh",
+"store": "City Fresh",
+"food_group": "Grains",
+"total": 15.67,
+"year": 2026
+},
+{
+"store_id": "city_fresh",
+"store": "City Fresh",
+"food_group": "Pantry & Beverages",
+"total": 17.98,
+"year": 2026
+},
+{
+"store_id": "city_fresh",
+"store": "City Fresh",
+"food_group": "Produce",
+"total": 13.75,
+"year": 2026
+},
+{
+"store_id": "city_fresh",
+"store": "City Fresh",
+"food_group": "Protein",
+"total": 20.55,
+"year": 2026
+},
+{
+"store_id": "city_fresh",
+"store": "City Fresh",
+"food_group": "Treats & Alcohol",
+"total": 22.68,
+"year": 2026
+},
+{
+"store_id": "food_bazaar",
+"store": "Food Bazaar",
+"food_group": "Dairy",
+"total": 24.77,
+"year": 2026
+},
+{
+"store_id": "food_bazaar",
+"store": "Food Bazaar",
+"food_group": "Grains",
+"total": 13.97,
+"year": 2026
+},
+{
+"store_id": "food_bazaar",
+"store": "Food Bazaar",
+"food_group": "Pantry & Beverages",
+"total": 16.88,
+"year": 2026
+},
+{
+"store_id": "food_bazaar",
+"store": "Food Bazaar",
+"food_group": "Produce",
+"total": 10.56,
+"year": 2026
+},
+{
+"store_id": "food_bazaar",
+"store": "Food Bazaar",
+"food_group": "Protein",
+"total": 19.47,
+"year": 2026
+},
+{
+"store_id": "food_bazaar",
+"store": "Food Bazaar",
+"food_group": "Treats & Alcohol",
+"total": 21.48,
+"year": 2026
+},
+{
+"store_id": "food_story",
+"store": "Food Story Natural Market",
+"food_group": "Dairy",
+"total": 24.76,
+"year": 2026
+},
+{
+"store_id": "food_story",
+"store": "Food Story Natural Market",
+"food_group": "Grains",
+"total": 16.47,
+"year": 2026
+},
+{
+"store_id": "food_story",
+"store": "Food Story Natural Market",
+"food_group": "Pantry & Beverages",
+"total": 19.48,
+"year": 2026
+},
+{
+"store_id": "food_story",
+"store": "Food Story Natural Market",
+"food_group": "Produce",
+"total": 14.95,
+"year": 2026
+},
+{
+"store_id": "food_story",
+"store": "Food Story Natural Market",
+"food_group": "Protein",
+"total": 11.97,
+"year": 2026
+},
+{
+"store_id": "food_story",
+"store": "Food Story Natural Market",
+"food_group": "Treats & Alcohol",
+"total": 20.98,
+"year": 2026
+},
+{
+"store_id": "hana",
+"store": "Hana",
+"food_group": "Dairy",
+"total": 20.96,
+"year": 2026
+},
+{
+"store_id": "hana",
+"store": "Hana",
+"food_group": "Grains",
+"total": 18.27,
+"year": 2026
+},
+{
+"store_id": "hana",
+"store": "Hana",
+"food_group": "Pantry & Beverages",
+"total": 19.98,
+"year": 2026
+},
+{
+"store_id": "hana",
+"store": "Hana",
+"food_group": "Produce",
+"total": 15.65,
+"year": 2026
+},
+{
+"store_id": "hana",
+"store": "Hana",
+"food_group": "Protein",
+"total": 15.56,
+"year": 2026
+},
+{
+"store_id": "hana",
+"store": "Hana",
+"food_group": "Treats & Alcohol",
+"total": 23.98,
+"year": 2026
+},
+{
+"store_id": "key_food",
+"store": "Key Food",
+"food_group": "Dairy",
+"total": 23.36,
+"year": 2026
+},
+{
+"store_id": "key_food",
+"store": "Key Food",
+"food_group": "Grains",
+"total": 16.27,
+"year": 2026
+},
+{
+"store_id": "key_food",
+"store": "Key Food",
+"food_group": "Pantry & Beverages",
+"total": 16.68,
+"year": 2026
+},
+{
+"store_id": "key_food",
+"store": "Key Food",
+"food_group": "Produce",
+"total": 11.25,
+"year": 2026
+},
+{
+"store_id": "key_food",
+"store": "Key Food",
+"food_group": "Protein",
+"total": 25.21,
+"year": 2026
+},
+{
+"store_id": "key_food",
+"store": "Key Food",
+"food_group": "Treats & Alcohol",
+"total": 17.98,
+"year": 2026
+},
+{
+"store_id": "met_fresh",
+"store": "Met Fresh",
+"food_group": "Dairy",
+"total": 23.36,
+"year": 2026
+},
+{
+"store_id": "met_fresh",
+"store": "Met Fresh",
+"food_group": "Grains",
+"total": 14.27,
+"year": 2026
+},
+{
+"store_id": "met_fresh",
+"store": "Met Fresh",
+"food_group": "Pantry & Beverages",
+"total": 15.68,
+"year": 2026
+},
+{
+"store_id": "met_fresh",
+"store": "Met Fresh",
+"food_group": "Produce",
+"total": 11.46,
+"year": 2026
+},
+{
+"store_id": "met_fresh",
+"store": "Met Fresh",
+"food_group": "Protein",
+"total": 21.75,
+"year": 2026
+},
+{
+"store_id": "met_fresh",
+"store": "Met Fresh",
+"food_group": "Treats & Alcohol",
+"total": 20.98,
+"year": 2026
+},
+{
+"store_id": "mr_lemon",
+"store": "Mr. Lemon",
+"food_group": "Dairy",
+"total": 22.0,
+"year": 2026
+},
+{
+"store_id": "mr_lemon",
+"store": "Mr. Lemon",
+"food_group": "Grains",
+"total": 18.29,
+"year": 2026
+},
+{
+"store_id": "mr_lemon",
+"store": "Mr. Lemon",
+"food_group": "Pantry & Beverages",
+"total": 18.0,
+"year": 2026
+},
+{
+"store_id": "mr_lemon",
+"store": "Mr. Lemon",
+"food_group": "Produce",
+"total": 8.87,
+"year": 2026
+},
+{
+"store_id": "mr_lemon",
+"store": "Mr. Lemon",
+"food_group": "Protein",
+"total": 26.99,
+"year": 2026
+},
+{
+"store_id": "mr_lemon",
+"store": "Mr. Lemon",
+"food_group": "Treats & Alcohol",
+"total": 8.49,
+"year": 2026
+},
+{
+"store_id": "superfresh",
+"store": "SuperFresh Supermarket",
+"food_group": "Dairy",
+"total": 25.36,
+"year": 2026
+},
+{
+"store_id": "superfresh",
+"store": "SuperFresh Supermarket",
+"food_group": "Grains",
+"total": 13.47,
+"year": 2026
+},
+{
+"store_id": "superfresh",
+"store": "SuperFresh Supermarket",
+"food_group": "Pantry & Beverages",
+"total": 17.78,
+"year": 2026
+},
+{
+"store_id": "superfresh",
+"store": "SuperFresh Supermarket",
+"food_group": "Produce",
+"total": 11.75,
+"year": 2026
+},
+{
+"store_id": "superfresh",
+"store": "SuperFresh Supermarket",
+"food_group": "Protein",
+"total": 17.44,
+"year": 2026
+},
+{
+"store_id": "superfresh",
+"store": "SuperFresh Supermarket",
+"food_group": "Treats & Alcohol",
+"total": 17.98,
+"year": 2026
+},
+{
+"store_id": "whole_foods",
+"store": "Whole Foods",
+"food_group": "Dairy",
+"total": 19.06,
+"year": 2026
+},
+{
+"store_id": "whole_foods",
+"store": "Whole Foods",
+"food_group": "Grains",
+"total": 15.47,
+"year": 2026
+},
+{
+"store_id": "whole_foods",
+"store": "Whole Foods",
+"food_group": "Pantry & Beverages",
+"total": 24.28,
+"year": 2026
+},
+{
+"store_id": "whole_foods",
+"store": "Whole Foods",
+"food_group": "Produce",
+"total": 13.75,
+"year": 2026
+},
+{
+"store_id": "whole_foods",
+"store": "Whole Foods",
+"food_group": "Protein",
+"total": 24.65,
+"year": 2026
+},
+{
+"store_id": "whole_foods",
+"store": "Whole Foods",
+"food_group": "Treats & Alcohol",
+"total": 17.68,
+"year": 2026
+}
+]
+}

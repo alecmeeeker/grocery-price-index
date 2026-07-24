@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explorer — Bushwick Grocery Price Index (2017 · 2021 · 2026)</title>
+<meta name="description" content="Interactive D3 exhibits from the Bushwick grocery price surveys: the 2021 chicken anomaly, the within-store brand tax, and the full 2026 shelf, 21 items across 12 stores.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/bd.css">
+<script src="assets/js/d3.v7.min.js"></script>
+<style>
+/* ---- explorer-only additions (adds to bd.css, never overrides) ---------- */
+:root{
+  --viz-ink:#1a160f; --viz-ink-soft:#423b2c; --viz-tick:#6f6650;
+  --viz-grid:#e9e2cf; --viz-baseline:#ded5bf;
+  --viz-data:#7a5300; --viz-neutral:#5c5344; --viz-excl:#b5ac97;
+  --viz-wash:rgba(255,225,53,.18);
+}
+.herostat{ margin:1.4rem 0 0; }
+.herostat b{
+  display:block; font-family:var(--f-ui); font-weight:700; font-variant-numeric:tabular-nums;
+  font-size:clamp(3.4rem,9vw,6rem); line-height:1; color:var(--bd-yellow); letter-spacing:-.02em;
+}
+.herostat span{ display:block; margin-top:.5rem; font-family:var(--f-ui); font-size:.9rem; color:#cdc4ac; max-width:38rem; }
+.figure-frame{
+  background:var(--paper-card); border:1px solid var(--line); border-radius:2px;
+  box-shadow:var(--shadow-card); padding:1rem; margin:1.4rem 0 .4rem;
+}
+@media (min-width:720px){ .figure-frame{ padding:1.4rem; } }
+.figure-frame h3{ margin:.1rem 0 .1rem; font-family:var(--f-ui); font-weight:600; font-size:1.06rem; color:var(--ink); }
+.figure-frame .figdek{ margin:0 0 .9rem; font-family:var(--f-ui); font-size:.85rem; color:var(--ink-mute); line-height:1.45; }
+.figwrap{ position:relative; }
+.figwrap svg{ width:100%; height:auto; display:block; font-family:var(--f-ui); }
+.figwrap svg text{ font-family:var(--f-ui); }
+figcaption{ font-family:var(--f-ui); font-size:.78rem; color:var(--ink-mute); margin-top:.7rem; line-height:1.5; }
+.chiprow{ display:flex; flex-wrap:wrap; gap:.35rem; align-items:center; margin:.4rem 0 .2rem; }
+.chip.flag-m{ border-color:#b3402e; color:#9a3524; }
+.chip.flag-s{ border-color:var(--bd-gold); color:var(--bd-gold-deep); }
+.chip.flag-new{ border-color:var(--bd-gold); color:var(--bd-gold-deep); background:rgba(245,171,7,.08); }
+/* controls */
+.ctl{ display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; margin:.9rem 0 .2rem; font-family:var(--f-ui); }
+.seg{ display:inline-flex; border:1px solid var(--line); border-radius:2px; overflow:hidden; background:var(--paper-card); }
+.seg button{
+  font-family:var(--f-ui); font-weight:600; font-size:.88rem; letter-spacing:.04em;
+  border:0; background:transparent; color:var(--ink-soft); padding:.5rem 1.05rem; cursor:pointer; min-height:44px;
+}
+.seg button+button{ border-left:1px solid var(--line); }
+.seg button[aria-pressed="true"]{ background:var(--bd-black); color:var(--bd-yellow); }
+.seg button:focus-visible{ outline:none; box-shadow:0 0 0 3px rgba(255,225,53,.35); border-color:var(--bd-gold); }
+.ctl-label{ font-size:.68rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-mute); }
+/* item picker (ch3) + item bands (ch2) */
+.picker{ margin:.9rem 0 .1rem; font-family:var(--f-ui); }
+.picker .pg{ font-size:.62rem; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-mute); margin:.55rem 0 .25rem; }
+.picker .pchips{ display:flex; flex-wrap:wrap; gap:.3rem; }
+.pchips button{
+  font-family:var(--f-ui); font-size:.82rem; font-weight:500; color:var(--ink-soft);
+  border:1px solid var(--line); border-radius:999px; background:var(--paper-card);
+  padding:.42rem .8rem; cursor:pointer; min-height:36px;
+  transition:border-color .15s var(--ease), background .15s var(--ease);
+}
+.pchips button[aria-pressed="true"]{ border-color:var(--bd-black); background:var(--viz-wash); color:var(--ink); font-weight:600; box-shadow:inset 2px 0 0 var(--bd-black); }
+.pchips button:focus-visible{ outline:none; border-color:var(--bd-gold); box-shadow:0 0 0 3px rgba(255,225,53,.35); }
+.bands{ display:grid; gap:.3rem; margin:1rem 0 .4rem; font-family:var(--f-ui); }
+.band{
+  display:grid; grid-template-columns:7.2rem 1fr 3.4rem; gap:.7rem; align-items:center;
+  border:1px solid var(--line); border-radius:2px; background:var(--paper-card);
+  padding:.5rem .7rem; cursor:pointer; text-align:left; min-height:44px; width:100%;
+  transition:border-color .15s var(--ease), background .15s var(--ease);
+}
+.band[aria-pressed="true"]{ background:var(--viz-wash); border-color:var(--bd-black); box-shadow:inset 3px 0 0 var(--bd-black); }
+.band:focus-visible{ outline:none; border-color:var(--bd-gold); box-shadow:0 0 0 3px rgba(255,225,53,.35); }
+.band .bn{ font-size:.85rem; font-weight:600; color:var(--ink); }
+.band .bn small{ display:block; font-weight:500; font-size:.66rem; letter-spacing:.06em; color:var(--ink-mute); }
+.band .bt{ position:relative; height:12px; background:var(--paper-sunk); border-radius:1px; overflow:hidden; }
+.band .bt i{ position:absolute; inset:0 auto 0 0; background:var(--viz-data); opacity:.92; border-radius:0 2px 2px 0; }
+.band .bv{ font-size:.92rem; font-weight:700; font-variant-numeric:tabular-nums; color:var(--ink); text-align:right; }
+.band .bv.dir{ font-style:italic; }
+@media (max-width:619px){ .band{ grid-template-columns:5.6rem 1fr 3rem; } }
+/* pinned tooltip card */
+.tt{
+  position:absolute; z-index:30; max-width:min(19rem, calc(100% - 12px));
+  background:var(--bd-black); color:#f4efe2; border:1px solid var(--bd-gold); border-radius:2px;
+  font-family:var(--f-ui); font-size:.82rem; line-height:1.45; padding:.65rem .8rem .7rem;
+  box-shadow:0 14px 40px -14px rgba(0,0,0,.6); display:none;
+}
+.tt.show{ display:block; pointer-events:none; }
+.tt.show.pinned{ pointer-events:auto; }
+.tt .tt-x{ display:none; }
+.tt.pinned .tt-x{ display:block; }
+.tt .tt-t{ color:var(--bd-yellow); font-weight:600; font-size:.88rem; margin:0 1.4rem .25rem 0; }
+.tt .tt-x{
+  position:absolute; top:.2rem; right:.25rem; border:0; background:transparent; color:#b9b09a;
+  font-family:var(--f-ui); font-size:1rem; line-height:1; padding:.3rem .45rem; cursor:pointer;
+}
+.tt .tt-x:hover{ color:var(--bd-yellow); }
+.tt .num{ font-variant-numeric:tabular-nums; }
+.tt .tt-chips{ display:flex; flex-wrap:wrap; gap:.25rem; margin-top:.4rem; }
+.tt .chip{ border-color:#4a4638; color:#cdc4ac; background:transparent; }
+.tt .chip.flag-m{ border-color:#b3402e; color:#e5a79d; }
+.tt .chip.flag-s{ border-color:var(--bd-gold); color:var(--bd-gold); }
+.tt .tt-note{ color:#b9b09a; margin-top:.35rem; font-size:.76rem; }
+/* margin annotation card (HTML, wraps instead of clipping) */
+.callout{
+  font-family:var(--f-ui); font-size:.82rem; line-height:1.5; color:var(--ink-soft);
+  border-left:3px solid var(--bd-gold); background:rgba(245,171,7,.07);
+  padding:.55rem .8rem; margin:.6rem 0 .2rem; max-width:34rem;
+}
+.callout b{ color:var(--ink); }
+/* svg interaction */
+.hit{ fill:transparent; cursor:pointer; }
+.hit:focus{ outline:none; }
+.hit:focus-visible{ stroke:var(--bd-gold); stroke-width:1.5; fill:rgba(255,225,53,.18); }
+@media (hover:hover){ .hit:hover{ fill:rgba(255,225,53,.12); } }
+.rowwash{ fill:var(--viz-wash); }
+/* data tables in details */
+details.note{ padding:.7rem 1rem; }
+details.note summary{ cursor:pointer; font-weight:600; color:var(--ink); }
+details.note ol{ margin:.7rem 0 .2rem 1.1rem; padding:0; }
+details.note li{ margin:.3rem 0; }
+.tbl-wrap{ margin:.9rem 0 .4rem; }
+table.grid td{ font-variant-numeric:tabular-nums; }
+td.it{ font-style:italic; }
+td.un{ text-decoration:underline dotted var(--viz-tick); text-underline-offset:3px; }
+.foot .prov{ max-width:44rem; line-height:1.6; }
+@media (prefers-reduced-motion: reduce){ .band, .pchips button, .seg button{ transition:none; } }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <div class="masthead__top">
+      <p class="wordmark">Bushwick<b>Daily</b></p>
+      <p class="masthead__meta">The Receipt Dossier · Explorer</p>
+    </div>
+    <span class="kicker reveal">Grocery Price Index · 2017 · 2021 · 2026</span>
+    <h1 class="reveal d1">Same shelf, <em>different receipt</em></h1>
+    <p class="masthead__dek reveal d2">Three interactive exhibits from the Bushwick grocery surveys. Tap any mark to pin its receipt line.</p>
+    <div class="herostat reveal d3">
+      <b>15.23×</b>
+      <span>The widest cross-store spread in the whole corpus: cheapest chicken breast, 2021, from $1.05 to $15.99 a pound. In the 2026 survey the same item spans 1.83×. Exhibit 1 shows what happened.</span>
+    </div>
+  </div>
+</header>
+
+<div class="metastrip">
+  <dl class="metastrip__card reveal d3">
+    <div class="metastrip__cell"><dt>Surveys</dt><dd>3 — Mar 2017 · Nov 2021 · Jul 2026</dd></div>
+    <div class="metastrip__cell"><dt>2026 shelf</dt><dd>21 items × 12 stores</dd></div>
+    <div class="metastrip__cell"><dt>2026 rows priced</dt><dd>245 of 252 (7 not carried)</dd></div>
+    <div class="metastrip__cell"><dt>Collected</dt><dd>2026-07-13/14/17, YJC student journalists</dd></div>
+  </dl>
+</div>
+
+<main class="doc">
+  <div class="doc__body wide">
+
+    <!-- ================= EXHIBIT 1 ================= -->
+    <section id="ex1">
+      <p class="eyebrow">Exhibit 01 · 2021 → 2026</p>
+      <h2 class="section-h">The $1.05 chicken that vanished</h2>
+      <p class="lead" style="max-width:44rem">In November 2021, a pound of chicken breast cost $1.05 at Key Food and $15.99 at Food Story, six blocks apart. That 15.23× spread was the widest in the corpus, and the $1.05 sat 70.98% below the national average: consistent with a sale price caught on visit day. Toggle to 2026 and the anomaly is gone. Every store prices between $5.99 and $10.99, and the neighborhood median runs 67.2% above the national average.</p>
+
+      <div class="ctl">
+        <span class="ctl-label">Survey year</span>
+        <div class="seg" role="group" aria-label="Survey year">
+          <button type="button" id="y2021" aria-pressed="true">2021</button>
+          <button type="button" id="y2026" aria-pressed="false">2026</button>
+        </div>
+      </div>
+
+      <figure class="figure-frame" style="margin-top:.7rem">
+        <h3 id="ex1-title">Cheapest chicken breast per store, Nov 2021 ($/lb, log scale)</h3>
+        <p class="figdek" id="ex1-dek">Hollow circle = sale-suspect observation. Dashed line = BLS national average (fully labeled). Tap a store for its receipt line.</p>
+        <div class="figwrap" id="fig1"></div>
+        <div class="callout" id="ex1-callout"></div>
+        <figcaption id="ex1-note"></figcaption>
+      </figure>
+
+      <details class="note">
+        <summary>Read the fine print (7)</summary>
+        <ol>
+          <li>The 15.23× spread is a quality-mix spread, not a like-for-like markup: the endpoints are a conventional store brand (Urban Meadow) versus a natural market's single premium option.</li>
+          <li>Key Food's $1.05/lb is 70.98% below the BLS national average ($3.618/lb, Nov 2021) — consistent with a sale price on visit day. Retroactive proof is impossible from this corpus.</li>
+          <li>2021: Mr. Fruit Stores listed $13.99 per pack, unit unstated — excluded from the per-lb comparison. Hana Natural and Shop Fair carried none.</li>
+          <li>2026: chicken breast not carried at Hana, Brooklyn's Natural, or Food Story. Thin-sliced cutlets at 4 stores carry a per-lb premium over whole breasts by construction, so the 2026 level is overstated; the "no loss-leader" conclusion is safe, the +67.2% premium is soft.</li>
+          <li>Mr. Lemon's $10.99 is D'Artagnan, regeneratively raised — flagged MISMATCH against the reference product.</li>
+          <li>BLS figures are national averages, not NYC-metro item averages; single visit per store in every survey.</li>
+          <li>Verdict per the 2026 analysis (B7): 7.61× Key Food's 2021 price against BLS breast +15.56% over the window — the durable-everyday-$1/lb reading of 2021 is dead; the visit-day sale remains the surviving explanation.</li>
+        </ol>
+        <p>Reproduce: <code>python3 analysis/scratch_compute.py</code> · <code>python3 analysis/scratch2_compute.py</code></p>
+      </details>
+      <details class="note">
+        <summary>View the data</summary>
+        <div class="tbl-wrap" id="ex1-table"></div>
+      </details>
+    </section>
+
+    <!-- ================= EXHIBIT 2 ================= -->
+    <section id="ex2">
+      <p class="eyebrow">Exhibit 02 · 2021</p>
+      <h2 class="section-h">The brand tax is bigger than the store tax</h2>
+      <p class="lead" style="max-width:44rem">Switching stores changes your grocery bill by 2.5× to 3× on most staples. Choosing the premium brand on the same shelf changes it by up to 8.21×. The 2021 survey printed a low and a high for each item at each store; every bar below is one shelf. Tap a bar for the brand names behind it.</p>
+
+      <div class="bands" id="ex2-bands" role="group" aria-label="Filter by item: mean within-store high-to-low ratio"></div>
+      <p class="figdek" style="font-family:var(--f-ui);font-size:.78rem;color:var(--ink-mute);margin:.1rem 0 .2rem">Mean within-store high÷low ratio per item (open-ended and unit-mismatch rows excluded from means). <em>Coffee ratios are directional: pack sizes unstated.</em> Tap an item to filter the shelves below.</p>
+
+      <figure class="figure-frame">
+        <h3 id="ex2-title">Cheapest vs priciest option on the same shelf, Nov 2021</h3>
+        <p class="figdek">One bar per store-shelf, sorted by ratio. Fading end + "+" = open-ended "$X and up" range; no maximum was printed and none is drawn.</p>
+        <div class="figwrap" id="fig2"></div>
+        <div class="callout" id="ex2-callout"><b>The 8.21× receipt line:</b> Key Food coffee, $2.19 Cafe Aroma to $17.99 Downstate Roasters. For comparison, switching stores on cheapest-available coffee spans 4.78× — the biggest markup in this data lives inside the store, not between stores.</div>
+        <figcaption>Bushwick Daily survey, Nov 2021. Associated excluded (its rows duplicate Billy's in the source). Highs are what the article printed, not the full shelf.</figcaption>
+      </figure>
+
+      <details class="note">
+        <summary>Read the fine print (6)</summary>
+        <ol>
+          <li>Coffee pack sizes are unstated in the source, so coffee ratios are directional in per-unit terms (chip: DIRECTIONAL).</li>
+          <li>Open-ended rows ("$7.99 and up" at Hana, "$7.99 and up" at Met Fresh, "$8.39 and up" at Billy's) are valid floors only; the missing maxima are never drawn.</li>
+          <li>City Fresh's milk row lists a gallon price under the half-gallon heading (chip: UNIT MISMATCH); its ratio is excluded from the item mean.</li>
+          <li>Key Food's chicken low is the $1.05 sale-suspect from Exhibit 1.</li>
+          <li>Associated is excluded: 5 of its rows are verbatim duplicates of Billy's in the source article (DUPLICATE DATA).</li>
+          <li>Highs are absent for several stores; the range is what the article printed, not the full shelf.</li>
+        </ol>
+        <p>Reproduce: <code>python3 analysis/scratch_compute.py</code></p>
+      </details>
+      <details class="note">
+        <summary>View the data</summary>
+        <div class="tbl-wrap" id="ex2-table"></div>
+      </details>
+    </section>
+
+    <!-- ================= EXHIBIT 3 ================= -->
+    <section id="ex3">
+      <p class="eyebrow">Exhibit 03 · 2026</p>
+      <h2 class="section-h">The 2026 shelf, item by item</h2>
+      <p class="lead" style="max-width:44rem">The YJC index pinned one reference product per item and priced it at all 12 stores: 21 items, 245 priced observations, sales and comparability flags recorded. Pick an item. Solid mark = effective price (the sale price when lower). Whisker to a hollow tick = the shelf price before the sale. Tap a store row for the full receipt line.</p>
+
+      <div class="picker" id="ex3-picker" aria-label="Pick an item"></div>
+
+      <figure class="figure-frame">
+        <h3 id="ex3-title"></h3>
+        <p class="figdek" id="ex3-dek"></p>
+        <div class="figwrap" id="fig3"></div>
+        <figcaption id="ex3-cap">YJC Grocery Price Index, surveyed 2026-07-13/14/17. Effective prices; flags shown per row: M = mismatch, D = different product tier, U = unclear size. Prices in italic are flagged DIFFERENT; dotted underline = UNCLEAR.</figcaption>
+      </figure>
+
+      <details class="note">
+        <summary>Read the fine print (7)</summary>
+        <ol>
+          <li>Single visit per store; effective prices embed visit-day sales (13 real discounts totaling $21.68 across the survey).</li>
+          <li>One product recorded per store, so item medians overstate a cheapest-available premium; floors are the conservative bound.</li>
+          <li>Comparability across the 252 rows: 156 OK · 39 Different · 42 Unclear · 15 Mismatch. Spread ratios whose endpoints are flagged are printed in italics.</li>
+          <li>Eggs: Met Fresh's price is an 18-pack (MISMATCH as plotted; the analysis adjusts it to per-dozen separately). Billy's $1.67 is a 3-for-$5 sale.</li>
+          <li>7 of 252 rows are not carried (tofu at 3 stores, chicken breast at 3, beer single-bottles-only at Mr. Lemon) and render as dashed "not carried" slots, never as $0.</li>
+          <li>67 of 252 rows carry no collection date (all rows at Brooklyn's Natural, Food Story, Whole Foods, plus 4 others); their tooltips say so.</li>
+          <li>BLS reference lines are national averages, not NYC-metro; they are drawn only where the item's unit matches the BLS series (eggs per dozen, boneless breast per lb). Milk is organic half-gallons and is never compared to the conventional-gallon BLS series.</li>
+        </ol>
+        <p>Reproduce: <code>python3 analysis/scratch2_compute.py</code></p>
+      </details>
+      <details class="note">
+        <summary>View the data</summary>
+        <div class="tbl-wrap" id="ex3-table"></div>
+      </details>
+    </section>
+
+    <!-- cross links -->
+    <p class="eyebrow">The rest of the dossier</p>
+    <div class="phases">
+      <a class="phase" href="./index.html"><span class="phase__n">1</span><span><span class="phase__title">The report</span><span class="phase__deliv">Nine years of receipts: the hero league table, the convergence story, the CPI verdicts.</span></span><span class="phase__go">Read →</span></a>
+      <a class="phase" href="./dashboard.html"><span class="phase__n">2</span><span><span class="phase__title">The dashboard</span><span class="phase__deliv">League tables, food-group composition, sales tracker, stars vs receipts.</span></span><span class="phase__go">Open →</span></a>
+      <a class="phase" href="../index.html"><span class="phase__n">3</span><span><span class="phase__title">Grocery Price Index home</span><span class="phase__deliv">The project hub: phase templates, coordinator edition, the 2026 tracker.</span></span><span class="phase__go">Go →</span></a>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <div class="prov">
+      <b>Bushwick Daily</b> · Grocery Price Index — Explorer<br>
+      Data: BD surveys (Mar 2017, Nov 2021) · YJC 2026 index, surveyed 2026-07-13/14/17 by YJC student journalists · BLS average price series &amp; NY-metro food-at-home CPI (CUURS12ASAF11).
+      Quality flags respected throughout: duplicates excluded, Tableau zeros treated as missing, unit mismatches and open-ended ranges labeled, unavailable items never $0.
+      Analysis: <code>scratch_compute.py</code> / <code>scratch2_compute.py</code>. Built 2026-07-24.
+    </div>
+    <div>
+      <a href="./index.html">Report</a> · <a href="./dashboard.html">Dashboard</a> · <a href="../index.html">Index home</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const DATA = {"stores":{"key_food":{"name":"Key Food","abbr":"Key Food","color":"#2c6e1f"},"shop_fair":{"name":"Shop Fair","abbr":"Shop Fair","color":"#1f5a9e"},"mr_fruit":{"name":"Mr. Fruit Stores","abbr":"Mr. Fruit","color":"#c9611e"},"city_fresh":{"name":"City Fresh Market","abbr":"City Fresh","color":"#00958a"},"hana":{"name":"Hana (Natural)","abbr":"Hana","color":"#b3402e"},"food_story":{"name":"Food Story Natural Market","abbr":"Food Story","color":"#8a4a9e"},"food_bazaar":{"name":"Food Bazaar","abbr":"Food Bazaar","color":"#3d8fd4"},"met_fresh":{"name":"Met Fresh","abbr":"Met Fresh","color":"#8a6d1a"},"billys":{"name":"Billy's Marketplace (C Town)","abbr":"Billy's Mktpl","color":"#5352c2"},"whole_foods":{"name":"Whole Foods","abbr":"Whole Foods","color":"#c25a84"},"superfresh":{"name":"SuperFresh Supermarket","abbr":"SuperFresh","color":"#1188b8"},"brooklyns_natural":{"name":"Brooklyn's Natural","abbr":"Bklyn's Nat.","color":"#96551c"},"mr_lemon":{"name":"Mr. Lemon","abbr":"Mr. Lemon","color":"#a3308f"},"associated":{"name":"Associated","abbr":"Associated","color":"#8a8172"}},"ch1":{"y2021":[{"id":"key_food","price":1.05,"brand":"Urban Meadow","note":"","item":"Chicken Breast"},{"id":"billys","price":2.69,"brand":"Perdue","note":"","item":"Chicken"},{"id":"met_fresh","price":3.54,"brand":"","note":"","item":"Chicken Breast"},{"id":"city_fresh","price":4.12,"brand":"","note":"","item":"Chicken Breast"},{"id":"food_bazaar","price":6.0,"brand":"store brand","note":"","item":"Chicken Breast"},{"id":"food_story","price":15.99,"brand":"only option","note":"","item":"Chicken Breast"}],"y2026":[{"id":"city_fresh","price":5.99,"brand":"Chicken breast boneless","flag":"Unclear","note":"","date":"2026-07-13"},{"id":"superfresh","price":5.99,"brand":"Superfresh brand boneless chicken breast  (per lb)","flag":"Different","note":"","date":"2026-07-14"},{"id":"met_fresh","price":6.23,"brand":"Boneless chicken breast","flag":"Unclear","note":"","date":"2026-07-14"},{"id":"billys","price":6.49,"brand":"Chicken breast thin sliced (per lb)","flag":"Different","note":"","date":"2026-07-14"},{"id":"whole_foods","price":6.99,"brand":"whole foods brand","flag":"Different","note":"","date":null},{"id":"associated","price":7.99,"brand":"Perdue thin sliced chicken cutlets (per lb)","flag":"Different","note":"","date":"2026-07-13"},{"id":"food_bazaar","price":7.99,"brand":"Thin slice boneless (6 cut thin)","flag":"Unclear","note":"","date":"2026-07-14"},{"id":"key_food","price":7.99,"brand":"Store packed boneless chicken breasts thin sliced (per lb)","flag":"Unclear","note":"","date":"2026-07-13"},{"id":"mr_lemon","price":10.99,"brand":"Dartagnan, regeneratively raised (per lb)","flag":"Mismatch","note":"","date":"2026-07-14"}],"missing2026":[{"id":"brooklyns_natural","note":"did not have in store"},{"id":"food_story","note":"Not available / not recorded at this store"},{"id":"hana","note":"Does not sell"}],"bls":{"2021":3.618,"2026":4.181}},"ch2":[{"id":"food_bazaar","item":"Half Gallon Milk","lo":2.99,"hi":7.99,"brandLo":"Cream-O-Land","brandHi":"Horizon Organic","unit":"half gallon","flag":"","note":"","ratio":2.6722},{"id":"food_bazaar","item":"12 Eggs","lo":1.59,"hi":10.99,"brandLo":"Esbenshade","brandHi":"Happy Egg","unit":"dozen","flag":"","note":"","ratio":6.9119},{"id":"food_bazaar","item":"Peanut Butter","lo":3.49,"hi":14.29,"brandLo":"Jif","brandHi":"Justin's","unit":"jar","flag":"","note":"","ratio":4.0946},{"id":"food_bazaar","item":"Cheddar Cheese","lo":2.99,"hi":5.49,"brandLo":"Borden","brandHi":"Kerrygold","unit":"pack","flag":"","note":"","ratio":1.8361},{"id":"food_bazaar","item":"Spinach","lo":2.5,"hi":4.99,"brandLo":"Uncle Vinny's","brandHi":"Organic Girl","unit":"pack","flag":"","note":"","ratio":1.996},{"id":"food_bazaar","item":"Chicken Breast","lo":6.0,"hi":11.0,"brandLo":"store brand","brandHi":"organic","unit":"per lb","flag":"","note":"","ratio":1.8333},{"id":"food_bazaar","item":"Coffee","lo":1.99,"hi":15.09,"brandLo":"Cafe Aroma","brandHi":"Illy","unit":"pack","flag":"","note":"","ratio":7.5829},{"id":"mr_fruit","item":"Half Gallon Milk","lo":3.49,"hi":6.49,"brandLo":"Cream-O-Land","brandHi":"Organic Valley","unit":"half gallon","flag":"","note":"","ratio":1.8596},{"id":"mr_fruit","item":"12 Eggs","lo":1.99,"hi":10.49,"brandLo":"Saunders Amish Eggs","brandHi":"Handsome Brook Farm","unit":"dozen","flag":"","note":"","ratio":5.2714},{"id":"mr_fruit","item":"Banana","lo":0.79,"hi":1.29,"brandLo":"","brandHi":"organic","unit":"per lb","flag":"","note":"","ratio":1.6329},{"id":"mr_fruit","item":"Peanut Butter","lo":3.99,"hi":8.49,"brandLo":"Jif","brandHi":"Once Again","unit":"jar","flag":"","note":"","ratio":2.1278},{"id":"mr_fruit","item":"Cheddar Cheese","lo":3.49,"hi":4.99,"brandLo":"Borden","brandHi":"Cabot","unit":"pack","flag":"","note":"","ratio":1.4298},{"id":"mr_fruit","item":"Coffee","lo":3.99,"hi":15.49,"brandLo":"Cafe Bustelo","brandHi":"Stumptown","unit":"pack","flag":"","note":"","ratio":3.8822},{"id":"key_food","item":"Half Gallon Milk","lo":2.29,"hi":6.79,"brandLo":"Farmland","brandHi":"Organic Valley","unit":"half gallon","flag":"","note":"","ratio":2.9651},{"id":"key_food","item":"12 Eggs","lo":1.67,"hi":6.89,"brandLo":"Sunshine Farms","brandHi":"Pete and Gerry's","unit":"dozen","flag":"","note":"","ratio":4.1257},{"id":"key_food","item":"Banana","lo":0.49,"hi":0.79,"brandLo":"","brandHi":"organic","unit":"per lb","flag":"","note":"","ratio":1.6122},{"id":"key_food","item":"Peanut Butter","lo":3.29,"hi":7.99,"brandLo":"Jif","brandHi":"Once Again","unit":"jar","flag":"","note":"","ratio":2.4286},{"id":"key_food","item":"Cheddar Cheese","lo":2.49,"hi":5.19,"brandLo":"Urban Meadow","brandHi":"Cracker Barrel","unit":"pack","flag":"","note":"","ratio":2.0843},{"id":"key_food","item":"Spinach","lo":2.99,"hi":4.99,"brandLo":"Dole","brandHi":"Attitude","unit":"pack","flag":"","note":"","ratio":1.6689},{"id":"key_food","item":"Chicken Breast","lo":1.05,"hi":3.49,"brandLo":"Urban Meadow","brandHi":"Perdue","unit":"per lb","flag":"","note":"","ratio":3.3238},{"id":"key_food","item":"Coffee","lo":2.19,"hi":17.99,"brandLo":"Cafe Aroma","brandHi":"Downstate Roasters","unit":"pack","flag":"","note":"","ratio":8.2146},{"id":"food_story","item":"Half Gallon Milk","lo":3.49,"hi":6.49,"brandLo":"Midland Farms","brandHi":"Organic Valley","unit":"half gallon","flag":"","note":"","ratio":1.8596},{"id":"food_story","item":"12 Eggs","lo":2.69,"hi":9.99,"brandLo":"Pine Belt Eggs","brandHi":"Happy Egg","unit":"dozen","flag":"","note":"","ratio":3.7138},{"id":"food_story","item":"Banana","lo":0.99,"hi":1.29,"brandLo":"","brandHi":"organic","unit":"per lb","flag":"","note":"","ratio":1.303},{"id":"food_story","item":"Peanut Butter","lo":3.99,"hi":9.99,"brandLo":"Skippy","brandHi":"Once Again","unit":"jar","flag":"","note":"","ratio":2.5038},{"id":"food_story","item":"Cheddar Cheese","lo":4.67,"hi":5.39,"brandLo":"New York Cheddar","brandHi":"Cabot","unit":"pack","flag":"","note":"","ratio":1.1542},{"id":"food_story","item":"Spinach","lo":2.99,"hi":3.99,"brandLo":"fresh","brandHi":"Organic Girl","unit":"pack","flag":"","note":"","ratio":1.3344},{"id":"food_story","item":"Coffee","lo":3.99,"hi":16.99,"brandLo":"Cafe Bustelo","brandHi":"Blue Bottle","unit":"pack","flag":"","note":"","ratio":4.2581},{"id":"shop_fair","item":"12 Eggs","lo":2.0,"hi":4.59,"brandLo":"Sunshine Farms","brandHi":"Sunshine Farms Cage Free","unit":"dozen","flag":"","note":"","ratio":2.295},{"id":"shop_fair","item":"Banana","lo":0.59,"hi":0.89,"brandLo":"","brandHi":"organic","unit":"per lb","flag":"","note":"","ratio":1.5085},{"id":"shop_fair","item":"Peanut Butter","lo":2.99,"hi":6.29,"brandLo":"Jif","brandHi":"Smart Balance","unit":"jar","flag":"","note":"","ratio":2.1037},{"id":"shop_fair","item":"Cheddar Cheese","lo":1.99,"hi":5.79,"brandLo":"Farms Creamery","brandHi":"Boar's Head","unit":"pack","flag":"","note":"","ratio":2.9095},{"id":"shop_fair","item":"Spinach","lo":2.99,"hi":3.99,"brandLo":"Dole","brandHi":"Organic Girl","unit":"pack","flag":"","note":"","ratio":1.3344},{"id":"shop_fair","item":"Coffee","lo":1.67,"hi":13.29,"brandLo":"Cafe Eldorado","brandHi":"Starbucks","unit":"pack","flag":"","note":"no chicken listed","ratio":7.9581},{"id":"city_fresh","item":"Half Gallon Milk","lo":4.49,"hi":9.99,"brandLo":"2% Derle Hygrade","brandHi":"Maple Hill Creamery Organic","unit":"gallon (as printed)","flag":"unit_mismatch","note":"article lists a gallon price under half-gallon heading","ratio":2.2249},{"id":"city_fresh","item":"12 Eggs","lo":1.89,"hi":10.99,"brandLo":"Mitlitsky","brandHi":"Happy Egg","unit":"dozen","flag":"","note":"","ratio":5.8148},{"id":"city_fresh","item":"Coffee","lo":5.99,"hi":12.49,"brandLo":"Folgers","brandHi":"local roast","unit":"pack","flag":"","note":"","ratio":2.0851},{"id":"hana","item":"12 Eggs","lo":4.29,"hi":10.0,"brandLo":"","brandHi":"","unit":"dozen","flag":"","note":"","ratio":2.331},{"id":"hana","item":"Coffee","lo":7.99,"hi":null,"brandLo":"","brandHi":"","unit":"pack","flag":"open_ended","note":"'$7.99 and up'; no chicken listed","ratio":null},{"id":"met_fresh","item":"Coffee","lo":5.29,"hi":7.99,"brandLo":"Folgers","brandHi":"local roasts","unit":"pack","flag":"open_ended","note":"'$7.99 and up'","ratio":1.5104},{"id":"billys","item":"Coffee","lo":3.69,"hi":8.39,"brandLo":"Folgers","brandHi":"local roasts","unit":"pack","flag":"open_ended","note":"'$8.39 and up'","ratio":2.2737}],"items":["Apples","Bananas","Beer","Black Beans","Bread","Butter","Cereal","Cheddar Cheese","Chicken Breast","Coffee","Eggs","Greek yogurt","Honey","Ice Cream","Kale","Milk","Peanut Butter","Rice","Spinach","Tofu","Tomatoes"],"ch3":{"Apples":[{"id":"associated","group":"Produce","brand":"Gala, per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":2.69,"reg":2.69,"onSale":false},{"id":"billys","group":"Produce","brand":"Store brand, per lb","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":1.99,"reg":1.99,"onSale":false},{"id":"brooklyns_natural","group":"Produce","brand":"Gala- USA, per lb","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":2.49,"reg":2.49,"onSale":false},{"id":"city_fresh","group":"Produce","brand":"Gala, per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":1.99,"reg":2.49,"onSale":true,"sale":1.99},{"id":"food_bazaar","group":"Produce","brand":"Honey Crisp (Manager's Special)","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-17","eff":2.99,"reg":2.99,"onSale":false},{"id":"food_story","group":"Produce","brand":"Gala ","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":2.99,"reg":2.99,"onSale":false},{"id":"hana","group":"Produce","brand":"Gala","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":2.99,"reg":2.99,"onSale":false},{"id":"key_food","group":"Produce","brand":"Gala, per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":2.69,"reg":2.69,"onSale":false},{"id":"met_fresh","group":"Produce","brand":"Store brand","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":1.99,"reg":1.99,"onSale":false},{"id":"mr_lemon","group":"Produce","brand":"USA, per apple","avail":true,"flag":"Mismatch","note":"","sn":"","date":"2026-07-14","eff":1.0,"reg":1.0,"onSale":false},{"id":"superfresh","group":"Produce","brand":"USA","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":1.99,"reg":1.99,"onSale":false},{"id":"whole_foods","group":"Produce","brand":"Honey Crisp, per lb","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":3.99,"reg":3.99,"onSale":false}],"Bananas":[{"id":"associated","group":"Produce","brand":"Dole, per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":0.89,"reg":0.89,"onSale":false},{"id":"billys","group":"Produce","brand":"Chiquitas, per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":0.79,"reg":0.79,"onSale":false},{"id":"brooklyns_natural","group":"Produce","brand":"Chiquitas, per lb","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":0.99,"reg":0.99,"onSale":false},{"id":"city_fresh","group":"Produce","brand":"Dole - could not find non-sale price","avail":true,"flag":"OK","note":"Dole - could not find non-sale price","sn":"","date":"2026-07-13","eff":0.79,"reg":0.79,"onSale":false},{"id":"food_bazaar","group":"Produce","brand":"Chiquitasm, per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":0.79,"reg":0.79,"onSale":false},{"id":"food_story","group":"Produce","brand":"Chiquitas ","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":1.99,"reg":1.99,"onSale":false},{"id":"hana","group":"Produce","brand":"Chiquita, per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":0.99,"reg":0.99,"onSale":false},{"id":"key_food","group":"Produce","brand":"Chiquita, per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":0.89,"reg":0.89,"onSale":false},{"id":"met_fresh","group":"Produce","brand":"Dole","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":1.49,"reg":1.49,"onSale":false},{"id":"mr_lemon","group":"Produce","brand":"Dole, per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":1.49,"reg":1.49,"onSale":false},{"id":"superfresh","group":"Produce","brand":"Dole","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":1.29,"reg":1.29,"onSale":false},{"id":"whole_foods","group":"Produce","brand":"Organic- Whole foods Market","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":0.79,"reg":0.79,"onSale":false}],"Tomatoes":[{"id":"associated","group":"Produce","brand":"On the vine, per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":2.69,"reg":2.69,"onSale":false},{"id":"billys","group":"Produce","brand":"On the vine","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":2.49,"reg":2.49,"onSale":false},{"id":"brooklyns_natural","group":"Produce","brand":"stem tomato, per lb","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":4.99,"reg":4.99,"onSale":false},{"id":"city_fresh","group":"Produce","brand":"On the vine, per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":4.99,"reg":4.99,"onSale":false},{"id":"food_bazaar","group":"Produce","brand":"On the vine (Weekly Special)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":1.49,"reg":1.49,"onSale":false},{"id":"food_story","group":"Produce","brand":"USA","avail":true,"flag":"Unclear","note":"","sn":"","date":null,"eff":1.99,"reg":1.99,"onSale":false},{"id":"hana","group":"Produce","brand":"On the vine, per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":3.99,"reg":3.99,"onSale":false},{"id":"key_food","group":"Produce","brand":"On the vine, per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":1.49,"reg":1.49,"onSale":false},{"id":"met_fresh","group":"Produce","brand":"on the vine (per lb)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":1.99,"reg":1.99,"onSale":false},{"id":"mr_lemon","group":"Produce","brand":"plum, per lb","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-14","eff":1.49,"reg":1.49,"onSale":false},{"id":"superfresh","group":"Produce","brand":"n/a","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":1.49,"reg":1.49,"onSale":false},{"id":"whole_foods","group":"Produce","brand":"on the vine, per lb","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":2.79,"reg":2.79,"onSale":false}],"Kale":[{"id":"associated","group":"Produce","brand":"Per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":1.99,"reg":1.99,"onSale":false},{"id":"billys","group":"Produce","brand":"store brand (by bunch, weight around .45lb)","avail":true,"flag":"Mismatch","note":"","sn":"","date":"2026-07-14","eff":2.0,"reg":2.0,"onSale":false},{"id":"brooklyns_natural","group":"Produce","brand":"USA, per bunch","avail":true,"flag":"Mismatch","note":"","sn":"","date":null,"eff":2.49,"reg":2.49,"onSale":false},{"id":"city_fresh","group":"Produce","brand":"Per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":1.49,"reg":2.49,"onSale":true,"sale":1.49},{"id":"food_bazaar","group":"Produce","brand":"per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":1.79,"reg":1.79,"onSale":false},{"id":"food_story","group":"Produce","brand":"Organic- Store Brand (per lb)","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":2.99,"reg":2.99,"onSale":false},{"id":"hana","group":"Produce","brand":"By the bunch","avail":true,"flag":"Mismatch","note":"","sn":"","date":"2026-07-13","eff":1.99,"reg":1.99,"onSale":false},{"id":"key_food","group":"Produce","brand":"Per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":2.19,"reg":2.19,"onSale":false},{"id":"met_fresh","group":"Produce","brand":"Store brand","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":2.99,"reg":2.99,"onSale":false},{"id":"mr_lemon","group":"Produce","brand":"generic, per bunch","avail":true,"flag":"Mismatch","note":"","sn":"","date":"2026-07-14","eff":2.99,"reg":2.99,"onSale":false},{"id":"superfresh","group":"Produce","brand":"store brand, per lb","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":1.99,"reg":1.99,"onSale":false},{"id":"whole_foods","group":"Produce","brand":"Cal- Organic Farms, per bunch","avail":true,"flag":"Mismatch","note":"","sn":"","date":null,"eff":2.99,"reg":2.99,"onSale":false}],"Spinach":[{"id":"associated","group":"Produce","brand":"Attitude, 5 oz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":4.79,"reg":4.79,"onSale":false},{"id":"billys","group":"Produce","brand":"Olivia organic","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":4.69,"reg":4.69,"onSale":false},{"id":"brooklyns_natural","group":"Produce","brand":"Organic Girl","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":4.79,"reg":4.79,"onSale":false},{"id":"city_fresh","group":"Produce","brand":"Attitude","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-13","eff":4.49,"reg":4.49,"onSale":false},{"id":"food_bazaar","group":"Produce","brand":"Uncle Vinny's, 5 oz","avail":true,"flag":"OK","note":"","sn":"2 for $7","date":"2026-07-14","eff":3.5,"reg":4.19,"onSale":true,"sale":3.5},{"id":"food_story","group":"Produce","brand":"Organic girl","avail":true,"flag":"Unclear","note":"","sn":"","date":null,"eff":4.99,"reg":4.99,"onSale":false},{"id":"hana","group":"Produce","brand":"Organic Girl","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":5.69,"reg":5.69,"onSale":false},{"id":"key_food","group":"Produce","brand":"Attitude, 5 oz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":3.99,"reg":3.99,"onSale":false},{"id":"met_fresh","group":"Produce","brand":"organic girl","avail":true,"flag":"OK","note":"","sn":"2/6.00","date":"2026-07-14","eff":3.0,"reg":4.99,"onSale":true,"sale":3.0},{"id":"mr_lemon","group":"Produce","brand":"store brand, per lb","avail":true,"flag":"Mismatch","note":"","sn":"","date":"2026-07-14","eff":1.9,"reg":1.9,"onSale":false},{"id":"superfresh","group":"Produce","brand":"Fresh Express","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":4.99,"reg":4.99,"onSale":false},{"id":"whole_foods","group":"Produce","brand":"Organic- 365 Whole Foods Market","avail":true,"flag":"Unclear","note":"","sn":"","date":null,"eff":3.19,"reg":3.19,"onSale":false}],"Bread":[{"id":"associated","group":"Grains","brand":"Wonderbread 20z","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":2.99,"reg":2.99,"onSale":false},{"id":"billys","group":"Grains","brand":"Wonder Bread (20oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":3.49,"reg":3.49,"onSale":false},{"id":"brooklyns_natural","group":"Grains","brand":"Bakery of New York","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":4.99,"reg":4.99,"onSale":false},{"id":"city_fresh","group":"Grains","brand":"Wonderbread","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":3.99,"reg":3.99,"onSale":false},{"id":"food_bazaar","group":"Grains","brand":"Wonder Break (20oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":3.99,"reg":3.99,"onSale":false},{"id":"food_story","group":"Grains","brand":"Bakery of New York","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":4.99,"reg":4.99,"onSale":false},{"id":"hana","group":"Grains","brand":"Bread Alone (20oz)","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-13","eff":7.29,"reg":7.29,"onSale":false},{"id":"key_food","group":"Grains","brand":"All Natural Country (20oz)","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-13","eff":4.99,"reg":4.99,"onSale":false},{"id":"met_fresh","group":"Grains","brand":"Wonder Bread (20oz)3.49","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":3.49,"reg":3.49,"onSale":false},{"id":"mr_lemon","group":"Grains","brand":"White bread (NEED TO GET BRAND)","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":5.29,"reg":5.29,"onSale":false},{"id":"superfresh","group":"Grains","brand":"Wonder Bread (20oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":3.99,"reg":3.99,"onSale":false},{"id":"whole_foods","group":"Grains","brand":"Natures Own ","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":4.79,"reg":4.79,"onSale":false}],"Peanut Butter":[{"id":"associated","group":"Protein","brand":"Jif, 16 oz","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-13","eff":4.29,"reg":4.29,"onSale":false},{"id":"billys","group":"Protein","brand":"Jif (16oz)","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-14","eff":3.5,"reg":3.5,"onSale":false},{"id":"brooklyns_natural","group":"Protein","brand":"Skippy (16.3oz)","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":5.29,"reg":5.29,"onSale":false},{"id":"city_fresh","group":"Protein","brand":"Skippy (16.3oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":4.29,"reg":4.29,"onSale":false},{"id":"food_bazaar","group":"Protein","brand":"Jif (16oz)","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-14","eff":3.0,"reg":3.0,"onSale":false},{"id":"food_story","group":"Protein","brand":"Skippy (16.3)","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":3.99,"reg":3.99,"onSale":false},{"id":"hana","group":"Protein","brand":"Skippy (16.3oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":4.59,"reg":4.59,"onSale":false},{"id":"key_food","group":"Protein","brand":"Skippy (16.3oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":3.99,"reg":3.99,"onSale":false},{"id":"met_fresh","group":"Protein","brand":"Jif ( 16oz)","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-14","eff":4.29,"reg":4.29,"onSale":false},{"id":"mr_lemon","group":"Protein","brand":"Skippy (16.3oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":4.0,"reg":4.0,"onSale":false},{"id":"superfresh","group":"Protein","brand":"Skippy (16.3oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":4.29,"reg":4.29,"onSale":false},{"id":"whole_foods","group":"Protein","brand":"Organic WF Brand","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":4.99,"reg":4.99,"onSale":false}],"Honey":[{"id":"associated","group":"Pantry & Beverages","brand":"Golden Blossom (12 oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":7.29,"reg":7.29,"onSale":false},{"id":"billys","group":"Pantry & Beverages","brand":"Golden Blossom (12oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":8.29,"reg":8.29,"onSale":false},{"id":"brooklyns_natural","group":"Pantry & Beverages","brand":"Sandt's Golden Honey (12oz)","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":6.49,"reg":6.49,"onSale":false},{"id":"city_fresh","group":"Pantry & Beverages","brand":"Golden Blossom (12oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":8.99,"reg":8.99,"onSale":false},{"id":"food_bazaar","group":"Pantry & Beverages","brand":"Golden Blossom (12oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":8.39,"reg":8.39,"onSale":false},{"id":"food_story","group":"Pantry & Beverages","brand":"Golden Blosson Honey (12.oz)","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":8.49,"reg":8.49,"onSale":false},{"id":"hana","group":"Pantry & Beverages","brand":"Golden Blossom (12oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":6.99,"reg":6.99,"onSale":false},{"id":"key_food","group":"Pantry & Beverages","brand":"Golden Blossom (12oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":7.69,"reg":7.69,"onSale":false},{"id":"met_fresh","group":"Pantry & Beverages","brand":"Golden Blossom (12oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":8.69,"reg":8.69,"onSale":false},{"id":"mr_lemon","group":"Pantry & Beverages","brand":"Gunters Pure Honey Golden (12oz)","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-14","eff":5.0,"reg":5.0,"onSale":false},{"id":"superfresh","group":"Pantry & Beverages","brand":"Golden Blossom Honey","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":7.79,"reg":7.79,"onSale":false},{"id":"whole_foods","group":"Pantry & Beverages","brand":"Stiles Honey (12oz)","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":7.29,"reg":7.29,"onSale":false}],"Rice":[{"id":"associated","group":"Grains","brand":"Caronlina (2lb)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":3.49,"reg":3.49,"onSale":false},{"id":"billys","group":"Grains","brand":"Caronlina (2lb)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":3.49,"reg":3.49,"onSale":false},{"id":"brooklyns_natural","group":"Grains","brand":"Lundberg (2lbs)","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":10.99,"reg":10.99,"onSale":false},{"id":"city_fresh","group":"Grains","brand":"Caronlina (2lb)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":3.69,"reg":3.69,"onSale":false},{"id":"food_bazaar","group":"Grains","brand":"Caronlina (2lb)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":3.99,"reg":3.99,"onSale":false},{"id":"food_story","group":"Grains","brand":"Carolina (2lbs)","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":3.99,"reg":3.99,"onSale":false},{"id":"hana","group":"Grains","brand":"Carolina (2lb)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":3.99,"reg":3.99,"onSale":false},{"id":"key_food","group":"Grains","brand":"Carolina (2lb)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":3.79,"reg":3.79,"onSale":false},{"id":"met_fresh","group":"Grains","brand":"Carolina (2lb)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":3.29,"reg":3.29,"onSale":false},{"id":"mr_lemon","group":"Grains","brand":"Carolina (2lb)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":5.0,"reg":5.0,"onSale":false},{"id":"superfresh","group":"Grains","brand":"Carolina (2lb)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":2.99,"reg":2.99,"onSale":false},{"id":"whole_foods","group":"Grains","brand":"Organic WF Brand","avail":true,"flag":"Unclear","note":"","sn":"","date":null,"eff":5.29,"reg":5.29,"onSale":false}],"Coffee":[{"id":"associated","group":"Pantry & Beverages","brand":"Bustelo, 10 oz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":13.49,"reg":13.49,"onSale":false},{"id":"billys","group":"Pantry & Beverages","brand":"Cafe Bustelo, 10 oz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":11.99,"reg":11.99,"onSale":false},{"id":"brooklyns_natural","group":"Pantry & Beverages","brand":"Brooklyn's Own Ground Coffee Espresso ","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":13.49,"reg":13.49,"onSale":false},{"id":"city_fresh","group":"Pantry & Beverages","brand":"Cafe Bustelo, 10 oz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":8.99,"reg":12.89,"onSale":true,"sale":8.99},{"id":"food_bazaar","group":"Pantry & Beverages","brand":"Cafe Bustelo, 10 oz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":8.49,"reg":8.49,"onSale":false},{"id":"food_story","group":"Pantry & Beverages","brand":"Cafe Bustelo (vacuum pack)","avail":true,"flag":"Unclear","note":"","sn":"","date":null,"eff":10.99,"reg":10.99,"onSale":false},{"id":"hana","group":"Pantry & Beverages","brand":"Cafe Bustelo (10oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":12.99,"reg":12.99,"onSale":false},{"id":"key_food","group":"Pantry & Beverages","brand":"Cafe Bustelo, 10 oz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":8.99,"reg":8.99,"onSale":false},{"id":"met_fresh","group":"Pantry & Beverages","brand":"Cafe Bustelo, 10 oz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":6.99,"reg":12.29,"onSale":true,"sale":6.99},{"id":"mr_lemon","group":"Pantry & Beverages","brand":"Cafe Bustelo, 10 oz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":13.0,"reg":13.0,"onSale":false},{"id":"superfresh","group":"Pantry & Beverages","brand":"Cafe Bustelo 10 oz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":9.99,"reg":9.99,"onSale":false},{"id":"whole_foods","group":"Pantry & Beverages","brand":"illy","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":16.99,"reg":16.99,"onSale":false}],"Black Beans":[{"id":"associated","group":"Protein","brand":"Goya, 1 standard can","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":1.69,"reg":1.69,"onSale":false},{"id":"billys","group":"Protein","brand":"Goya","avail":true,"flag":"OK","note":"","sn":"3 for $5","date":"2026-07-14","eff":1.67,"reg":1.69,"onSale":true,"sale":1.67},{"id":"brooklyns_natural","group":"Protein","brand":"Eden's","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":4.49,"reg":4.49,"onSale":false},{"id":"city_fresh","group":"Protein","brand":" Goya","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":1.89,"reg":1.89,"onSale":false},{"id":"food_bazaar","group":"Protein","brand":"Goya","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":1.5,"reg":1.5,"onSale":false},{"id":"food_story","group":"Protein","brand":"Progresso","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":1.99,"reg":1.99,"onSale":false},{"id":"hana","group":"Protein","brand":"Delallo","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":2.99,"reg":2.99,"onSale":false},{"id":"key_food","group":"Protein","brand":"Goya","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":1.25,"reg":1.25,"onSale":false},{"id":"met_fresh","group":"Protein","brand":"Goya","avail":true,"flag":"OK","note":"","sn":"4 for $5","date":"2026-07-14","eff":1.25,"reg":1.79,"onSale":true,"sale":1.25},{"id":"mr_lemon","group":"Protein","brand":"Goya","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":2.0,"reg":2.0,"onSale":false},{"id":"superfresh","group":"Protein","brand":"Goya","avail":true,"flag":"OK","note":"","sn":"3 for $5","date":"2026-07-14","eff":1.67,"reg":2.29,"onSale":true,"sale":1.67},{"id":"whole_foods","group":"Protein","brand":"Organic WF Brand","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":1.69,"reg":1.69,"onSale":false}],"Milk":[{"id":"associated","group":"Dairy","brand":"Organic Vally","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-13","eff":9.99,"reg":9.99,"onSale":false},{"id":"billys","group":"Dairy","brand":"Organic Valley","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":8.49,"reg":8.49,"onSale":false},{"id":"brooklyns_natural","group":"Dairy","brand":"Organic Valley (half gallon)","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":7.99,"reg":7.99,"onSale":false},{"id":"city_fresh","group":"Dairy","brand":"Organic Valley (half gallon)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":7.99,"reg":7.99,"onSale":false},{"id":"food_bazaar","group":"Dairy","brand":"Organic Valley","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":7.49,"reg":7.49,"onSale":false},{"id":"food_story","group":"Dairy","brand":"Organic Milk","avail":true,"flag":"Unclear","note":"","sn":"","date":null,"eff":7.99,"reg":7.99,"onSale":false},{"id":"hana","group":"Dairy","brand":"Organic Vally(half Gallon","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":4.99,"reg":4.99,"onSale":false},{"id":"key_food","group":"Dairy","brand":"Organic Farms (half Gallon)","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-13","eff":7.99,"reg":7.99,"onSale":false},{"id":"met_fresh","group":"Dairy","brand":"Organic Valley","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":6.99,"reg":6.99,"onSale":false},{"id":"mr_lemon","group":"Dairy","brand":"Organic Valley","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":8.0,"reg":8.0,"onSale":false},{"id":"superfresh","group":"Dairy","brand":"Organic Valley","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":8.99,"reg":8.99,"onSale":false},{"id":"whole_foods","group":"Dairy","brand":"Organic Valley (half gallon)","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":6.99,"reg":6.99,"onSale":false}],"Butter":[{"id":"associated","group":"Dairy","brand":"Kerrygold 8oz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":7.99,"reg":7.99,"onSale":false},{"id":"billys","group":"Dairy","brand":"Kerrygold (2 stick)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":7.99,"reg":7.99,"onSale":false},{"id":"brooklyns_natural","group":"Dairy","brand":"Kerrygold (salted Irish butter, 1 stick)","avail":true,"flag":"Mismatch","note":"","sn":"","date":null,"eff":6.79,"reg":6.79,"onSale":false},{"id":"city_fresh","group":"Dairy","brand":"Kerygold","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-13","eff":7.99,"reg":7.99,"onSale":false},{"id":"food_bazaar","group":"Dairy","brand":"Kerygold","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":7.29,"reg":7.29,"onSale":false},{"id":"food_story","group":"Dairy","brand":"Kerrygold (1 stick)","avail":true,"flag":"Mismatch","note":"","sn":"","date":null,"eff":7.49,"reg":7.49,"onSale":false},{"id":"hana","group":"Dairy","brand":"Keryygold (2 sticks)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":7.99,"reg":7.99,"onSale":false},{"id":"key_food","group":"Dairy","brand":"Kerygold (could not find four stick only 2)","avail":true,"flag":"Unclear","note":"Kerygold (could not find four stick only 2)","sn":"","date":"2026-07-13","eff":8.19,"reg":8.19,"onSale":false},{"id":"met_fresh","group":"Dairy","brand":"Kerygold (one stick, did not have two stick)","avail":true,"flag":"Mismatch","note":"Kerygold (one stick, did not have two stick)","sn":"","date":"2026-07-14","eff":7.79,"reg":7.79,"onSale":false},{"id":"mr_lemon","group":"Dairy","brand":"Kerygold (","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":7.0,"reg":7.0,"onSale":false},{"id":"superfresh","group":"Dairy","brand":"Kerrygold (2 stick)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":7.99,"reg":7.99,"onSale":false},{"id":"whole_foods","group":"Dairy","brand":"Kerrygold (Salted Irish butter)","avail":true,"flag":"Unclear","note":"","sn":"","date":null,"eff":5.99,"reg":5.99,"onSale":false}],"Cheddar Cheese":[{"id":"associated","group":"Dairy","brand":"Cabot (8oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":5.99,"reg":5.99,"onSale":false},{"id":"billys","group":"Dairy","brand":"Cabot","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":6.19,"reg":6.19,"onSale":false},{"id":"brooklyns_natural","group":"Dairy","brand":"Cabot","avail":true,"flag":"Unclear","note":"","sn":"","date":null,"eff":5.79,"reg":5.79,"onSale":false},{"id":"city_fresh","group":"Dairy","brand":"Land O Lakes","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-13","eff":5.99,"reg":5.99,"onSale":false},{"id":"food_bazaar","group":"Dairy","brand":"Cabot","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":4.99,"reg":4.99,"onSale":false},{"id":"food_story","group":"Dairy","brand":"Cabot","avail":true,"flag":"Unclear","note":"","sn":"","date":null,"eff":6.99,"reg":6.99,"onSale":false},{"id":"hana","group":"Dairy","brand":"Cabot (8.oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":5.49,"reg":5.49,"onSale":false},{"id":"key_food","group":"Dairy","brand":"Cabot (cheader cheese 8.oz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":4.99,"reg":4.99,"onSale":false},{"id":"met_fresh","group":"Dairy","brand":"Cabot (8oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":6.29,"reg":6.29,"onSale":false},{"id":"mr_lemon","group":"Dairy","brand":"Cabot (8oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":5.0,"reg":5.0,"onSale":false},{"id":"superfresh","group":"Dairy","brand":"Cabot ","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":5.99,"reg":5.99,"onSale":false},{"id":"whole_foods","group":"Dairy","brand":"Cabot","avail":true,"flag":"Unclear","note":"","sn":"","date":null,"eff":4.29,"reg":4.29,"onSale":false}],"Greek yogurt":[{"id":"associated","group":"Dairy","brand":"Chobani (5.3 oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":2.49,"reg":2.49,"onSale":false},{"id":"billys","group":"Dairy","brand":"Chobani","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":2.49,"reg":2.49,"onSale":false},{"id":"brooklyns_natural","group":"Dairy","brand":"Chobani","avail":true,"flag":"Unclear","note":"","sn":"","date":null,"eff":2.49,"reg":2.49,"onSale":false},{"id":"city_fresh","group":"Dairy","brand":"Chobani (mixed berry greek yogurt 5.3 oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":2.69,"reg":2.69,"onSale":false},{"id":"food_bazaar","group":"Dairy","brand":"Chobani (mixed berry 5.3 oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":5.0,"reg":5.0,"onSale":false},{"id":"food_story","group":"Dairy","brand":"Chobani","avail":true,"flag":"Unclear","note":"","sn":"","date":null,"eff":2.29,"reg":2.29,"onSale":false},{"id":"hana","group":"Dairy","brand":"Chobani (mixed berry greek yogurt 5.3.oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":2.49,"reg":2.49,"onSale":false},{"id":"key_food","group":"Dairy","brand":"Chobani (mixed berry greek yogurt 5.3 oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":2.19,"reg":2.19,"onSale":false},{"id":"met_fresh","group":"Dairy","brand":"Chobani (5.3 oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":2.29,"reg":2.29,"onSale":false},{"id":"mr_lemon","group":"Dairy","brand":"Chobani (5.3 oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":2.0,"reg":2.0,"onSale":false},{"id":"superfresh","group":"Dairy","brand":"Chobani","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":2.39,"reg":2.39,"onSale":false},{"id":"whole_foods","group":"Dairy","brand":"Chobani","avail":true,"flag":"Unclear","note":"","sn":"","date":null,"eff":1.79,"reg":1.79,"onSale":false}],"Tofu":[{"id":"associated","group":"Protein","brand":"House foods","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":2.99,"reg":2.99,"onSale":false},{"id":"billys","group":"Protein","brand":"","avail":false,"flag":"OK","note":"Not available / not recorded at this store","sn":"","date":"2026-07-14"},{"id":"brooklyns_natural","group":"Protein","brand":"House Foods","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":1.99,"reg":1.99,"onSale":false},{"id":"city_fresh","group":"Protein","brand":"House foods Tofu (Soft)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":2.69,"reg":2.69,"onSale":false},{"id":"food_bazaar","group":"Protein","brand":"House Foods ","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":2.99,"reg":2.99,"onSale":false},{"id":"food_story","group":"Protein","brand":"","avail":false,"flag":"OK","note":"Not available / not recorded at this store","sn":"","date":null},{"id":"hana","group":"Protein","brand":"House foods Tofu","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":2.99,"reg":2.99,"onSale":false},{"id":"key_food","group":"Protein","brand":"House foods Tofu Soft ","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":3.99,"reg":3.99,"onSale":false},{"id":"met_fresh","group":"Protein","brand":"House-Foods soft","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":3.99,"reg":3.99,"onSale":false},{"id":"mr_lemon","group":"Protein","brand":"House-Foods soft","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":4.0,"reg":4.0,"onSale":false},{"id":"superfresh","group":"Protein","brand":"","avail":false,"flag":"OK","note":"Not available / not recorded at this store","sn":"","date":"2026-07-14"},{"id":"whole_foods","group":"Protein","brand":"Organic WF Brand","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":2.49,"reg":2.49,"onSale":false}],"Chicken Breast":[{"id":"associated","group":"Protein","brand":"Perdue thin sliced chicken cutlets (per lb)","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-13","eff":7.99,"reg":7.99,"onSale":false},{"id":"billys","group":"Protein","brand":"Chicken breast thin sliced (per lb)","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-14","eff":6.49,"reg":6.49,"onSale":false},{"id":"brooklyns_natural","group":"Protein","brand":"did not have in store","avail":false,"flag":"OK","note":"did not have in store","sn":"","date":null},{"id":"city_fresh","group":"Protein","brand":"Chicken breast boneless","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-13","eff":5.99,"reg":5.99,"onSale":false},{"id":"food_bazaar","group":"Protein","brand":"Thin slice boneless (6 cut thin)","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":7.99,"reg":7.99,"onSale":false},{"id":"food_story","group":"Protein","brand":"","avail":false,"flag":"OK","note":"Not available / not recorded at this store","sn":"","date":null},{"id":"hana","group":"Protein","brand":"Does not sell","avail":false,"flag":"OK","note":"Does not sell","sn":"","date":"2026-07-13"},{"id":"key_food","group":"Protein","brand":"Store packed boneless chicken breasts thin sliced (per lb)","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-13","eff":7.99,"reg":7.99,"onSale":false},{"id":"met_fresh","group":"Protein","brand":"Boneless chicken breast","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":6.23,"reg":6.23,"onSale":false},{"id":"mr_lemon","group":"Protein","brand":"Dartagnan, regeneratively raised (per lb)","avail":true,"flag":"Mismatch","note":"","sn":"","date":"2026-07-14","eff":10.99,"reg":10.99,"onSale":false},{"id":"superfresh","group":"Protein","brand":"Superfresh brand boneless chicken breast  (per lb)","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-14","eff":5.99,"reg":5.99,"onSale":false},{"id":"whole_foods","group":"Protein","brand":"whole foods brand","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":6.99,"reg":6.99,"onSale":false}],"Beer":[{"id":"associated","group":"Treats & Alcohol","brand":"Modelo, 6 pack","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":12.99,"reg":12.99,"onSale":false},{"id":"billys","group":"Treats & Alcohol","brand":"Modelo, 6 pack","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":10.99,"reg":11.99,"onSale":true,"sale":10.99},{"id":"brooklyns_natural","group":"Treats & Alcohol","brand":"Model 6 pack","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":13.99,"reg":13.99,"onSale":false},{"id":"city_fresh","group":"Treats & Alcohol","brand":"Model, 6 pack","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":13.49,"reg":13.49,"onSale":false},{"id":"food_bazaar","group":"Treats & Alcohol","brand":"Modelo, 6 pack","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":12.49,"reg":12.49,"onSale":false},{"id":"food_story","group":"Treats & Alcohol","brand":"Modelo 6 pack","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":12.99,"reg":12.99,"onSale":false},{"id":"hana","group":"Treats & Alcohol","brand":"Modelo 6 pack","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":14.99,"reg":14.99,"onSale":false},{"id":"key_food","group":"Treats & Alcohol","brand":"Modelo, 6 pack","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":10.99,"reg":12.99,"onSale":true,"sale":10.99},{"id":"met_fresh","group":"Treats & Alcohol","brand":"Modelo","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":13.99,"reg":13.99,"onSale":false},{"id":"mr_lemon","group":"Treats & Alcohol","brand":"Only sold individual beers","avail":false,"flag":"Mismatch","note":"Only sold as single bottles ($2.25 ea) \u2014 not a 6-pack, excluded from basket totals as not comparable","sn":"","date":"2026-07-14"},{"id":"superfresh","group":"Treats & Alcohol","brand":"Modelo, 6 pack","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":10.99,"reg":13.99,"onSale":true,"sale":10.99},{"id":"whole_foods","group":"Treats & Alcohol","brand":"Modelo 6 pack","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":11.49,"reg":11.49,"onSale":false}],"Ice Cream":[{"id":"associated","group":"Treats & Alcohol","brand":"Hagen-Daz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":5.99,"reg":5.99,"onSale":false},{"id":"billys","group":"Treats & Alcohol","brand":"Ben&Jerrys","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-14","eff":8.19,"reg":8.19,"onSale":false},{"id":"brooklyns_natural","group":"Treats & Alcohol","brand":"Haagen Dazs","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":8.99,"reg":8.99,"onSale":false},{"id":"city_fresh","group":"Treats & Alcohol","brand":"Hagen-Daz","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":9.19,"reg":9.19,"onSale":false},{"id":"food_bazaar","group":"Treats & Alcohol","brand":"Hagen-Daz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":8.99,"reg":8.99,"onSale":false},{"id":"food_story","group":"Treats & Alcohol","brand":"Hagen-Daz","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":7.99,"reg":7.99,"onSale":false},{"id":"hana","group":"Treats & Alcohol","brand":"Hagen-Daz ","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":8.99,"reg":8.99,"onSale":false},{"id":"key_food","group":"Treats & Alcohol","brand":"Hangen-Daz ","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":6.99,"reg":6.99,"onSale":false},{"id":"met_fresh","group":"Treats & Alcohol","brand":"Hagen-Daz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":6.99,"reg":6.99,"onSale":false},{"id":"mr_lemon","group":"Treats & Alcohol","brand":"Hagen-Daz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":8.49,"reg":8.49,"onSale":false},{"id":"superfresh","group":"Treats & Alcohol","brand":"Hagen-Daz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":6.99,"reg":6.99,"onSale":false},{"id":"whole_foods","group":"Treats & Alcohol","brand":"Ben&Jerrys","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":6.19,"reg":6.19,"onSale":false}],"Cereal":[{"id":"associated","group":"Grains","brand":"Honey Nut Cheerios (10.8 oz)","avail":true,"flag":"Mismatch","note":"","sn":"","date":"2026-07-13","eff":7.99,"reg":7.99,"onSale":false},{"id":"billys","group":"Grains","brand":"Cheerios (8.9oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":6.99,"reg":6.99,"onSale":false},{"id":"brooklyns_natural","group":"Grains","brand":"Honey grahams","avail":true,"flag":"Mismatch","note":"","sn":"","date":null,"eff":7.99,"reg":7.99,"onSale":false},{"id":"city_fresh","group":"Grains","brand":"Cheerios (8.9oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":7.99,"reg":7.99,"onSale":false},{"id":"food_bazaar","group":"Grains","brand":"Cheerios (8.9oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":5.99,"reg":5.99,"onSale":false},{"id":"food_story","group":"Grains","brand":"Cheerios (8.9oz)","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":7.49,"reg":7.49,"onSale":false},{"id":"hana","group":"Grains","brand":"Cheerios (8.9oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":6.99,"reg":6.99,"onSale":false},{"id":"key_food","group":"Grains","brand":"Cheerios (8.9oz","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":7.49,"reg":7.49,"onSale":false},{"id":"met_fresh","group":"Grains","brand":"Cheerios (8.9oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":7.49,"reg":7.49,"onSale":false},{"id":"mr_lemon","group":"Grains","brand":"Cheerios (8.9oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":8.0,"reg":8.0,"onSale":false},{"id":"superfresh","group":"Grains","brand":"Cheerios (8.9oz)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":6.49,"reg":6.49,"onSale":false},{"id":"whole_foods","group":"Grains","brand":"Cheerios (8.9oz)","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":5.39,"reg":5.39,"onSale":false}],"Eggs":[{"id":"associated","group":"Protein","brand":"Sunshine Farms (12 pack)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-13","eff":5.69,"reg":5.69,"onSale":false},{"id":"billys","group":"Protein","brand":"Sunshine Farms","avail":true,"flag":"OK","note":"","sn":"3 for 5","date":"2026-07-14","eff":1.67,"reg":2.79,"onSale":true,"sale":1.67},{"id":"brooklyns_natural","group":"Protein","brand":"Farm Fresh Free Range","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":6.29,"reg":6.29,"onSale":false},{"id":"city_fresh","group":"Protein","brand":"Sunhine Farms( cage free 12 pack)","avail":true,"flag":"OK","note":"","sn":"","date":null,"eff":5.69,"reg":5.69,"onSale":false},{"id":"food_bazaar","group":"Protein","brand":"Mitilisky jumbo cage free","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-14","eff":3.99,"reg":3.99,"onSale":false},{"id":"food_story","group":"Protein","brand":"Barnyards (Cage Free 12 Pack)","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":5.99,"reg":5.99,"onSale":false},{"id":"hana","group":"Protein","brand":"1 dozen, \"farm fresh\" Noah's Pride","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":4.99,"reg":4.99,"onSale":false},{"id":"key_food","group":"Protein","brand":"Cage free Brown eggs(Natural Garden dozen)","avail":true,"flag":"Different","note":"","sn":"","date":"2026-07-13","eff":7.99,"reg":7.99,"onSale":false},{"id":"met_fresh","group":"Protein","brand":"Sunshine Farms(18 pack)","avail":true,"flag":"Mismatch","note":"","sn":"","date":"2026-07-14","eff":5.99,"reg":5.99,"onSale":false},{"id":"mr_lemon","group":"Protein","brand":"organic free range born to be egg","avail":true,"flag":"Unclear","note":"","sn":"","date":"2026-07-14","eff":6.0,"reg":6.0,"onSale":false},{"id":"superfresh","group":"Protein","brand":"Sunshine Farms (12 pack)","avail":true,"flag":"OK","note":"","sn":"","date":"2026-07-14","eff":5.49,"reg":5.49,"onSale":false},{"id":"whole_foods","group":"Protein","brand":"Free range organic valley","avail":true,"flag":"Different","note":"","sn":"","date":null,"eff":8.49,"reg":8.49,"onSale":false}]},"bls3":{"Eggs":{"v":2.141,"label":"BLS national average $2.141/doz \u2014 Jun 2026"},"Chicken Breast":{"v":4.181,"label":"BLS national average $4.181/lb \u2014 Jun 2026"}}};
+
+/* ======================= shared plumbing ======================= */
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const HOVER_OK = matchMedia('(hover: hover)').matches;
+const DUR = RM ? 0 : 480;
+const S = DATA.stores;
+const fmt$ = v => '$' + (+v).toFixed(2);
+const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+const CHIP_CLASS = { 'MISMATCH':'flag-m','ON SALE':'flag-s','SALE-SUSPECT':'flag-m','UNIT MISMATCH':'flag-m','DUPLICATE DATA':'flag-m','OPEN-ENDED':'','DIRECTIONAL':'','DIFFERENT':'','UNCLEAR':'','NOT CARRIED':'','NEW IN 2026':'flag-new' };
+const chipsHTML = arr => arr.length ? '<div class="tt-chips">' + arr.map(c=>`<span class="chip ${CHIP_CLASS[c]||''}">${esc(c)}</span>`).join('') + '</div>' : '';
+const FLAG26 = f => f==='Mismatch' ? 'MISMATCH' : f==='Different' ? 'DIFFERENT' : f==='Unclear' ? 'UNCLEAR' : null;
+
+/* pinned tooltip: one card per figwrap */
+function makeTip(wrap){
+  const el = document.createElement('div');
+  el.className = 'tt'; el.setAttribute('role','status');
+  el.innerHTML = '<button class="tt-x" aria-label="Close">×</button><div class="tt-b"></div>';
+  wrap.appendChild(el);
+  const body = el.querySelector('.tt-b');
+  const api = { pinnedKey:null };
+  function place(px,py){
+    const wr = wrap.getBoundingClientRect();
+    el.style.left = '0px'; el.style.top = '0px'; el.classList.add('show');
+    const tw = el.offsetWidth, th = el.offsetHeight;
+    let x = px + 12, y = py - th - 10;
+    if (x + tw > wr.width - 6) x = px - tw - 12;
+    if (y < 4) y = py + 14;
+    if (y + th > wr.height - 2) y = wr.height - th - 4;
+    x = Math.max(6, x); y = Math.max(4, y);
+    el.style.left = x + 'px'; el.style.top = y + 'px';
+  }
+  api.show = (html,px,py,key,pin) => {
+    body.innerHTML = html;
+    el.classList.toggle('pinned', !!pin);
+    place(px,py);
+    if (pin) api.pinnedKey = key;
+  };
+  api.hide = (force) => { if (api.pinnedKey && !force) return; api.pinnedKey = null; el.classList.remove('show'); el.classList.remove('pinned'); };
+  el.querySelector('.tt-x').addEventListener('click', e => { e.stopPropagation(); api.hide(true); });
+  document.addEventListener('pointerdown', e => { if (!el.contains(e.target)) api.hide(true); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') api.hide(true); });
+  return api;
+}
+/* attach tap-first behavior to a hit selection */
+function wireHits(sel, tip, contentOf, wrap){
+  sel
+    .attr('tabindex', 0)
+    .attr('role', 'button')
+    .on('pointerdown', function(e,d){
+      e.stopPropagation();
+      const key = contentOf.key(d);
+      const wr = wrap.getBoundingClientRect();
+      if (tip.pinnedKey === key){ tip.hide(true); return; }
+      tip.pinnedKey = null;
+      tip.show(contentOf.html(d), e.clientX - wr.left, e.clientY - wr.top, key, true);
+    })
+    .on('keydown', function(e,d){
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      const key = contentOf.key(d);
+      if (tip.pinnedKey === key){ tip.hide(true); return; }
+      const r = this.getBoundingClientRect(), wr = wrap.getBoundingClientRect();
+      tip.pinnedKey = null;
+      tip.show(contentOf.html(d), r.x - wr.x + r.width/2, r.y - wr.y + 4, key, true);
+    });
+  if (HOVER_OK){
+    sel.on('pointerenter', function(e,d){
+        if (tip.pinnedKey) return;
+        const wr = wrap.getBoundingClientRect();
+        tip.show(contentOf.html(d), e.clientX - wr.left, e.clientY - wr.top, null, false);
+      })
+      .on('pointerleave', () => tip.hide(false));
+  }
+}
+/* mode watcher: re-render on narrow/wide flip */
+function watchMode(wrap, render){
+  let mode = null;
+  const ro = new ResizeObserver(entries => {
+    const w = entries[0].contentRect.width;
+    if (w < 10) return;
+    const m = w < 620 ? 'n' : 'w';
+    if (m !== mode){ mode = m; render(m, false); }
+  });
+  ro.observe(wrap);
+  return () => mode;
+}
+const trioColor = id => (id==='mr_lemon'||id==='hana'||id==='city_fresh') ? S[id].color : 'var(--viz-neutral)';
+
+/* ======================= EXHIBIT 1 ======================= */
+(function(){
+  const wrap = document.getElementById('fig1');
+  const tip = makeTip(wrap);
+  const svg = d3.select(wrap).append('svg');
+  let year = '2021', mode = 'w';
+
+  const susNote = '70.98% below the BLS national average — consistent with a sale price on visit day.';
+  function rowsFor(y){
+    if (y === '2021') return DATA.ch1.y2021.map(d => ({...d, key:d.id,
+      chips: d.id==='key_food' ? ['SALE-SUSPECT'] : [],
+      sus: d.id==='key_food' }));
+    return DATA.ch1.y2026.map(d => ({...d, key:d.id, chips: FLAG26(d.flag) ? [FLAG26(d.flag)] : [] }));
+  }
+  function ttHTML(d){
+    const unit = year==='2021' ? '/lb (cheapest available)' : '/lb (effective price)';
+    let l = `<p class="tt-t">${esc(S[d.id].name)}</p><span class="num">${fmt$(d.price)}</span>${unit}`;
+    if (d.brand) l += `<br>${esc(d.brand)}`;
+    if (year==='2026') l += `<br><span class="tt-note">${d.date ? 'surveyed ' + esc(d.date) : 'collection date not recorded'}</span>`;
+    l += chipsHTML(d.chips);
+    if (d.sus) l += `<div class="tt-note">${susNote}</div>`;
+    if (d.note) l += `<div class="tt-note">${esc(d.note)}</div>`;
+    return l;
+  }
+
+  function render(m, animate){
+    mode = m;
+    const N = m === 'n';
+    const W = N ? 360 : 720;
+    const dotY = N ? 128 : 118, axisY = N ? 236 : 210;
+    const H = axisY + 34;
+    const x = d3.scaleLog().domain([0.95, 18]).range([N ? 16 : 26, W - (N ? 16 : 26)]);
+    const rows = rowsFor(year).slice().sort((a,b)=>a.price-b.price);
+
+    /* vertical dodge for equal prices */
+    const byPrice = d3.group(rows, d => d.price);
+    rows.forEach(d => {
+      const g = byPrice.get(d.price);
+      d.dy = g.length > 1 ? (g.indexOf(d) - (g.length-1)/2) * (N?15:13) : 0;
+    });
+    /* label layout: alternate above/below, resolve 1D collisions */
+    const charW = N ? 5.4 : 6.0;
+    rows.forEach((d,i)=>{ d.side = i%2 ? 1 : -1;
+      d.hw = Math.max(S[d.id].abbr.length, 6) * charW / 2 + 4; d.lx = x(d.price); });
+    ['-1','1'].forEach(sd => {
+      const g = rows.filter(d => d.side === +sd);
+      for (let it=0; it<6; it++){
+        for (let i=1;i<g.length;i++){
+          const need = g[i-1].lx + g[i-1].hw + g[i].hw + 6;
+          if (g[i].lx < need) g[i].lx = need;
+        }
+        for (let i=g.length-1;i>=0;i--){
+          const max = (i===g.length-1 ? W-8 : g[i+1].lx - g[i+1].hw - 6) - g[i].hw;
+          if (g[i].lx > max) g[i].lx = max;
+        }
+        for (let i=0;i<g.length;i++){
+          const min = (i===0 ? 8 : g[i-1].lx + g[i-1].hw + 6) + g[i].hw;
+          if (g[i].lx < min) g[i].lx = min;
+        }
+      }
+    });
+
+    svg.attr('viewBox', `0 0 ${W} ${H}`)
+       .attr('preserveAspectRatio','xMidYMin meet')
+       .attr('role','group')
+       .attr('aria-label', year==='2021'
+        ? 'Dot strip: cheapest chicken breast per pound across 6 Bushwick stores in Nov 2021, from $1.05 at Key Food to $15.99 at Food Story, a 15.23 times spread; BLS national average $3.618 marked. Full data in the table below.'
+        : 'Dot strip: boneless chicken breast effective price per pound across 9 Bushwick stores in Jul 2026, from $5.99 to $10.99, a 1.83 times spread; BLS national average $4.181 marked. Full data in the table below.');
+    svg.selectAll('*').remove();
+    if (animate && DUR){ svg.attr('opacity',0).transition('fade').duration(300).ease(d3.easeCubicOut).attr('opacity',1); }
+    const T = animate && DUR ? svg.transition('grow').duration(DUR).ease(d3.easeCubicOut) : null;
+
+    /* axis */
+    const ax = svg.append('g').attr('aria-hidden','true');
+    ax.append('line').attr('x1',x.range()[0]-8).attr('x2',x.range()[1]+8).attr('y1',axisY).attr('y2',axisY)
+      .attr('stroke','var(--viz-baseline)');
+    (N ? [1,4,16] : [1,2,4,8,16]).forEach(t=>{
+      ax.append('line').attr('x1',x(t)).attr('x2',x(t)).attr('y1',axisY).attr('y2',axisY+5).attr('stroke','var(--viz-baseline)');
+      ax.append('text').attr('x',x(t)).attr('y',axisY+18).attr('text-anchor','middle')
+        .attr('font-size',N?11:11).attr('fill','var(--viz-tick)').text('$'+t);
+    });
+    ax.append('text').attr('x',x.range()[0]-8).attr('y',axisY+32).attr('font-size',N?10:10.5)
+      .attr('fill','var(--viz-tick)')
+      .text(year==='2021' ? 'cheapest chicken breast, $/lb (log scale)' : 'boneless chicken breast, effective $/lb (log scale)');
+
+    /* BLS reference */
+    const bls = DATA.ch1.bls[year];
+    const blsLabel = year==='2021' ? 'BLS national average $3.618/lb — Nov 2021' : 'BLS national average $4.181/lb — Jun 2026';
+    const bg = svg.append('g');
+    bg.append('line').attr('x1',x(bls)).attr('x2',x(bls)).attr('y1',N?34:30).attr('y2',axisY)
+      .attr('stroke','var(--viz-ink)').attr('stroke-width',2).attr('stroke-dasharray','6 4').attr('aria-hidden','true');
+    const anchorStart = x(bls) < W*0.55;
+    const bt = bg.append('text')
+      .attr('x', x(bls) + (anchorStart ? 7 : -7)).attr('y', N?14:18)
+      .attr('text-anchor', anchorStart ? 'start':'end')
+      .attr('font-size', N?9.5:10.5).attr('font-weight',600).attr('fill','var(--viz-ink)');
+    if (N){
+      bt.append('tspan').attr('x',x(bls)+(anchorStart?7:-7)).text(blsLabel.split(' — ')[0]);
+      bt.append('tspan').attr('x',x(bls)+(anchorStart?7:-7)).attr('dy',12).text('— ' + blsLabel.split(' — ')[1]);
+    } else bt.text(blsLabel);
+
+    /* leaders + labels */
+    const lg = svg.append('g').attr('aria-hidden','true');
+    rows.forEach(d=>{
+      const yDot = dotY + d.dy, r = N ? 8 : 7;
+      const labY = d.side < 0 ? (N ? 66 : 62) : (N ? 190 : 168);
+      lg.append('line')
+        .attr('x1',x(d.price)).attr('y1', yDot + d.side * (r+3))
+        .attr('x2',d.lx).attr('y2', labY + (d.side<0 ? 16 : -12))
+        .attr('stroke','var(--viz-baseline)').attr('stroke-width',1);
+      const t = lg.append('text').attr('x',d.lx).attr('text-anchor','middle')
+        .attr('stroke','var(--paper-card)').attr('stroke-width',3.5)
+        .attr('paint-order','stroke').attr('stroke-linejoin','round');
+      t.append('tspan').attr('x',d.lx).attr('y',labY)
+        .attr('font-size',N?10:10.5).attr('font-weight',600).attr('fill','var(--viz-ink)')
+        .text(S[d.id].abbr);
+      const pt = t.append('tspan').attr('x',d.lx).attr('y',labY+13)
+        .attr('font-size',N?10:10.5).attr('fill','var(--viz-ink-soft)')
+        .style('font-variant-numeric','tabular-nums')
+        .text(fmt$(d.price) + (d.chips.includes('MISMATCH') ? ' ᴹ' : ''));
+      if (d.flag === 'Different') pt.attr('font-style','italic');
+    });
+
+    /* dots */
+    const dg = svg.append('g').attr('aria-hidden','true');
+    const dot = dg.selectAll('circle').data(rows, d=>d.key).join('circle')
+      .attr('cx', d=>x(d.price)).attr('cy', d=>dotY + d.dy)
+      .attr('r', N?8:7)
+      .attr('fill', d => d.sus ? 'var(--paper)' : 'var(--viz-data)')
+      .attr('fill-opacity', d => d.sus ? 1 : .92)
+      .attr('stroke', d => d.sus ? '#2c6e1f' : 'var(--paper-card)')
+      .attr('stroke-width', d => d.sus ? 2.5 : 1);
+    if (T) dot.attr('r',0).transition(T).attr('r', N?8:7);
+
+    /* hit targets around labels + dots */
+    const hits = svg.append('g').selectAll('rect').data(rows, d=>d.key).join('rect')
+      .attr('class','hit')
+      .attr('x', d=>Math.min(d.lx - d.hw, x(d.price)-14))
+      .attr('width', d=>Math.max(d.lx + d.hw, x(d.price)+14) - Math.min(d.lx - d.hw, x(d.price)-14))
+      .attr('y', d => d.side<0 ? (N?52:48) : dotY - 14)
+      .attr('height', d => d.side<0 ? dotY - (N?52:48) + 16 : (N ? 190+18 : 168+18) - dotY + 14)
+      .attr('aria-label', d => `${S[d.id].name}, ${fmt$(d.price)} per pound${d.brand ? ', ' + d.brand : ''}${d.chips.length ? ', flagged ' + d.chips.join(', ') : ''}${d.sus ? '. ' + susNote : ''}`);
+    wireHits(hits, tip, { key: d=>year+d.key, html: ttHTML }, wrap);
+  }
+
+  /* year toggle */
+  function setYear(y){
+    if (year === y) return;
+    year = y; tip.hide(true);
+    document.getElementById('y2021').setAttribute('aria-pressed', y==='2021');
+    document.getElementById('y2026').setAttribute('aria-pressed', y==='2026');
+    document.getElementById('ex1-title').textContent = y==='2021'
+      ? 'Cheapest chicken breast per store, Nov 2021 ($/lb, log scale)'
+      : 'Boneless chicken breast per store, Jul 2026 (effective $/lb, log scale)';
+    document.getElementById('ex1-dek').innerHTML = y==='2021'
+      ? 'Hollow circle = sale-suspect observation. Dashed line = BLS national average (fully labeled). Tap a store for its receipt line.'
+      : 'Same axis as 2021. The spread is 1.83×, down from 15.23×. Dashed line = BLS national average (fully labeled). Tap a store for its receipt line.';
+    updateProse(); render(mode, true); buildTable();
+  }
+  document.getElementById('y2021').addEventListener('click', ()=>setYear('2021'));
+  document.getElementById('y2026').addEventListener('click', ()=>setYear('2026'));
+
+  function updateProse(){
+    const co = document.getElementById('ex1-callout'), no = document.getElementById('ex1-note');
+    if (year==='2021'){
+      co.innerHTML = '<b>$1.05 at Key Food:</b> 70.98% below the BLS national average of $3.618/lb — consistent with a sale price captured on visit day, not an everyday shelf price. The 2026 toggle tests that hypothesis.';
+      no.textContent = 'Not on the axis: Mr. Fruit Stores ($13.99 per pack, unit unstated — excluded). Not carried: Hana Natural, Shop Fair. Bushwick Daily survey, Nov 2021.';
+    } else {
+      co.innerHTML = '<b>No loss-leader survives:</b> the 2026 floor is $5.99 and the median $6.99, 67.2% above the BLS national average of $4.181/lb. Key Food, the $1.05 store of 2021, now charges $7.99: 7.61× its 2021 price against a national move of +15.56%.';
+      no.textContent = 'Not carried in 2026: Hana, Brooklyn’s Natural, Food Story. Mr. Lemon’s $10.99 is D’Artagnan (MISMATCH). YJC Grocery Price Index, surveyed 2026-07-13/14.';
+    }
+  }
+  function buildTable(){
+    const rows = rowsFor(year).slice().sort((a,b)=>a.price-b.price);
+    let h = `<table class="grid"><caption>Chicken breast, ${year==='2021'?'Nov 2021 (cheapest available)':'Jul 2026 (effective price)'}</caption><thead><tr><th>Store</th><th>$/lb</th><th>Brand / product</th><th>Flags</th><th>Date</th></tr></thead><tbody>`;
+    rows.forEach(d=>{ h += `<tr><td>${esc(S[d.id].name)}</td><td>${fmt$(d.price)}</td><td>${esc(d.brand)||'—'}</td><td>${d.chips.join(', ')||'—'}</td><td>${year==='2021'?'—':(d.date||'not recorded')}</td></tr>`; });
+    if (year==='2021'){
+      h += `<tr><td>Mr. Fruit Stores</td><td>—</td><td>Bell and Evans, $13.99/pack, unit unstated</td><td>excluded from per-lb comparison</td><td>—</td></tr>`;
+      h += `<tr><td>Hana Natural</td><td>—</td><td>—</td><td>NOT CARRIED</td><td>—</td></tr><tr><td>Shop Fair</td><td>—</td><td>—</td><td>NOT CARRIED</td><td>—</td></tr>`;
+    } else {
+      DATA.ch1.missing2026.forEach(d=>{ h += `<tr><td>${esc(S[d.id].name)}</td><td>—</td><td>${esc(d.note)||'—'}</td><td>NOT CARRIED</td><td>${d.date||'not recorded'}</td></tr>`; });
+    }
+    document.getElementById('ex1-table').innerHTML = h + '</tbody></table>';
+  }
+  updateProse(); buildTable();
+  watchMode(wrap, m => render(m, !RM));
+})();
+
+/* ======================= EXHIBIT 2 ======================= */
+(function(){
+  const wrap = document.getElementById('fig2');
+  const tip = makeTip(wrap);
+  const svg = d3.select(wrap).append('svg');
+  let filter = 'All', mode = 'w', first = true;
+
+  const ITEM_ABBR = {'12 Eggs':'Eggs','Half Gallon Milk':'Milk','Peanut Butter':'PB','Cheddar Cheese':'Cheddar','Chicken Breast':'Chicken','Coffee':'Coffee','Spinach':'Spinach','Banana':'Banana'};
+  const rows2 = DATA.ch2.map((d,i)=>({...d, key:d.id+'|'+d.item+'|'+i,
+    open: d.flag==='open_ended', um: d.flag==='unit_mismatch',
+    dir: d.item==='Coffee' || d.flag==='unit_mismatch'}));
+
+  /* item means (open-ended + unit-mismatch excluded) */
+  const items = Array.from(d3.group(rows2, d=>d.item), ([item,g])=>{
+    const clean = g.filter(d=>!d.open && !d.um && d.ratio);
+    return { item, mean: d3.mean(clean, d=>d.ratio), n: clean.length };
+  }).sort((a,b)=>b.mean-a.mean);
+
+  /* item filter bands (HTML) */
+  const bandsEl = document.getElementById('ex2-bands');
+  const maxMean = d3.max(items, d=>d.mean);
+  bandsEl.innerHTML = items.map(d=>`
+    <button type="button" class="band" data-item="${esc(d.item)}" aria-pressed="false">
+      <span class="bn">${esc(ITEM_ABBR[d.item]||d.item)}<small>${d.n} stores</small></span>
+      <span class="bt" aria-hidden="true"><i style="width:${(d.mean/maxMean*100).toFixed(1)}%"></i></span>
+      <span class="bv${d.item==='Coffee'?' dir':''}">${d.mean.toFixed(2)}×</span>
+    </button>`).join('') +
+    `<button type="button" class="band" data-item="All" aria-pressed="true">
+      <span class="bn">All shelves<small>${rows2.length} rows</small></span>
+      <span class="bt" aria-hidden="true"></span><span class="bv">—</span></button>`;
+  bandsEl.querySelectorAll('.band').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      filter = b.dataset.item; tip.hide(true);
+      bandsEl.querySelectorAll('.band').forEach(x=>x.setAttribute('aria-pressed', x===b ? 'true':'false'));
+      document.getElementById('ex2-callout').style.display = (filter==='All'||filter==='Coffee') ? '' : 'none';
+      render(mode, true);
+    });
+  });
+
+  function visible(){
+    const v = filter==='All' ? rows2.slice() : rows2.filter(d=>d.item===filter);
+    return v.sort((a,b)=>(b.ratio||0)-(a.ratio||0) || b.lo-a.lo);
+  }
+  function ttHTML(d){
+    const chips = [];
+    if (d.open) chips.push('OPEN-ENDED');
+    if (d.um) chips.push('UNIT MISMATCH');
+    if (d.item==='Coffee') chips.push('DIRECTIONAL');
+    if (d.id==='key_food' && d.item==='Chicken Breast') chips.push('SALE-SUSPECT');
+    let h = `<p class="tt-t">${esc(S[d.id].name)} · ${esc(d.item)}</p>`;
+    h += `<span class="num">${fmt$(d.lo)}</span> ${esc(d.brandLo)||'(unbranded)'}`;
+    if (d.hi != null) h += ` → <span class="num">${fmt$(d.hi)}</span> ${esc(d.brandHi)||''}`;
+    if (d.open) h += d.hi != null ? ' <b>and up</b>' : ` <b>and up</b> — no maximum printed`;
+    if (d.ratio && !d.open) h += `<br>ratio <span class="num">${d.ratio.toFixed(2)}×</span>${d.dir ? ' (directional)' : ''}`;
+    h += chipsHTML(chips);
+    if (d.note) h += `<div class="tt-note">${esc(d.note)}</div>`;
+    return h;
+  }
+
+  function render(m, animate){
+    mode = m;
+    const N = m === 'n';
+    const W = N ? 360 : 720;
+    const mL = N ? 96 : 172, mR = N ? 50 : 60, rowH = N ? 42 : 26, top = 26;
+    const rows = visible();
+    const H = top + rows.length * rowH + 34;
+    const x = d3.scaleLinear().domain([0, 18.5]).range([mL, W - mR]);
+
+    svg.attr('viewBox', `0 0 ${W} ${H}`)
+       .attr('preserveAspectRatio','xMidYMin meet')
+       .attr('role','group')
+       .attr('aria-label', `Dumbbell chart: cheapest versus priciest option on the same shelf across ${rows.length} store-item shelves in Nov 2021, ratios up to 8.21 times on Key Food coffee. Full data in the table below.`);
+    svg.selectAll('*').remove();
+    if (animate && DUR && !first){ svg.attr('opacity',0).transition('fade').duration(300).ease(d3.easeCubicOut).attr('opacity',1); }
+
+    /* grid + axis */
+    const ax = svg.append('g').attr('aria-hidden','true');
+    const ticks = N ? [0,5,10,15] : [0,3,6,9,12,15,18];
+    ticks.forEach(t=>{
+      ax.append('line').attr('x1',x(t)).attr('x2',x(t)).attr('y1',top-8).attr('y2',H-28)
+        .attr('stroke','var(--viz-grid)');
+      ax.append('text').attr('x',x(t)).attr('y',H-14).attr('text-anchor','middle')
+        .attr('font-size',11).attr('fill','var(--viz-tick)').text('$'+t);
+    });
+    ax.append('line').attr('x1',mL).attr('x2',W-mR+6).attr('y1',H-28).attr('y2',H-28).attr('stroke','var(--viz-baseline)');
+
+    const defs = svg.append('defs');
+    const grad = defs.append('linearGradient').attr('id','fadeOut');
+    grad.append('stop').attr('offset','0%').attr('stop-color','#7a5300').attr('stop-opacity',.92);
+    grad.append('stop').attr('offset','100%').attr('stop-color','#7a5300').attr('stop-opacity',0);
+
+    const g = svg.append('g');
+    const rowY = (d,i)=> top + i*rowH + rowH/2;
+    rows.forEach((d,i)=>{ d.y = rowY(d,i); });
+
+    const rg = g.selectAll('g.row').data(rows, d=>d.key).join('g').attr('class','row')
+      .attr('aria-hidden','true');
+
+    /* labels */
+    rg.each(function(d){
+      const el = d3.select(this);
+      if (N){
+        el.append('text').attr('x',6).attr('y',d.y-3).attr('font-size',10).attr('font-weight',600)
+          .attr('fill','var(--viz-ink)').text(S[d.id].abbr);
+        el.append('text').attr('x',6).attr('y',d.y+10).attr('font-size',9)
+          .attr('fill','var(--viz-tick)').text(ITEM_ABBR[d.item]||d.item);
+      } else {
+        el.append('text').attr('x',6).attr('y',d.y+3.5).attr('font-size',10.5)
+          .attr('fill','var(--viz-ink)')
+          .text(S[d.id].abbr + ' · ' + (ITEM_ABBR[d.item]||d.item));
+      }
+      /* range line */
+      const hiX = d.hi != null ? x(d.hi) : x(d.lo);
+      const line = el.append('line')
+        .attr('x1',x(d.lo)).attr('x2',x(d.lo)).attr('y1',d.y).attr('y2',d.y)
+        .attr('stroke','var(--viz-data)').attr('stroke-opacity',.92)
+        .attr('stroke-width',3).attr('stroke-linecap','round');
+      if (animate && DUR && first) line.transition().duration(Math.min(DUR+120,600)).ease(d3.easeCubicOut).attr('x2',hiX);
+      else line.attr('x2',hiX);
+      /* dots */
+      el.append('circle').attr('cx',x(d.lo)).attr('cy',d.y).attr('r',4.5)
+        .attr('fill','var(--viz-data)').attr('stroke','var(--paper-card)').attr('stroke-width',1);
+      if (d.hi != null && !d.open)
+        el.append('circle').attr('cx',x(d.hi)).attr('cy',d.y).attr('r',5.5)
+          .attr('fill','var(--viz-data)').attr('stroke','var(--paper-card)').attr('stroke-width',1);
+      /* open-ended fade (§6.5): never close with a dot */
+      if (d.open){
+        el.append('rect').attr('x',hiX).attr('y',d.y-1.5).attr('width',24).attr('height',3)
+          .attr('fill','url(#fadeOut)');
+        el.append('text').attr('x',hiX+30).attr('y',d.y+4).attr('font-size',12)
+          .attr('font-weight',600).attr('fill','var(--viz-tick)').text('+');
+        el.append('text').attr('x',hiX+40).attr('y',d.y+3.5).attr('font-size',9)
+          .attr('fill','var(--viz-tick)').attr('font-style','italic')
+          .text(fmt$(d.hi != null ? d.hi : d.lo)+' and up');
+      }
+      /* ratio column */
+      const rt = el.append('text').attr('x',W-8).attr('y',d.y+3.5).attr('text-anchor','end')
+        .attr('font-size',N?10.5:11).attr('font-weight',700)
+        .style('font-variant-numeric','tabular-nums')
+        .attr('fill','var(--viz-ink)')
+        .text(d.open ? '—' : d.ratio.toFixed(2)+'×');
+      if (d.dir) rt.attr('font-style','italic');
+    });
+
+    /* hit rows */
+    const hits = svg.append('g').selectAll('rect').data(rows, d=>d.key).join('rect')
+      .attr('class','hit').attr('x',0).attr('width',W)
+      .attr('y',(d,i)=>top+i*rowH).attr('height',rowH)
+      .attr('aria-label', d => `${S[d.id].name}, ${d.item}: ${fmt$(d.lo)} ${d.brandLo||'unbranded'}` +
+        (d.hi != null ? ` to ${fmt$(d.hi)} ${d.brandHi||''}` : '') +
+        (d.open ? ', open-ended, and up' : `, ratio ${d.ratio.toFixed(2)} times${d.dir?' directional':''}`));
+    wireHits(hits, tip, { key: d=>d.key, html: ttHTML }, wrap);
+    first = false;
+  }
+
+  /* data table (static, all rows) */
+  (function(){
+    let h = `<table class="grid"><caption>Within-store shelf ranges, Nov 2021 (non-duplicate rows)</caption><thead><tr><th>Store</th><th>Item</th><th>Low</th><th>High</th><th>Ratio</th><th>Flags</th></tr></thead><tbody>`;
+    rows2.forEach(d=>{
+      h += `<tr><td>${esc(S[d.id].name)}</td><td>${esc(d.item)}</td>
+        <td>${fmt$(d.lo)} ${esc(d.brandLo)||''}</td>
+        <td>${d.hi!=null ? fmt$(d.hi)+' '+esc(d.brandHi||'') : '—'}${d.open ? ' and up' : ''}</td>
+        <td${d.dir?' class="it"':''}>${d.open ? '—' : d.ratio.toFixed(2)+'×'}</td>
+        <td>${[d.open?'OPEN-ENDED':null, d.um?'UNIT MISMATCH':null, d.item==='Coffee'?'DIRECTIONAL':null].filter(Boolean).join(', ')||'—'}</td></tr>`;
+    });
+    document.getElementById('ex2-table').innerHTML = h + '</tbody></table>';
+  })();
+  watchMode(wrap, m => render(m, first && !RM));
+})();
+
+/* ======================= EXHIBIT 3 ======================= */
+(function(){
+  const wrap = document.getElementById('fig3');
+  const tip = makeTip(wrap);
+  const svg = d3.select(wrap).append('svg');
+  let item = 'Eggs', mode = 'w';
+
+  const groupOf = {}; Object.entries(DATA.ch3).forEach(([it,rows])=>{ groupOf[it] = rows[0].group; });
+  const GORDER = ['Grains','Dairy','Protein','Pantry','Pantry & Beverages','Produce','Treats','Treats & Alcohol'];
+  const groups = Array.from(new Set(Object.values(groupOf)))
+    .sort((a,b)=>{ const ia=GORDER.findIndex(g=>a.startsWith(g.split(' ')[0])), ib=GORDER.findIndex(g=>b.startsWith(g.split(' ')[0])); return (ia<0?99:ia)-(ib<0?99:ib) || a.localeCompare(b); });
+
+  /* picker */
+  const picker = document.getElementById('ex3-picker');
+  picker.innerHTML = groups.map(gname=>{
+    const its = DATA.items.filter(it=>groupOf[it]===gname).sort();
+    return `<div class="pg">${esc(gname)}</div><div class="pchips">` +
+      its.map(it=>`<button type="button" data-item="${esc(it)}" aria-pressed="${it===item}">${esc(it)}</button>`).join('') + '</div>';
+  }).join('');
+  picker.querySelectorAll('button').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      if (b.dataset.item === item) return;
+      item = b.dataset.item; tip.hide(true);
+      picker.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed', x.dataset.item===item ? 'true':'false'));
+      updateHeader(); render(mode, true); buildTable();
+    });
+  });
+
+  function rowsFor(){
+    const rows = DATA.ch3[item].map(d=>({...d, key:d.id}));
+    const avail = rows.filter(d=>d.avail).sort((a,b)=>a.eff-b.eff || S[a.id].name.localeCompare(S[b.id].name));
+    const out = rows.filter(d=>!d.avail).sort((a,b)=>S[a.id].name.localeCompare(S[b.id].name));
+    return avail.concat(out);
+  }
+  function spread(){
+    const a = rowsFor().filter(d=>d.avail);
+    const lo = a[0], hi = a[a.length-1];
+    return { lo, hi, ratio: hi.eff/lo.eff, flagged: lo.flag!=='OK' || hi.flag!=='OK' || lo.onSale || hi.onSale, n: a.length };
+  }
+  function updateHeader(){
+    const s = spread();
+    document.getElementById('ex3-title').textContent = `${item} — effective price across 12 stores, Jul 2026`;
+    const ratioTxt = `${s.ratio.toFixed(2)}×`;
+    document.getElementById('ex3-dek').innerHTML =
+      `${esc(S[s.lo.id].name)} <span style="font-variant-numeric:tabular-nums">${fmt$(s.lo.eff)}</span> to ` +
+      `${esc(S[s.hi.id].name)} <span style="font-variant-numeric:tabular-nums">${fmt$(s.hi.eff)}</span> — spread ` +
+      (s.flagged ? `<em>${ratioTxt}</em> <span class="chip">endpoints flagged or on sale</span>` : `<b>${ratioTxt}</b>`) +
+      ` · ${s.n} of 12 stores carry it. Tap a row to pin its receipt line.`;
+  }
+  function ttHTML(d){
+    let h = `<p class="tt-t">${esc(S[d.id].name)}</p>`;
+    if (!d.avail){
+      h += `not carried`; h += chipsHTML(['NOT CARRIED']);
+      if (d.note) h += `<div class="tt-note">${esc(d.note)}</div>`;
+      return h;
+    }
+    if (d.brand) h += `${esc(d.brand)}<br>`;
+    h += `effective <span class="num">${fmt$(d.eff)}</span>`;
+    const chips = [];
+    if (d.onSale){
+      h += `<br>shelf <span class="num">${fmt$(d.reg)}</span> · sale <span class="num">${fmt$(d.sale)}</span>` +
+           (d.date ? ` · surveyed ${esc(d.date)}` : '');
+      chips.push('ON SALE');
+    }
+    const f = FLAG26(d.flag); if (f) chips.push(f);
+    h += chipsHTML(chips);
+    if (d.sn) h += `<div class="tt-note">${esc(d.sn)}</div>`;
+    if (d.note) h += `<div class="tt-note">${esc(d.note)}</div>`;
+    if (!d.onSale) h += `<div class="tt-note">${d.date ? 'surveyed ' + esc(d.date) : 'collection date not recorded'}</div>`;
+    return h;
+  }
+
+  function render(m, animate){
+    mode = m;
+    const N = m === 'n';
+    const W = N ? 360 : 720;
+    const mL = N ? 92 : 158, mR = N ? 64 : 78, rowH = N ? 44 : 32, top = 30;
+    const rows = rowsFor();
+    const H = top + rows.length * rowH + 34;
+    const maxV = d3.max(rows.filter(d=>d.avail), d=>Math.max(d.eff, d.reg||0));
+    const bls = DATA.bls3[item];
+    const xmax = Math.max(maxV, bls ? bls.v : 0) * 1.1;
+    const x = d3.scaleLinear().domain([0, xmax]).range([mL, W - mR]).nice();
+
+    svg.attr('viewBox', `0 0 ${W} ${H}`)
+       .attr('preserveAspectRatio','xMidYMin meet')
+       .attr('role','group')
+       .attr('aria-label', (()=>{ const s = spread();
+          return `Dot plot: ${item} effective prices across 12 Bushwick stores in Jul 2026, from ${fmt$(s.lo.eff)} at ${S[s.lo.id].name} to ${fmt$(s.hi.eff)} at ${S[s.hi.id].name}, a ${s.ratio.toFixed(2)} times spread. Full data in the table below.`; })());
+    svg.selectAll('*').remove();
+    if (animate && DUR){ svg.attr('opacity',0).transition('fade').duration(300).ease(d3.easeCubicOut).attr('opacity',1); }
+
+    /* axis + grid */
+    const ax = svg.append('g').attr('aria-hidden','true');
+    x.ticks(N?4:6).forEach(t=>{
+      ax.append('line').attr('x1',x(t)).attr('x2',x(t)).attr('y1',top-6).attr('y2',H-28).attr('stroke','var(--viz-grid)');
+      ax.append('text').attr('x',x(t)).attr('y',H-14).attr('text-anchor','middle')
+        .attr('font-size',11).attr('fill','var(--viz-tick)').text('$'+t);
+    });
+    ax.append('line').attr('x1',mL).attr('x2',W-mR+4).attr('y1',H-28).attr('y2',H-28).attr('stroke','var(--viz-baseline)');
+
+    /* BLS reference (fully labeled, never on mismatched units) */
+    if (bls){
+      const bg = svg.append('g');
+      bg.append('line').attr('x1',x(bls.v)).attr('x2',x(bls.v)).attr('y1',top-6).attr('y2',H-28)
+        .attr('stroke','var(--viz-ink)').attr('stroke-width',2).attr('stroke-dasharray','6 4').attr('aria-hidden','true');
+      const anchorStart = x(bls.v) < W*0.55;
+      const bt = bg.append('text').attr('y', N?8:14)
+        .attr('x', x(bls.v) + (anchorStart?6:-6)).attr('text-anchor',anchorStart?'start':'end')
+        .attr('font-size',N?9:10.5).attr('font-weight',600).attr('fill','var(--viz-ink)');
+      if (N){
+        const parts = bls.label.split(' — ');
+        bt.append('tspan').attr('x',x(bls.v)+(anchorStart?6:-6)).text(parts[0]);
+        bt.append('tspan').attr('x',x(bls.v)+(anchorStart?6:-6)).attr('dy',11).text('— '+parts[1]);
+      } else bt.text(bls.label);
+    }
+
+    const rowY = i => top + i*rowH + rowH/2;
+    const g = svg.append('g');
+    /* selection wash for the pinned row */
+    const washG = svg.insert('g','g');
+
+    rows.forEach((d,i)=>{
+      const y = rowY(i);
+      const el = g.append('g').attr('aria-hidden','true');
+      /* store label */
+      el.append('text').attr('x',6).attr('y',y+3.5)
+        .attr('font-size',N?10:10.5).attr('font-weight',600)
+        .attr('fill', d.avail ? 'var(--viz-ink)' : 'var(--viz-tick)')
+        .text(N ? S[d.id].abbr : S[d.id].name.replace(' (C Town)',''));
+      /* dotted receipt leader */
+      el.append('line').attr('x1',mL-4).attr('x2',W-mR+6).attr('y1',y).attr('y2',y)
+        .attr('stroke', d.avail ? 'var(--viz-grid)' : '#b9ae93')
+        .attr('stroke-width',1).attr('stroke-dasharray', d.avail ? '1.5 4' : '5 4');
+      if (!d.avail){
+        el.append('text').attr('x',(mL+W-mR)/2).attr('y',y-4).attr('text-anchor','middle')
+          .attr('font-size',9.5).attr('font-style','italic').attr('fill','var(--viz-tick)')
+          .text('not carried');
+        el.append('text').attr('x',W-8).attr('y',y+3.5).attr('text-anchor','end')
+          .attr('font-size',N?10.5:11).attr('fill','var(--viz-tick)').text('—');
+        return;
+      }
+      /* sale whisker to hollow regular-price tick (§6.3) */
+      if (d.onSale && d.reg != null){
+        el.append('line').attr('x1',x(d.eff)).attr('x2',x(d.reg)).attr('y1',y).attr('y2',y)
+          .attr('stroke','var(--viz-tick)').attr('stroke-width',1.5);
+        el.append('circle').attr('cx',x(d.reg)).attr('cy',y).attr('r',3.5)
+          .attr('fill','var(--paper-card)').attr('stroke','var(--viz-tick)').attr('stroke-width',1.5);
+      }
+      /* effective-price mark */
+      el.append('circle').attr('cx',x(d.eff)).attr('cy',y).attr('r',N?6.5:5.5)
+        .attr('fill', trioColor(d.id)).attr('fill-opacity',.95)
+        .attr('stroke','var(--paper-card)').attr('stroke-width',1.5);
+      /* price column: reserve a glyph slot when flagged or on sale */
+      const glyph = d.flag==='Mismatch' ? 'M' : d.flag==='Different' ? 'D' : d.flag==='Unclear' ? 'U' : d.onSale ? 'S' : null;
+      const px = glyph ? W - 24 : W - 8;
+      const pt = el.append('text').attr('x', px).attr('y',y+3.5).attr('text-anchor','end')
+        .attr('font-size',N?10.5:11).attr('font-weight',600)
+        .style('font-variant-numeric','tabular-nums').attr('fill','var(--viz-ink)')
+        .text(fmt$(d.eff));
+      if (d.flag==='Different') pt.attr('font-style','italic');
+      if (d.flag==='Unclear'){
+        const tw = String(fmt$(d.eff)).length * (N?6.2:6.4);
+        el.append('line').attr('x1',px-tw).attr('x2',px).attr('y1',y+7).attr('y2',y+7)
+          .attr('stroke','var(--viz-tick)').attr('stroke-width',1).attr('stroke-dasharray','1.5 2.5');
+      }
+      if (glyph === 'M'){
+        el.append('rect').attr('x',W-20).attr('y',y-7).attr('width',14).attr('height',14)
+          .attr('rx',2).attr('fill','none').attr('stroke','#b3402e');
+        el.append('text').attr('x',W-13).attr('y',y+3.5).attr('text-anchor','middle')
+          .attr('font-size',8.5).attr('font-weight',700).attr('fill','#9a3524').text('M');
+      } else if (glyph === 'D' || glyph === 'U'){
+        el.append('text').attr('x',W-13).attr('y',y+3.5).attr('text-anchor','middle')
+          .attr('font-size',8.5).attr('font-weight',700).attr('fill','var(--viz-tick)').text(glyph);
+      } else if (glyph === 'S'){
+        el.append('text').attr('x',W-13).attr('y',y+3.5).attr('text-anchor','middle')
+          .attr('font-size',8).attr('font-weight',700).attr('fill','var(--bd-gold-deep)').text('S');
+      }
+    });
+
+    /* hit rows + wash */
+    const hits = svg.append('g').selectAll('rect').data(rows, d=>d.key).join('rect')
+      .attr('class','hit').attr('x',0).attr('width',W)
+      .attr('y',(d,i)=>top+i*rowH).attr('height',rowH)
+      .attr('aria-label', d => d.avail
+        ? `${S[d.id].name}: effective ${fmt$(d.eff)}${d.onSale ? `, on sale from shelf price ${fmt$(d.reg)}` : ''}${d.flag!=='OK' ? ', comparability ' + d.flag : ''}${d.brand ? ', ' + d.brand : ''}`
+        : `${S[d.id].name}: ${item} not carried`);
+    const content = { key: d=>item+'|'+d.key, html: ttHTML };
+    wireHits(hits, tip, content, wrap);
+    /* wash follows pin */
+    hits.on('pointerdown.wash keydown.wash', function(){
+      requestAnimationFrame(()=>{
+        washG.selectAll('*').remove();
+        if (!tip.pinnedKey) return;
+        const i = rows.findIndex(d => item+'|'+d.key === tip.pinnedKey);
+        if (i < 0) return;
+        washG.append('rect').attr('class','rowwash').attr('x',0).attr('width',W)
+          .attr('y',top+i*rowH).attr('height',rowH);
+        washG.append('rect').attr('x',0).attr('width',2).attr('y',top+i*rowH).attr('height',rowH)
+          .attr('fill','var(--bd-black)');
+      });
+    });
+  }
+
+  function buildTable(){
+    const rows = rowsFor();
+    let h = `<table class="grid"><caption>${esc(item)} — YJC 2026 index, all 12 stores</caption><thead><tr><th>Store</th><th>Brand / quantity</th><th>Regular</th><th>Sale</th><th>Effective</th><th>Comparability</th><th>Date</th></tr></thead><tbody>`;
+    rows.forEach(d=>{
+      h += `<tr><td>${esc(S[d.id].name)}</td><td>${esc(d.brand)||'—'}</td>` + (d.avail
+        ? `<td>${d.reg!=null?fmt$(d.reg):'—'}</td><td>${d.onSale?fmt$(d.sale):'—'}</td>
+           <td class="${d.flag==='Different'?'it':''}${d.flag==='Unclear'?' un':''}">${fmt$(d.eff)}</td>
+           <td>${esc(d.flag)}${d.onSale?' · ON SALE':''}</td>`
+        : `<td>—</td><td>—</td><td>—</td><td>NOT CARRIED</td>`) +
+        `<td>${d.date ? esc(d.date) : 'not recorded'}</td></tr>`;
+    });
+    document.getElementById('ex3-table').innerHTML = h + '</tbody></table>';
+  }
+  updateHeader(); buildTable();
+  watchMode(wrap, m => render(m, false));
+})();
+</script>
+</body>
+</html>

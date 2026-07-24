@@ -1,0 +1,235 @@
+{
+"meta": {
+"expected_years": [
+2017,
+2021,
+2026
+],
+"generated": "2026-07-24",
+"source": "compiled from Bushwick Daily surveys 2017/2021 + Tableau + YJC 2026 index"
+},
+"rows": [
+{
+"store_id": "trader_joes",
+"store": "Trader Joe's",
+"year": 2017,
+"basket": "17-item",
+"total": 48.05,
+"rank": 1,
+"quality_flag": "",
+"note": ""
+},
+{
+"store_id": "associated",
+"store": "Associated",
+"year": 2017,
+"basket": "17-item",
+"total": 53.04,
+"rank": 2,
+"quality_flag": "",
+"note": ""
+},
+{
+"store_id": "city_fresh",
+"store": "City Fresh",
+"year": 2017,
+"basket": "17-item",
+"total": 55.11,
+"rank": 3,
+"quality_flag": "",
+"note": ""
+},
+{
+"store_id": "key_food",
+"store": "Key Food",
+"year": 2017,
+"basket": "17-item",
+"total": 56.66,
+"rank": 4,
+"quality_flag": "",
+"note": ""
+},
+{
+"store_id": "food_bazaar",
+"store": "Food Bazaar",
+"year": 2017,
+"basket": "17-item",
+"total": 58.27,
+"rank": 5,
+"quality_flag": "",
+"note": ""
+},
+{
+"store_id": "whole_foods",
+"store": "Whole Foods",
+"year": 2017,
+"basket": "17-item",
+"total": 61.29,
+"rank": 6,
+"quality_flag": "",
+"note": ""
+},
+{
+"store_id": "food_story",
+"store": "Food Story",
+"year": 2017,
+"basket": "17-item",
+"total": 74.83,
+"rank": 7,
+"quality_flag": "",
+"note": ""
+},
+{
+"store_id": "hana",
+"store": "Hana Natural",
+"year": 2017,
+"basket": "17-item",
+"total": 79.83,
+"rank": 8,
+"quality_flag": "",
+"note": ""
+},
+{
+"store_id": "brooklyns_natural",
+"store": "Brooklyn's Natural",
+"year": 2017,
+"basket": "17-item",
+"total": 46.88,
+"rank": null,
+"quality_flag": "incomplete_basket",
+"note": "incomplete basket: many items unpriced/absent; adjusted estimate $62.07 excluding canned beans and chicken breasts (not stocked)"
+},
+{
+"store_id": "mr_lemon",
+"store": "Mr. Lemon",
+"year": 2026,
+"basket": "full-21",
+"total": 102.64,
+"rank": 1,
+"items_priced": 20,
+"items_missing": 1,
+"quality_flag": ""
+},
+{
+"store_id": "superfresh",
+"store": "SuperFresh Supermarket",
+"year": 2026,
+"basket": "full-21",
+"total": 103.78,
+"rank": 2,
+"items_priced": 20,
+"items_missing": 1,
+"quality_flag": ""
+},
+{
+"store_id": "billys",
+"store": "Billy's Marketplace",
+"year": 2026,
+"basket": "full-21",
+"total": 103.88,
+"rank": 3,
+"items_priced": 20,
+"items_missing": 1,
+"quality_flag": ""
+},
+{
+"store_id": "food_bazaar",
+"store": "Food Bazaar",
+"year": 2026,
+"basket": "full-21",
+"total": 107.13,
+"rank": 4,
+"items_priced": 21,
+"items_missing": 0,
+"quality_flag": ""
+},
+{
+"store_id": "met_fresh",
+"store": "Met Fresh",
+"year": 2026,
+"basket": "full-21",
+"total": 107.5,
+"rank": 5,
+"items_priced": 21,
+"items_missing": 0,
+"quality_flag": ""
+},
+{
+"store_id": "food_story",
+"store": "Food Story Natural Market",
+"year": 2026,
+"basket": "full-21",
+"total": 108.61,
+"rank": 6,
+"items_priced": 19,
+"items_missing": 2,
+"quality_flag": ""
+},
+{
+"store_id": "key_food",
+"store": "Key Food",
+"year": 2026,
+"basket": "full-21",
+"total": 110.75,
+"rank": 7,
+"items_priced": 21,
+"items_missing": 0,
+"quality_flag": ""
+},
+{
+"store_id": "hana",
+"store": "Hana",
+"year": 2026,
+"basket": "full-21",
+"total": 114.4,
+"rank": 8,
+"items_priced": 20,
+"items_missing": 1,
+"quality_flag": ""
+},
+{
+"store_id": "whole_foods",
+"store": "Whole Foods",
+"year": 2026,
+"basket": "full-21",
+"total": 114.89,
+"rank": 9,
+"items_priced": 21,
+"items_missing": 0,
+"quality_flag": ""
+},
+{
+"store_id": "city_fresh",
+"store": "City Fresh",
+"year": 2026,
+"basket": "full-21",
+"total": 115.29,
+"rank": 10,
+"items_priced": 21,
+"items_missing": 0,
+"quality_flag": ""
+},
+{
+"store_id": "associated",
+"store": "Associated",
+"year": 2026,
+"basket": "full-21",
+"total": 116.39,
+"rank": 11,
+"items_priced": 21,
+"items_missing": 0,
+"quality_flag": ""
+},
+{
+"store_id": "brooklyns_natural",
+"store": "Brooklyn's Natural",
+"year": 2026,
+"basket": "full-21",
+"total": 123.8,
+"rank": 12,
+"items_priced": 20,
+"items_missing": 1,
+"quality_flag": ""
+}
+]
+}

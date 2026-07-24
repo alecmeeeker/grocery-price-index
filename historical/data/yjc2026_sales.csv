@@ -1,0 +1,19 @@
+store,item,food_group,regular_price,sale_price,sale_note,savings_usd,savings_pct
+Billy's Marketplace,Apples,Produce,1.99,1.99,,0.0,0.0
+Billy's Marketplace,Black Beans,Protein,1.69,1.67,3 for $5,0.02,1.2
+Billy's Marketplace,Beer,Treats & Alcohol,11.99,10.99,,1.0,8.3
+Billy's Marketplace,Eggs,Protein,2.79,1.67,3 for 5,1.12,40.1
+City Fresh,Apples,Produce,2.49,1.99,,0.5,20.1
+City Fresh,Bananas,Produce,0.79,0.79,,0.0,0.0
+City Fresh,Kale,Produce,2.49,1.49,,1.0,40.2
+City Fresh,Coffee,Pantry & Beverages,12.89,8.99,,3.9,30.3
+Food Bazaar,Tomatoes,Produce,1.49,1.49,,0.0,0.0
+Food Bazaar,Spinach,Produce,4.19,3.5,2 for $7,0.69,16.5
+Food Bazaar,Greek yogurt,Dairy,5.0,5.0,,0.0,0.0
+Key Food,Beer,Treats & Alcohol,12.99,10.99,,2.0,15.4
+Met Fresh,Spinach,Produce,4.99,3.0,2/6.00,1.99,39.9
+Met Fresh,Coffee,Pantry & Beverages,12.29,6.99,,5.3,43.1
+Met Fresh,Black Beans,Protein,1.79,1.25,4 for $5,0.54,30.2
+Mr. Lemon,Beer,Treats & Alcohol,,2.25,,,
+SuperFresh Supermarket,Black Beans,Protein,2.29,1.67,3 for $5,0.62,27.1
+SuperFresh Supermarket,Beer,Treats & Alcohol,13.99,10.99,,3.0,21.4

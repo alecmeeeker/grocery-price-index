@@ -1,0 +1,253 @@
+store,food_group,item,brand_quantity,regular_price,sale_price,on_sale,effective_price,available,sale_note,notes,date_collected,comparability_flag,comparability_note
+Associated,Produce,Apples,"Gala, per lb",2.69,,False,2.69,True,,,2026-07-13,OK,
+Associated,Produce,Bananas,"Dole, per lb",0.89,,False,0.89,True,,,2026-07-13,OK,
+Associated,Produce,Tomatoes,"On the vine, per lb",2.69,,False,2.69,True,,,2026-07-13,OK,
+Associated,Produce,Kale,Per lb,1.99,,False,1.99,True,,,2026-07-13,OK,
+Associated,Produce,Spinach,"Attitude, 5 oz",4.79,,False,4.79,True,,,2026-07-13,OK,
+Associated,Grains,Bread,Wonderbread 20z,2.99,,False,2.99,True,,,2026-07-13,OK,
+Associated,Protein,Peanut Butter,"Jif, 16 oz",4.29,,False,4.29,True,,,2026-07-13,Different,"Jif (16oz) — different brand, ~same size"
+Associated,Pantry & Beverages,Honey,Golden Blossom (12 oz),7.29,,False,7.29,True,,,2026-07-13,OK,
+Associated,Grains,Rice,Caronlina (2lb),3.49,,False,3.49,True,,,2026-07-13,OK,
+Associated,Pantry & Beverages,Coffee,"Bustelo, 10 oz",13.49,,False,13.49,True,,,2026-07-13,OK,
+Associated,Protein,Black Beans,"Goya, 1 standard can",1.69,,False,1.69,True,,,2026-07-13,OK,
+Associated,Dairy,Milk,Organic Vally,9.99,,False,9.99,True,,,2026-07-13,Unclear,Half-gallon size not explicitly confirmed
+Associated,Dairy,Butter,Kerrygold 8oz,7.99,,False,7.99,True,,,2026-07-13,OK,
+Associated,Dairy,Cheddar Cheese,Cabot (8oz),5.99,,False,5.99,True,,,2026-07-13,OK,
+Associated,Dairy,Greek yogurt,Chobani (5.3 oz),2.49,,False,2.49,True,,,2026-07-13,OK,
+Associated,Protein,Tofu,House foods,2.99,,False,2.99,True,,,2026-07-13,OK,
+Associated,Protein,Chicken Breast,Perdue thin sliced chicken cutlets (per lb),7.99,,False,7.99,True,,,2026-07-13,Different,"Perdue, thin-sliced cutlets"
+Associated,Treats & Alcohol,Beer,"Modelo, 6 pack",12.99,,False,12.99,True,,,2026-07-13,OK,
+Associated,Treats & Alcohol,Ice Cream,Hagen-Daz,5.99,,False,5.99,True,,,2026-07-13,OK,
+Associated,Grains,Cereal,Honey Nut Cheerios (10.8 oz),7.99,,False,7.99,True,,,2026-07-13,Mismatch,"Honey Nut Cheerios, 10.8oz — different flavor AND a larger box than the 8.9oz plain Cheerios elsewhere"
+Associated,Protein,Eggs,Sunshine Farms (12 pack),5.69,,False,5.69,True,,,2026-07-13,OK,
+Billy's Marketplace,Produce,Apples,"Store brand, per lb",1.99,1.99,False,1.99,True,,,2026-07-14,Unclear,"Just ""store brand"" — variety not recorded"
+Billy's Marketplace,Produce,Bananas,"Chiquitas, per lb",0.79,,False,0.79,True,,,2026-07-14,OK,
+Billy's Marketplace,Produce,Tomatoes,On the vine,2.49,,False,2.49,True,,,2026-07-14,Unclear,"Just ""USA"" — variety not recorded"
+Billy's Marketplace,Produce,Kale,"store brand (by bunch, weight around .45lb)",2,,False,2,True,,,2026-07-14,Mismatch,"Priced by the bunch, not per lb — not directly comparable"
+Billy's Marketplace,Produce,Spinach,Olivia organic,4.69,,False,4.69,True,,,2026-07-14,Unclear,Bag size not recorded
+Billy's Marketplace,Grains,Bread,Wonder Bread (20oz),3.49,,False,3.49,True,,,2026-07-14,OK,
+Billy's Marketplace,Protein,Peanut Butter,Jif (16oz),3.5,,False,3.5,True,,,2026-07-14,Different,"Jif (16oz) — different brand, ~same size"
+Billy's Marketplace,Pantry & Beverages,Honey,Golden Blossom (12oz),8.29,,False,8.29,True,,,2026-07-14,OK,
+Billy's Marketplace,Grains,Rice,Caronlina (2lb),3.49,,False,3.49,True,,,2026-07-14,OK,
+Billy's Marketplace,Pantry & Beverages,Coffee,"Cafe Bustelo, 10 oz",11.99,,False,11.99,True,,,2026-07-14,OK,
+Billy's Marketplace,Protein,Black Beans,Goya,1.69,1.67,True,1.67,True,3 for $5,,2026-07-14,OK,
+Billy's Marketplace,Dairy,Milk,Organic Valley,8.49,,False,8.49,True,,,2026-07-14,Unclear,Half-gallon size not explicitly confirmed
+Billy's Marketplace,Dairy,Butter,Kerrygold (2 stick),7.99,,False,7.99,True,,,2026-07-14,OK,
+Billy's Marketplace,Dairy,Cheddar Cheese,Cabot,6.19,,False,6.19,True,,,2026-07-14,Unclear,Size not recorded
+Billy's Marketplace,Dairy,Greek yogurt,Chobani,2.49,,False,2.49,True,,,2026-07-14,Unclear,Cup size not recorded
+Billy's Marketplace,Protein,Tofu,,,,False,,False,,Not available / not recorded at this store,2026-07-14,OK,
+Billy's Marketplace,Protein,Chicken Breast,Chicken breast thin sliced (per lb),6.49,,False,6.49,True,,,2026-07-14,Different,"Perdue, thin-sliced"
+Billy's Marketplace,Treats & Alcohol,Beer,"Modelo, 6 pack",11.99,10.99,True,10.99,True,,,2026-07-14,OK,
+Billy's Marketplace,Treats & Alcohol,Ice Cream,Ben&Jerrys,8.19,,False,8.19,True,,,2026-07-14,Different,Breyers — a lower-tier brand than Häagen-Dazs
+Billy's Marketplace,Grains,Cereal,Cheerios (8.9oz),6.99,,False,6.99,True,,,2026-07-14,OK,
+Billy's Marketplace,Protein,Eggs,Sunshine Farms,2.79,1.67,True,1.67,True,3 for 5,,2026-07-14,OK,
+Brooklyn's Natural,Produce,Apples,"Gala- USA, per lb",2.49,,False,2.49,True,,,None,OK,
+Brooklyn's Natural,Produce,Bananas,"Chiquitas, per lb",0.99,,False,0.99,True,,,None,OK,
+Brooklyn's Natural,Produce,Tomatoes,"stem tomato, per lb",4.99,,False,4.99,True,,,None,Different,"Stem tomatoes, not on-the-vine"
+Brooklyn's Natural,Produce,Kale,"USA, per bunch",2.49,,False,2.49,True,,,None,Mismatch,"Priced per bunch (USA), not per lb — not directly comparable"
+Brooklyn's Natural,Produce,Spinach,Organic Girl,4.79,,False,4.79,True,,,None,OK,
+Brooklyn's Natural,Grains,Bread,Bakery of New York,4.99,,False,4.99,True,,,None,Different,"Bakery of New York — artisan loaf, not mass-market sandwich bread; size not recorded"
+Brooklyn's Natural,Protein,Peanut Butter,Skippy (16.3oz),5.29,,False,5.29,True,,,None,OK,
+Brooklyn's Natural,Pantry & Beverages,Honey,Sandt's Golden Honey (12oz),6.49,,False,6.49,True,,,None,Different,"Sandt's Golden Honey — different brand, same 12oz size"
+Brooklyn's Natural,Grains,Rice,Lundberg (2lbs),10.99,,False,10.99,True,,,None,Different,"Lundberg — premium brand, same 2lb size"
+Brooklyn's Natural,Pantry & Beverages,Coffee,Brooklyn's Own Ground Coffee Espresso ,13.49,,False,13.49,True,,,None,Different,Brooklyn's own ground espresso — different (local) brand; size not recorded
+Brooklyn's Natural,Protein,Black Beans,Eden's,4.49,,False,4.49,True,,,None,Different,Eden's — different (premium) brand
+Brooklyn's Natural,Dairy,Milk,Organic Valley (half gallon),7.99,,False,7.99,True,,,None,OK,
+Brooklyn's Natural,Dairy,Butter,"Kerrygold (salted Irish butter, 1 stick)",6.79,,False,6.79,True,,,None,Mismatch,"Only 1 stick (4oz) vs. 2 sticks (8oz) elsewhere — roughly double the per-oz price of a ""2-stick"" store"
+Brooklyn's Natural,Dairy,Cheddar Cheese,Cabot,5.79,,False,5.79,True,,,None,Unclear,Size not recorded
+Brooklyn's Natural,Dairy,Greek yogurt,Chobani,2.49,,False,2.49,True,,,None,Unclear,Cup size not recorded
+Brooklyn's Natural,Protein,Tofu,House Foods,1.99,,False,1.99,True,,,None,OK,
+Brooklyn's Natural,Protein,Chicken Breast,did not have in store,,,False,,False,,did not have in store,None,OK,
+Brooklyn's Natural,Treats & Alcohol,Beer,Model 6 pack,13.99,,False,13.99,True,,,None,OK,
+Brooklyn's Natural,Treats & Alcohol,Ice Cream,Haagen Dazs,8.99,,False,8.99,True,,,None,OK,
+Brooklyn's Natural,Grains,Cereal,Honey grahams,7.99,,False,7.99,True,,,None,Mismatch,"Magic Spoon — an entirely different (premium, low-carb) cereal brand, not a Cheerios comparison at all"
+Brooklyn's Natural,Protein,Eggs,Farm Fresh Free Range,6.29,,False,6.29,True,,,None,Different,Farm Fresh Free Range
+City Fresh,Produce,Apples,"Gala, per lb",2.49,1.99,True,1.99,True,,,2026-07-13,OK,
+City Fresh,Produce,Bananas,Dole - could not find non-sale price,0.79,0.79,False,0.79,True,,Dole - could not find non-sale price,2026-07-13,OK,
+City Fresh,Produce,Tomatoes,"On the vine, per lb",4.99,,False,4.99,True,,,2026-07-13,OK,
+City Fresh,Produce,Kale,Per lb,2.49,1.49,True,1.49,True,,,2026-07-13,OK,
+City Fresh,Produce,Spinach,Attitude,4.49,,False,4.49,True,,,2026-07-13,Unclear,Bag size not recorded
+City Fresh,Grains,Bread,Wonderbread,3.99,,False,3.99,True,,,2026-07-13,OK,
+City Fresh,Protein,Peanut Butter,Skippy (16.3oz),4.29,,False,4.29,True,,,2026-07-13,OK,
+City Fresh,Pantry & Beverages,Honey,Golden Blossom (12oz),8.99,,False,8.99,True,,,2026-07-13,OK,
+City Fresh,Grains,Rice,Caronlina (2lb),3.69,,False,3.69,True,,,2026-07-13,OK,
+City Fresh,Pantry & Beverages,Coffee,"Cafe Bustelo, 10 oz",12.89,8.99,True,8.99,True,,,2026-07-13,OK,
+City Fresh,Protein,Black Beans, Goya,1.89,,False,1.89,True,,,2026-07-13,OK,
+City Fresh,Dairy,Milk,Organic Valley (half gallon),7.99,,False,7.99,True,,,2026-07-13,OK,
+City Fresh,Dairy,Butter,Kerygold,7.99,,False,7.99,True,,,2026-07-13,Unclear,Stick count / oz not recorded
+City Fresh,Dairy,Cheddar Cheese,Land O Lakes,5.99,,False,5.99,True,,,2026-07-13,Different,"Land O Lakes — different brand, size not recorded"
+City Fresh,Dairy,Greek yogurt,Chobani (mixed berry greek yogurt 5.3 oz),2.69,,False,2.69,True,,,2026-07-13,OK,
+City Fresh,Protein,Tofu,House foods Tofu (Soft),2.69,,False,2.69,True,,,2026-07-13,OK,
+City Fresh,Protein,Chicken Breast,Chicken breast boneless,5.99,,False,5.99,True,,,2026-07-13,Unclear,"Unbranded, generic ""boneless"""
+City Fresh,Treats & Alcohol,Beer,"Model, 6 pack",13.49,,False,13.49,True,,,None,OK,
+City Fresh,Treats & Alcohol,Ice Cream,Hagen-Daz,9.19,,False,9.19,True,,,None,OK,
+City Fresh,Grains,Cereal,Cheerios (8.9oz),7.99,,False,7.99,True,,,2026-07-13,OK,
+City Fresh,Protein,Eggs,Sunhine Farms( cage free 12 pack),5.69,,False,5.69,True,,,None,OK,
+Food Bazaar,Produce,Apples,Honey Crisp (Manager's Special),2.99,,False,2.99,True,,,2026-07-17,Different,"Honey Crisp variety, not Gala"
+Food Bazaar,Produce,Bananas,"Chiquitasm, per lb",0.79,,False,0.79,True,,,2026-07-14,OK,
+Food Bazaar,Produce,Tomatoes,On the vine (Weekly Special),1.49,1.49,False,1.49,True,,,2026-07-14,OK,
+Food Bazaar,Produce,Kale,per lb,1.79,,False,1.79,True,,,2026-07-14,OK,
+Food Bazaar,Produce,Spinach,"Uncle Vinny's, 5 oz",4.19,3.5,True,3.5,True,2 for $7,,2026-07-14,OK,
+Food Bazaar,Grains,Bread,Wonder Break (20oz),3.99,,False,3.99,True,,,2026-07-14,OK,
+Food Bazaar,Protein,Peanut Butter,Jif (16oz),3,,False,3,True,,,2026-07-14,Different,"Jif (16oz) — different brand, ~same size"
+Food Bazaar,Pantry & Beverages,Honey,Golden Blossom (12oz),8.39,,False,8.39,True,,,2026-07-14,OK,
+Food Bazaar,Grains,Rice,Caronlina (2lb),3.99,,False,3.99,True,,,2026-07-14,OK,
+Food Bazaar,Pantry & Beverages,Coffee,"Cafe Bustelo, 10 oz",8.49,,False,8.49,True,,,2026-07-14,OK,
+Food Bazaar,Protein,Black Beans,Goya,1.5,,False,1.5,True,,,2026-07-14,OK,
+Food Bazaar,Dairy,Milk,Organic Valley,7.49,,False,7.49,True,,,2026-07-14,Unclear,Half-gallon size not explicitly confirmed
+Food Bazaar,Dairy,Butter,Kerygold,7.29,,False,7.29,True,,,2026-07-14,Unclear,Stick count / oz not recorded
+Food Bazaar,Dairy,Cheddar Cheese,Cabot,4.99,,False,4.99,True,,,2026-07-14,Unclear,Size not recorded
+Food Bazaar,Dairy,Greek yogurt,Chobani (mixed berry 5.3 oz),5,5,False,5,True,,,2026-07-14,OK,
+Food Bazaar,Protein,Tofu,House Foods ,2.99,,False,2.99,True,,,2026-07-14,OK,
+Food Bazaar,Protein,Chicken Breast,Thin slice boneless (6 cut thin),7.99,,False,7.99,True,,,2026-07-14,Unclear,"Unbranded, generic ""thin slice"""
+Food Bazaar,Treats & Alcohol,Beer,"Modelo, 6 pack",12.49,,False,12.49,True,,,2026-07-14,OK,
+Food Bazaar,Treats & Alcohol,Ice Cream,Hagen-Daz,8.99,,False,8.99,True,,,2026-07-14,OK,
+Food Bazaar,Grains,Cereal,Cheerios (8.9oz),5.99,,False,5.99,True,,,2026-07-14,OK,
+Food Bazaar,Protein,Eggs,Mitilisky jumbo cage free,3.99,,False,3.99,True,,,2026-07-14,Different,"Mitilisky, jumbo cage-free"
+Food Story Natural Market,Produce,Apples,Gala ,2.99,,False,2.99,True,,,None,OK,
+Food Story Natural Market,Produce,Bananas,Chiquitas ,1.99,,False,1.99,True,,,None,OK,
+Food Story Natural Market,Produce,Tomatoes,USA,1.99,,False,1.99,True,,,None,Unclear,"Just ""USA"" — variety not recorded"
+Food Story Natural Market,Produce,Kale,Organic- Store Brand (per lb),2.99,,False,2.99,True,,,None,OK,
+Food Story Natural Market,Produce,Spinach,Organic girl,4.99,,False,4.99,True,,,None,Unclear,Bag size not recorded
+Food Story Natural Market,Grains,Bread,Bakery of New York,4.99,,False,4.99,True,,,None,Different,"Bakery of New York — artisan loaf, not mass-market sandwich bread; size not recorded"
+Food Story Natural Market,Protein,Peanut Butter,Skippy (16.3),3.99,,False,3.99,True,,,None,OK,
+Food Story Natural Market,Pantry & Beverages,Honey,Golden Blosson Honey (12.oz),8.49,,False,8.49,True,,,None,OK,
+Food Story Natural Market,Grains,Rice,Carolina (2lbs),3.99,,False,3.99,True,,,None,OK,
+Food Story Natural Market,Pantry & Beverages,Coffee,Cafe Bustelo (vacuum pack),10.99,,False,10.99,True,,,None,Unclear,"Cafe Bustelo ""vacuum pack"" — size not confirmed as 10oz"
+Food Story Natural Market,Protein,Black Beans,Progresso,1.99,,False,1.99,True,,,None,Different,Progresso — different brand
+Food Story Natural Market,Dairy,Milk,Organic Milk,7.99,,False,7.99,True,,,None,Unclear,"Just ""Organic Milk"" — brand and size not recorded"
+Food Story Natural Market,Dairy,Butter,Kerrygold (1 stick),7.49,,False,7.49,True,,,None,Mismatch,Only 1 stick (4oz) vs. 2 sticks (8oz) elsewhere
+Food Story Natural Market,Dairy,Cheddar Cheese,Cabot,6.99,,False,6.99,True,,,None,Unclear,Size not recorded
+Food Story Natural Market,Dairy,Greek yogurt,Chobani,2.29,,False,2.29,True,,,None,Unclear,Cup size not recorded
+Food Story Natural Market,Protein,Tofu,,,,False,,False,,Not available / not recorded at this store,None,OK,
+Food Story Natural Market,Protein,Chicken Breast,,,,False,,False,,Not available / not recorded at this store,None,OK,
+Food Story Natural Market,Treats & Alcohol,Beer,Modelo 6 pack,12.99,,False,12.99,True,,,None,OK,
+Food Story Natural Market,Treats & Alcohol,Ice Cream,Hagen-Daz,7.99,,False,7.99,True,,,None,OK,
+Food Story Natural Market,Grains,Cereal,Cheerios (8.9oz),7.49,,False,7.49,True,,,None,OK,
+Food Story Natural Market,Protein,Eggs,Barnyards (Cage Free 12 Pack),5.99,,False,5.99,True,,,None,Different,"Barnyards, cage-free 12-pack"
+Hana,Produce,Apples,Gala,2.99,,False,2.99,True,,,2026-07-13,OK,
+Hana,Produce,Bananas,"Chiquita, per lb",0.99,,False,0.99,True,,,2026-07-13,OK,
+Hana,Produce,Tomatoes,"On the vine, per lb",3.99,,False,3.99,True,,,2026-07-13,OK,
+Hana,Produce,Kale,By the bunch,1.99,,False,1.99,True,,,2026-07-13,Mismatch,"Priced by the bunch, not per lb — not directly comparable"
+Hana,Produce,Spinach,Organic Girl,5.69,,False,5.69,True,,,2026-07-13,OK,
+Hana,Grains,Bread,Bread Alone (20oz),7.29,,False,7.29,True,,,2026-07-13,Different,"Bread Alone (20oz) — different brand, same size"
+Hana,Protein,Peanut Butter,Skippy (16.3oz),4.59,,False,4.59,True,,,2026-07-13,OK,
+Hana,Pantry & Beverages,Honey,Golden Blossom (12oz),6.99,,False,6.99,True,,,2026-07-13,OK,
+Hana,Grains,Rice,Carolina (2lb),3.99,,False,3.99,True,,,2026-07-13,OK,
+Hana,Pantry & Beverages,Coffee,Cafe Bustelo (10oz),12.99,,False,12.99,True,,,2026-07-13,OK,
+Hana,Protein,Black Beans,Delallo,2.99,,False,2.99,True,,,2026-07-13,OK,
+Hana,Dairy,Milk,Organic Vally(half Gallon,4.99,,False,4.99,True,,,2026-07-13,OK,
+Hana,Dairy,Butter,Keryygold (2 sticks),7.99,,False,7.99,True,,,2026-07-13,OK,
+Hana,Dairy,Cheddar Cheese,Cabot (8.oz),5.49,,False,5.49,True,,,2026-07-13,OK,
+Hana,Dairy,Greek yogurt,Chobani (mixed berry greek yogurt 5.3.oz),2.49,,False,2.49,True,,,2026-07-13,OK,
+Hana,Protein,Tofu,House foods Tofu,2.99,,False,2.99,True,,,2026-07-13,OK,
+Hana,Protein,Chicken Breast,Does not sell,,,False,,False,,Does not sell,2026-07-13,OK,
+Hana,Treats & Alcohol,Beer,Modelo 6 pack,14.99,,False,14.99,True,,,2026-07-13,OK,
+Hana,Treats & Alcohol,Ice Cream,Hagen-Daz ,8.99,,False,8.99,True,,,2026-07-13,OK,
+Hana,Grains,Cereal,Cheerios (8.9oz),6.99,,False,6.99,True,,,2026-07-13,OK,
+Hana,Protein,Eggs,"1 dozen, ""farm fresh"" Noah's Pride",4.99,,False,4.99,True,,,None,Different,"Noah's Pride, farm fresh dozen"
+Key Food,Produce,Apples,"Gala, per lb",2.69,,False,2.69,True,,,2026-07-13,OK,
+Key Food,Produce,Bananas,"Chiquita, per lb",0.89,,False,0.89,True,,,2026-07-13,OK,
+Key Food,Produce,Tomatoes,"On the vine, per lb",1.49,,False,1.49,True,,,2026-07-13,OK,
+Key Food,Produce,Kale,Per lb,2.19,,False,2.19,True,,,2026-07-13,OK,
+Key Food,Produce,Spinach,"Attitude, 5 oz",3.99,,False,3.99,True,,,2026-07-13,OK,
+Key Food,Grains,Bread,All Natural Country (20oz),4.99,,False,4.99,True,,,2026-07-13,Different,"All Natural Country (20oz) — different brand, same size"
+Key Food,Protein,Peanut Butter,Skippy (16.3oz),3.99,,False,3.99,True,,,2026-07-13,OK,
+Key Food,Pantry & Beverages,Honey,Golden Blossom (12oz),7.69,,False,7.69,True,,,2026-07-13,OK,
+Key Food,Grains,Rice,Carolina (2lb),3.79,,False,3.79,True,,,2026-07-13,OK,
+Key Food,Pantry & Beverages,Coffee,"Cafe Bustelo, 10 oz",8.99,,False,8.99,True,,,2026-07-13,OK,
+Key Food,Protein,Black Beans,Goya,1.25,,False,1.25,True,,,2026-07-13,OK,
+Key Food,Dairy,Milk,Organic Farms (half Gallon),7.99,,False,7.99,True,,,2026-07-13,Different,"Organic Farms — different brand, half gallon confirmed"
+Key Food,Dairy,Butter,Kerygold (could not find four stick only 2),8.19,,False,8.19,True,,Kerygold (could not find four stick only 2),2026-07-13,Unclear,"Wanted a 4-stick pack, settled for 2-stick — same as most others but worth noting"
+Key Food,Dairy,Cheddar Cheese,Cabot (cheader cheese 8.oz,4.99,,False,4.99,True,,,2026-07-13,OK,
+Key Food,Dairy,Greek yogurt,Chobani (mixed berry greek yogurt 5.3 oz),2.19,,False,2.19,True,,,2026-07-13,OK,
+Key Food,Protein,Tofu,House foods Tofu Soft ,3.99,,False,3.99,True,,,2026-07-13,OK,
+Key Food,Protein,Chicken Breast,Store packed boneless chicken breasts thin sliced (per lb),7.99,,False,7.99,True,,,2026-07-13,Unclear,"Unbranded, store-packed"
+Key Food,Treats & Alcohol,Beer,"Modelo, 6 pack",12.99,10.99,True,10.99,True,,,2026-07-13,OK,
+Key Food,Treats & Alcohol,Ice Cream,Hangen-Daz ,6.99,,False,6.99,True,,,2026-07-13,OK,
+Key Food,Grains,Cereal,Cheerios (8.9oz,7.49,,False,7.49,True,,,2026-07-13,OK,
+Key Food,Protein,Eggs,Cage free Brown eggs(Natural Garden dozen),7.99,,False,7.99,True,,,2026-07-13,Different,"Natural Garden, cage-free dozen"
+Met Fresh,Produce,Apples,Store brand,1.99,,False,1.99,True,,,2026-07-14,Unclear,"Just ""store brand"" — variety not recorded"
+Met Fresh,Produce,Bananas,Dole,1.49,,False,1.49,True,,,2026-07-14,OK,
+Met Fresh,Produce,Tomatoes,on the vine (per lb),1.99,,False,1.99,True,,,2026-07-14,OK,
+Met Fresh,Produce,Kale,Store brand,2.99,,False,2.99,True,,,2026-07-14,OK,
+Met Fresh,Produce,Spinach,organic girl,4.99,3,True,3,True,2/6.00,,2026-07-14,OK,
+Met Fresh,Grains,Bread,Wonder Bread (20oz)3.49,3.49,,False,3.49,True,,,2026-07-14,OK,
+Met Fresh,Protein,Peanut Butter,Jif ( 16oz),4.29,,False,4.29,True,,,2026-07-14,Different,"Jif (16oz) — different brand, ~same size"
+Met Fresh,Pantry & Beverages,Honey,Golden Blossom (12oz),8.69,,False,8.69,True,,,2026-07-14,OK,
+Met Fresh,Grains,Rice,Carolina (2lb),3.29,,False,3.29,True,,,2026-07-14,OK,
+Met Fresh,Pantry & Beverages,Coffee,"Cafe Bustelo, 10 oz",12.29,6.99,True,6.99,True,,,2026-07-14,OK,
+Met Fresh,Protein,Black Beans,Goya,1.79,1.25,True,1.25,True,4 for $5,,2026-07-14,OK,
+Met Fresh,Dairy,Milk,Organic Valley,6.99,,False,6.99,True,,,2026-07-14,Unclear,Half-gallon size not explicitly confirmed
+Met Fresh,Dairy,Butter,"Kerygold (one stick, did not have two stick)",7.79,,False,7.79,True,,"Kerygold (one stick, did not have two stick)",2026-07-14,Mismatch,Only 1 stick — store was out of the 2-stick pack
+Met Fresh,Dairy,Cheddar Cheese,Cabot (8oz),6.29,,False,6.29,True,,,2026-07-14,OK,
+Met Fresh,Dairy,Greek yogurt,Chobani (5.3 oz),2.29,,False,2.29,True,,,2026-07-14,OK,
+Met Fresh,Protein,Tofu,House-Foods soft,3.99,,False,3.99,True,,,2026-07-14,OK,
+Met Fresh,Protein,Chicken Breast,Boneless chicken breast,6.23,,False,6.23,True,,,2026-07-14,Unclear,"Unbranded, generic ""boneless"""
+Met Fresh,Treats & Alcohol,Beer,Modelo,13.99,,False,13.99,True,,,2026-07-14,OK,
+Met Fresh,Treats & Alcohol,Ice Cream,Hagen-Daz,6.99,,False,6.99,True,,,2026-07-14,OK,
+Met Fresh,Grains,Cereal,Cheerios (8.9oz),7.49,,False,7.49,True,,,2026-07-14,OK,
+Met Fresh,Protein,Eggs,Sunshine Farms(18 pack),5.99,,False,5.99,True,,,2026-07-14,Mismatch,Sunshine Farms 18-pack — 1.5x the eggs of the 12-pack sold elsewhere; price is not directly comparable without adjusting per egg
+Mr. Lemon,Produce,Apples,"USA, per apple",1,,False,1,True,,,2026-07-14,Mismatch,"Priced per individual apple, not per lb — not directly comparable"
+Mr. Lemon,Produce,Bananas,"Dole, per lb",1.49,,False,1.49,True,,,2026-07-14,OK,
+Mr. Lemon,Produce,Tomatoes,"plum, per lb",1.49,,False,1.49,True,,,2026-07-14,Different,"Plum tomatoes, not on-the-vine"
+Mr. Lemon,Produce,Kale,"generic, per bunch",2.99,,False,2.99,True,,,2026-07-14,Mismatch,"Priced per bunch, not per lb — not directly comparable"
+Mr. Lemon,Produce,Spinach,"store brand, per lb",1.9,,False,1.9,True,,,2026-07-14,Mismatch,"Loose spinach priced per lb, not a ~5oz bag — not directly comparable"
+Mr. Lemon,Grains,Bread,White bread (NEED TO GET BRAND),5.29,,False,5.29,True,,,2026-07-14,Unclear,"Brand never recorded (""NEED TO GET BRAND"" left in intern notes)"
+Mr. Lemon,Protein,Peanut Butter,Skippy (16.3oz),4,,False,4,True,,,2026-07-14,OK,
+Mr. Lemon,Pantry & Beverages,Honey,Gunters Pure Honey Golden (12oz),5,,False,5,True,,,2026-07-14,Different,"Gunter's Pure Honey — different brand, same 12oz size"
+Mr. Lemon,Grains,Rice,Carolina (2lb),5,,False,5,True,,,2026-07-14,OK,
+Mr. Lemon,Pantry & Beverages,Coffee,"Cafe Bustelo, 10 oz",13,,False,13,True,,,2026-07-14,OK,
+Mr. Lemon,Protein,Black Beans,Goya,2,,False,2,True,,,2026-07-14,OK,
+Mr. Lemon,Dairy,Milk,Organic Valley,8,,False,8,True,,,2026-07-14,Unclear,Half-gallon size not explicitly confirmed
+Mr. Lemon,Dairy,Butter,Kerygold (,7,,False,7,True,,,2026-07-14,Unclear,Stick count / oz not recorded (entry incomplete)
+Mr. Lemon,Dairy,Cheddar Cheese,Cabot (8oz),5,,False,5,True,,,2026-07-14,OK,
+Mr. Lemon,Dairy,Greek yogurt,Chobani (5.3 oz),2,,False,2,True,,,2026-07-14,OK,
+Mr. Lemon,Protein,Tofu,House-Foods soft,4,,False,4,True,,,2026-07-14,OK,
+Mr. Lemon,Protein,Chicken Breast,"Dartagnan, regeneratively raised (per lb)",10.99,,False,10.99,True,,,2026-07-14,Mismatch,"D'Artagnan, regeneratively raised — premium specialty brand, likely explains its being the priciest chicken in the basket"
+Mr. Lemon,Treats & Alcohol,Beer,Only sold individual beers,,2.25,False,,False,,"Only sold as single bottles ($2.25 ea) — not a 6-pack, excluded from basket totals as not comparable",2026-07-14,Mismatch,"Sold only as single bottles ($2.25 ea), not a 6-pack — already excluded from basket totals as not comparable"
+Mr. Lemon,Treats & Alcohol,Ice Cream,Hagen-Daz,8.49,,False,8.49,True,,,2026-07-14,OK,
+Mr. Lemon,Grains,Cereal,Cheerios (8.9oz),8,,False,8,True,,,2026-07-14,OK,
+Mr. Lemon,Protein,Eggs,organic free range born to be egg,6,,False,6,True,,,2026-07-14,Unclear,"Organic free range, brand not clearly recorded"
+SuperFresh Supermarket,Produce,Apples,USA,1.99,,False,1.99,True,,,2026-07-14,Unclear,"Just ""USA"" — variety not recorded"
+SuperFresh Supermarket,Produce,Bananas,Dole,1.29,,False,1.29,True,,,2026-07-14,OK,
+SuperFresh Supermarket,Produce,Tomatoes,n/a,1.49,,False,1.49,True,,,2026-07-14,Unclear,Variety not recorded
+SuperFresh Supermarket,Produce,Kale,"store brand, per lb",1.99,,False,1.99,True,,,2026-07-14,OK,
+SuperFresh Supermarket,Produce,Spinach,Fresh Express,4.99,,False,4.99,True,,,2026-07-14,Unclear,Bag size not recorded
+SuperFresh Supermarket,Grains,Bread,Wonder Bread (20oz),3.99,,False,3.99,True,,,2026-07-14,OK,
+SuperFresh Supermarket,Protein,Peanut Butter,Skippy (16.3oz),4.29,,False,4.29,True,,,2026-07-14,OK,
+SuperFresh Supermarket,Pantry & Beverages,Honey,Golden Blossom Honey,7.79,,False,7.79,True,,,2026-07-14,OK,
+SuperFresh Supermarket,Grains,Rice,Carolina (2lb),2.99,,False,2.99,True,,,2026-07-14,OK,
+SuperFresh Supermarket,Pantry & Beverages,Coffee,Cafe Bustelo 10 oz,9.99,,False,9.99,True,,,2026-07-14,OK,
+SuperFresh Supermarket,Protein,Black Beans,Goya,2.29,1.67,True,1.67,True,3 for $5,,2026-07-14,OK,
+SuperFresh Supermarket,Dairy,Milk,Organic Valley,8.99,,False,8.99,True,,,2026-07-14,Unclear,Half-gallon size not explicitly confirmed
+SuperFresh Supermarket,Dairy,Butter,Kerrygold (2 stick),7.99,,False,7.99,True,,,2026-07-14,OK,
+SuperFresh Supermarket,Dairy,Cheddar Cheese,Cabot ,5.99,,False,5.99,True,,,2026-07-14,Unclear,Size not recorded
+SuperFresh Supermarket,Dairy,Greek yogurt,Chobani,2.39,,False,2.39,True,,,2026-07-14,Unclear,Cup size not recorded
+SuperFresh Supermarket,Protein,Tofu,,,,False,,False,,Not available / not recorded at this store,2026-07-14,OK,
+SuperFresh Supermarket,Protein,Chicken Breast,Superfresh brand boneless chicken breast  (per lb),5.99,,False,5.99,True,,,2026-07-14,Different,Store-brand
+SuperFresh Supermarket,Treats & Alcohol,Beer,"Modelo, 6 pack",13.99,10.99,True,10.99,True,,,2026-07-14,OK,
+SuperFresh Supermarket,Treats & Alcohol,Ice Cream,Hagen-Daz,6.99,,False,6.99,True,,,2026-07-14,OK,
+SuperFresh Supermarket,Grains,Cereal,Cheerios (8.9oz),6.49,,False,6.49,True,,,2026-07-14,OK,
+SuperFresh Supermarket,Protein,Eggs,Sunshine Farms (12 pack),5.49,,False,5.49,True,,,2026-07-14,OK,
+Whole Foods,Produce,Apples,"Honey Crisp, per lb",3.99,,False,3.99,True,,,None,Different,"Honey Crisp variety, not Gala"
+Whole Foods,Produce,Bananas,Organic- Whole foods Market,0.79,,False,0.79,True,,,None,Different,Organic bananas — different tier than conventional elsewhere
+Whole Foods,Produce,Tomatoes,"on the vine, per lb",2.79,,False,2.79,True,,,None,OK,
+Whole Foods,Produce,Kale,"Cal- Organic Farms, per bunch",2.99,,False,2.99,True,,,None,Mismatch,"Priced per bunch, not per lb — not directly comparable"
+Whole Foods,Produce,Spinach,Organic- 365 Whole Foods Market,3.19,,False,3.19,True,,,None,Unclear,Bag size not recorded
+Whole Foods,Grains,Bread,Natures Own ,4.79,,False,4.79,True,,,None,Different,Nature's Own — different brand tier; size not recorded
+Whole Foods,Protein,Peanut Butter,Organic WF Brand,4.99,,False,4.99,True,,,None,Different,Store-brand organic — different brand tier; size not recorded
+Whole Foods,Pantry & Beverages,Honey,Stiles Honey (12oz),7.29,,False,7.29,True,,,None,Different,"Stiles Honey — different brand, same 12oz size"
+Whole Foods,Grains,Rice,Organic WF Brand,5.29,,False,5.29,True,,,None,Unclear,Store-brand organic — different brand tier; size not recorded
+Whole Foods,Pantry & Beverages,Coffee,illy,16.99,,False,16.99,True,,,None,Different,"Illy — premium gourmet brand, likely explains its much higher price; size not recorded"
+Whole Foods,Protein,Black Beans,Organic WF Brand,1.69,,False,1.69,True,,,None,Different,Store-brand organic — different brand tier
+Whole Foods,Dairy,Milk,Organic Valley (half gallon),6.99,,False,6.99,True,,,None,OK,
+Whole Foods,Dairy,Butter,Kerrygold (Salted Irish butter),5.99,,False,5.99,True,,,None,Unclear,Stick count / oz not recorded
+Whole Foods,Dairy,Cheddar Cheese,Cabot,4.29,,False,4.29,True,,,None,Unclear,Size not recorded
+Whole Foods,Dairy,Greek yogurt,Chobani,1.79,,False,1.79,True,,,None,Unclear,Cup size not recorded
+Whole Foods,Protein,Tofu,Organic WF Brand,2.49,,False,2.49,True,,,None,Different,Store-brand organic — different brand tier
+Whole Foods,Protein,Chicken Breast,whole foods brand,6.99,,False,6.99,True,,,None,Different,Store-brand
+Whole Foods,Treats & Alcohol,Beer,Modelo 6 pack,11.49,,False,11.49,True,,,None,OK,
+Whole Foods,Treats & Alcohol,Ice Cream,Ben&Jerrys,6.19,,False,6.19,True,,,None,Different,Ben & Jerry's — a different (premium) brand than Häagen-Dazs
+Whole Foods,Grains,Cereal,Cheerios (8.9oz),5.39,,False,5.39,True,,,None,OK,
+Whole Foods,Protein,Eggs,Free range organic valley,8.49,,False,8.49,True,,,None,Different,"Organic Valley, free range"

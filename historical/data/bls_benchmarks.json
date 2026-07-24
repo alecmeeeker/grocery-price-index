@@ -1,0 +1,181 @@
+{
+"meta": {
+"expected_years": [
+2017,
+2021,
+2026
+],
+"generated": "2026-07-24",
+"source": "compiled from Bushwick Daily surveys 2017/2021 + Tableau + YJC 2026 index"
+},
+"rows": [
+{
+"series_id": "APU0000708111",
+"series_title": "Eggs, grade A, large, per doz.",
+"area": "US city average",
+"period": "2017-03",
+"value_usd_or_index": "1.404",
+"aligned_to": "BD 2017 survey (Mar 2017)"
+},
+{
+"series_id": "APU0000708111",
+"series_title": "Eggs, grade A, large, per doz.",
+"area": "US city average",
+"period": "2021-11",
+"value_usd_or_index": "1.718",
+"aligned_to": "BD 2021 survey (Nov 2021)"
+},
+{
+"series_id": "APU0000708111",
+"series_title": "Eggs, grade A, large, per doz.",
+"area": "US city average",
+"period": "2026-06",
+"value_usd_or_index": "2.141",
+"aligned_to": "latest available (Jun 2026)"
+},
+{
+"series_id": "APU0000709112",
+"series_title": "Milk, fresh, whole, fortified, per gal.",
+"area": "US city average",
+"period": "2017-03",
+"value_usd_or_index": "3.315",
+"aligned_to": "BD 2017 survey"
+},
+{
+"series_id": "APU0000709112",
+"series_title": "Milk, fresh, whole, fortified, per gal.",
+"area": "US city average",
+"period": "2021-11",
+"value_usd_or_index": "3.671",
+"aligned_to": "BD 2021 survey"
+},
+{
+"series_id": "APU0000709112",
+"series_title": "Milk, fresh, whole, fortified, per gal.",
+"area": "US city average",
+"period": "2026-06",
+"value_usd_or_index": "4.317",
+"aligned_to": "latest available"
+},
+{
+"series_id": "APU0000706111",
+"series_title": "Chicken, fresh, whole, per lb.",
+"area": "US city average",
+"period": "2017-03",
+"value_usd_or_index": "1.462",
+"aligned_to": "BD 2017 survey"
+},
+{
+"series_id": "APU0000706111",
+"series_title": "Chicken, fresh, whole, per lb.",
+"area": "US city average",
+"period": "2021-11",
+"value_usd_or_index": "1.583",
+"aligned_to": "BD 2021 survey"
+},
+{
+"series_id": "APU0000706111",
+"series_title": "Chicken, fresh, whole, per lb.",
+"area": "US city average",
+"period": "2026-06",
+"value_usd_or_index": "2.044",
+"aligned_to": "latest available"
+},
+{
+"series_id": "APU0000706212",
+"series_title": "Chicken legs, bone-in, per lb.",
+"area": "US city average",
+"period": "2017-03",
+"value_usd_or_index": "1.480",
+"aligned_to": "BD 2017 survey"
+},
+{
+"series_id": "APU0000706212",
+"series_title": "Chicken legs, bone-in, per lb.",
+"area": "US city average",
+"period": "2021-11",
+"value_usd_or_index": "1.733",
+"aligned_to": "BD 2021 survey"
+},
+{
+"series_id": "APU0000706212",
+"series_title": "Chicken legs, bone-in, per lb.",
+"area": "US city average",
+"period": "2026-06",
+"value_usd_or_index": "1.688",
+"aligned_to": "latest available"
+},
+{
+"series_id": "APU0000FF1101",
+"series_title": "Chicken breast, boneless, per lb.",
+"area": "US city average",
+"period": "2017-03",
+"value_usd_or_index": "3.291",
+"aligned_to": "BD 2017 survey"
+},
+{
+"series_id": "APU0000FF1101",
+"series_title": "Chicken breast, boneless, per lb.",
+"area": "US city average",
+"period": "2021-11",
+"value_usd_or_index": "3.618",
+"aligned_to": "BD 2021 survey"
+},
+{
+"series_id": "APU0000FF1101",
+"series_title": "Chicken breast, boneless, per lb.",
+"area": "US city average",
+"period": "2026-06",
+"value_usd_or_index": "4.181",
+"aligned_to": "latest available"
+},
+{
+"series_id": "APU0000717311",
+"series_title": "Coffee, 100% ground roast, all sizes, per lb.",
+"area": "US city average",
+"period": "2017-03",
+"value_usd_or_index": "4.650",
+"aligned_to": "BD 2017 survey"
+},
+{
+"series_id": "APU0000717311",
+"series_title": "Coffee, 100% ground roast, all sizes, per lb.",
+"area": "US city average",
+"period": "2021-11",
+"value_usd_or_index": "4.816",
+"aligned_to": "BD 2021 survey"
+},
+{
+"series_id": "APU0000717311",
+"series_title": "Coffee, 100% ground roast, all sizes, per lb.",
+"area": "US city average",
+"period": "2026-06",
+"value_usd_or_index": "9.457",
+"aligned_to": "latest available"
+},
+{
+"series_id": "CUURS12ASAF11",
+"series_title": "CPI-U Food at home (index, 1982-84=100)",
+"area": "NY-Newark-Jersey City metro",
+"period": "2017-03",
+"value_usd_or_index": "250.689",
+"aligned_to": "BD 2017 survey"
+},
+{
+"series_id": "CUURS12ASAF11",
+"series_title": "CPI-U Food at home (index, 1982-84=100)",
+"area": "NY-Newark-Jersey City metro",
+"period": "2021-11",
+"value_usd_or_index": "283.223",
+"aligned_to": "BD 2021 survey"
+},
+{
+"series_id": "CUURS12ASAF11",
+"series_title": "CPI-U Food at home (index, 1982-84=100)",
+"area": "NY-Newark-Jersey City metro",
+"period": "2026-06",
+"value_usd_or_index": "336.978",
+"aligned_to": "latest available"
+}
+]
+}
